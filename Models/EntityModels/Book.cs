@@ -12,6 +12,7 @@ namespace BookCave.Models.EntityModels
         public string Genre { get; set; }
         public string Info { get; set; }
         public int AuthorId { get; set; }
+        public string Publisher { get; set; }
         public int PageCount { get; set; }
         public int ReleaseYear { get; set; }
         public double price { get; set; }
