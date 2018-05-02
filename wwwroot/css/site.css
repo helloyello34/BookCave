@@ -33,3 +33,6 @@
         display: none;
     }
 }
+.intput-group input[type=text] {
+    float: right;
+}
