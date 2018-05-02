@@ -21,10 +21,10 @@
         <div class="container">
         <div class="container-fluid navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">BookCave</a>
+                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-book"></i></a>
             </div>
             <form class="navbar-form navbar-left" action="/action_page.php">
-                <div class="input-group">
+                <div id="search-bar" class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-btn">
                     <button class="btn btn-default" type="submit">
@@ -35,14 +35,16 @@
             </form>
             <div class="container-fluid">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Cart</a></li>
-                            <li><a href="#">Sign in / Sign uo</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                            <li><a href="#" id="sign-in">Sign in / Sign up</a></li>
                         </ul>
                     </div>
         </div>
     <div class="container-fluid ">
         <ul class="nav navbar-nav">
-            <li id="categories"><a href="#">Categories</a></li>
+            <li id="categories"><a href="#">Categories</a>
+                
+            </li>
             <li id="top-ten"><a href="#">Top 10</a></li>
         </ul>
     </div>
