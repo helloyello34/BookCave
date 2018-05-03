@@ -2,22 +2,20 @@
 
 <h1>Register</h1>
 
-<div class="form-control">
-  <form asp-action="Register" asp-controller="Account" class="form-horizontal">
-    <div class="form-group">
-      <input type="email" asp-for="Email" class="form-control" placeholder="example@example.com">
-    </div>
-    <div class="form-group">
-      <input type="text" asp-for="FirstName" name="" id="" class="form-control" placeholder="John">
-    </div>
-    <div class="form-group">
-      <input type="text" asp-for="LastName" name="" id="" class="form-control" placeholder="Snow">
-    </div>
-    <div class="form-group"><
-      <input type="password" asp-for="Password" name="" id="" class="form-control" placeholder="Password123">
-    </div>
-    <div class="form-group">
-      <input type="submit" value="Register Me">
-    </div>
-  </form>
-</div>
+    <form asp-action="Register" asp-controller="Account" class="form">
+      <div class="form-group">
+        <input type="email" asp-for="Email" class="form-control" placeholder="example@example.com">
+      </div>
+      <div class="form-group">
+        <input type="text" asp-for="FirstName" name="" id="" class="form-control" placeholder="John">
+      </div>
+      <div class="form-group">
+        <input type="text" asp-for="LastName" name="" id="" class="form-control" placeholder="Snow">
+      </div>
+      <div class="form-group">
+        <input type="password" asp-for="Password" name="" id="" class="form-control" placeholder="Password123">
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-default" value="Register Me">
+      </div>
+    </form>
