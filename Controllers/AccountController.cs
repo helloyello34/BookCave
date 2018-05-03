@@ -49,7 +49,7 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid) { return View(); }
+            if ( !ModelState.IsValid ) { return View(); }
 
             var user = new ApplicationUser {
                 UserName = model.Email,
@@ -64,7 +64,7 @@ namespace BookCave.Controllers
 
                 // Add the concatenated first andd last name as fullName in claims
 
-                await _userManager.AddClaimAsync(user, new Claim("fName", $"{model.FirstName} {model.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("Name", $"{model.FirstName} {model.LastName}"));
                 await _signInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home");
