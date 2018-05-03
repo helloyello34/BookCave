@@ -11,6 +11,7 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
+        
         public BookDetailsViewModel GetBookById(int id)
         {
             var book = (
