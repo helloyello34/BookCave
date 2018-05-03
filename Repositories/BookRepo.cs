@@ -67,7 +67,7 @@ namespace BookCave.Repositories
             var randomBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                ///Muna breyta til að fá random
+                orderby Guid.NewGuid()
                 select new BookTableViewModel
                 {
                     Title = b.Title,
@@ -77,6 +77,7 @@ namespace BookCave.Repositories
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
+                //list = list.OrderBy(emp => Guid.NewGuid()).ToList();
 
             var books = new BookFrontPageViewModel
             {
