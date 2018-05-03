@@ -18,7 +18,7 @@ namespace BookCave.Models.EntityModels
         public double price { get; set; }
         public double Discount  { get; set; }
         public double Rating { get; set; }
-        public uint RatingCount { get; set; }
-        public uint Stock { get; set; }
+        public int RatingCount { get; set; }
+        public int Stock { get; set; }
     }
 }
