@@ -49,7 +49,7 @@ namespace BookCave.Repositories
                     Price = b.price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(3).ToList();
+                }).Take(6).ToList();
 
             var recentlyAddedbooks = (
                 from b in _db.Books
@@ -63,7 +63,7 @@ namespace BookCave.Repositories
                     Price = b.price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(3).ToList();
+                }).Take(6).ToList();
             var randomBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -76,7 +76,7 @@ namespace BookCave.Repositories
                     Price = b.price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(3).ToList();
+                }).Take(6).ToList();
 
             var books = new BookFrontPageViewModel
             {

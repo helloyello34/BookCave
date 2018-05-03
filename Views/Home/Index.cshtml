@@ -32,8 +32,9 @@
             </div>
             }
         </div>
+        <h2 class="frontpage-category">Recently Added</h2>
         <div class="col col-lg-12 frontpage-booklist">
-            @foreach(var booksRecentlyAdded in Model.RecentlyAdded)
+            @foreach(var booksRecentlyAdded in Model.RecentlyAddedBooks)
             {
             <div class="col col-lg-2 book-display-frontpage">
                 <div class="row">
@@ -53,26 +54,27 @@
             </div>
             }
         </div>
+        <h2 class="frontpage-category">Tvö dóp í poka</h2>
         <div class="col col-lg-12 frontpage-booklist">
-
+            @foreach(var booksRandom in Model.RecentlyAddedBooks)
+            {
+            <div class="col col-lg-2 book-display-frontpage">
+                <div class="row">
+                    <div class="col col-lg-12 book-image-div">
+                        <a href="#">
+                            <img class="book-image-frontpage" src="@booksRandom.Image" alt="@booksRandom.Title">
+                        </a>                    
+                    </div>
+                </div>
+                    <div class="book-info-frontpage">
+                        <h3 id="frontpage-title">@booksRandom.Title</h3>
+                        <p id="frontpage-author">@booksRandom.Author</p>
+                        <p id="frontpage-rating">@booksRandom.Rating</p>
+                        <p id="frontpage-price">@booksRandom.Price $</p>
+                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                    </div>
+            </div>
+            }
         </div>
     </div>
 </div>
-<!--
-                <div class="col col-lg-2 book-display-frontpage">
-                <div class="row">
-                <div class="col col-lg-12 book-image-div">
-                    <a href="#">
-                    <img class="book-image-frontpage" src="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" alt="book">
-                    </a>                    
-                </div>
-                </div>
-                <div class="book-info-frontpage">
-                    <h3 id="frontpage-title">Harry Potter and the philosopher's stone</h3>
-                    <p id="frontpage-author">J.K Rowling</p>
-                    <p>Rating: 5</p>
-                    <p id="frontpage-price">39.99$</p>
-                    <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
-                </div>
-            </div>
-            -->

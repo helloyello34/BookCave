@@ -86,9 +86,11 @@ textarea {
     margin-bottom: 4px;
 }
 .frontpage-category{
-    margin-left: 12px;
+    margin-left: 14px;
     margin-bottom: 0px;
+    margin-top: 10px;
 }
 .frontpage-booklist{
     margin-top: 10px;
+    margin-bottom: 20px;
 }
