@@ -1,5 +1,6 @@
 using BookCave.Data;
 using BookCave.Models.ViewModels;
+using System;
 using System.Linq;
 
 namespace BookCave.Repositories
@@ -10,15 +11,15 @@ namespace BookCave.Repositories
         public BookRepo()
         {
             _db = new DataContext();
-        }
+        }      
         public BookDetailsViewModel GetBookById(int id)
         {
             var book = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
                 where b.Id == id
-                select new BookDetailsViewModel {
-
+                select new BookDetailsViewModel 
+                {
                     Title = b.Title,
                     Author = a.Name,
                     ReleaseYear = b.ReleaseYear,
@@ -33,6 +34,57 @@ namespace BookCave.Repositories
                 }).SingleOrDefault();
 
             return book;
+        }
+        public BookFrontPageViewModel GetFrontPageBooks()
+        {
+            var popularBooks = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                orderby b.Rating descending
+                select new BookTableViewModel
+                {
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }).Take(3).ToList();
+
+            var recentlyAddedbooks = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                orderby b.Id descending
+                select new BookTableViewModel
+                {
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }).Take(3).ToList();
+            var randomBooks = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                ///Muna breyta til að fá random
+                select new BookTableViewModel
+                {
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }).Take(3).ToList();
+
+            var books = new BookFrontPageViewModel
+            {
+                PopularBooks = popularBooks,
+                RecentlyAddedBooks = recentlyAddedbooks,
+                RandomBooks = randomBooks
+            };
+            return books;
         }
     }
 }

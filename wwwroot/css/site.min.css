@@ -33,3 +33,62 @@ textarea {
 #book-details {
     margin-top: 20px;
 }
+.popular-books{
+    height: 300px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+.book-display-frontpage{
+    height: 320px;
+    border-bottom: solid;
+    border-top: solid;
+    border-left: solid;
+    border-color: lightgray;
+    border-width: 2px;
+}
+.book-image-div{
+    height: 160px;
+    margin-top: 10px;
+    padding: 0;
+}
+.book-image-frontpage{
+    height: 160px;
+    width: 120px;
+    margin-left: 14px;
+}
+.book-info-frontpage{
+    height: 140px;
+    widows: 120px;;
+}
+#frontpage-title{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 auto;
+    height: 40px;
+    margin-top: 4px;
+}
+#frontpage-author{
+    font-size: 10px;
+    height: 20px;
+    margin: 0 auto;
+}
+#frontpage-price{
+    font-size: 10px;
+    margin: 0 auto;
+    height: 20px;
+}
+#frontpage-rating{
+    font-size: 10px;
+    margin: 0 auto;
+    height: 20px;
+}
+.frontpage-cartbutton{
+    margin-bottom: 4px;
+}
+.frontpage-category{
+    margin-left: 12px;
+    margin-bottom: 0px;
+}
+.frontpage-booklist{
+    margin-top: 10px;
+}
