@@ -32,7 +32,6 @@ textarea {
 #book-details {
     margin-top: 20px;
 }
-<<<<<<< HEAD
 .popular-books{
     height: 300px;
     margin-bottom: 50px;
@@ -94,6 +93,4 @@ textarea {
     margin-top: 10px;
     margin-bottom: 20px;
 }
-=======
 body{padding-top:50px;padding-bottom:20px}#categories,#top-ten{font-size: 14pt;}.input-group input[type=text]{float:right;margin-left: 400px;}#search-bar{margin-top: 5px;} .glyphicon.glyphicon-book{font-size: 30px;}.glyphicon.glyphicon-shopping-cart{font-size: 30px;}.body-content{padding-left:15px;padding-right:15px;padding-top: 80px;}#sign-in{padding-top: 22px;}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
->>>>>>> 612c7457befce73597e47964c18c2e5e9c6816d5
