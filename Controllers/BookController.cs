@@ -25,5 +25,10 @@ namespace BookCave.Controllers
 
             return View(book);
         }
+        public IActionResult Top10()
+        {
+            var books = _bookService.GetTopTenBooks();
+            return View(books);
+        }
     }
 }

@@ -39,11 +39,7 @@ textarea {
 }
 .book-display-frontpage{
     height: 320px;
-    border-bottom: solid;
-    border-top: solid;
-    border-left: solid;
-    border-color: lightgray;
-    border-width: 2px;
+    background-color: #f0f0f0e7
 }
 .book-image-div{
     height: 160px;
@@ -52,7 +48,7 @@ textarea {
 }
 .book-image-frontpage{
     height: 160px;
-    width: 120px;
+    width: 130px;
     margin-left: 14px;
 }
 .book-info-frontpage{
@@ -63,18 +59,21 @@ textarea {
     font-size: 12px;
     font-weight: bold;
     margin: 0 auto;
-    height: 40px;
+    height: 30px;
     margin-top: 4px;
+    color: black;
 }
 #frontpage-author{
-    font-size: 10px;
-    height: 20px;
+    font-size: 12px;
+    height: 25px;
     margin: 0 auto;
 }
 #frontpage-price{
-    font-size: 10px;
+    font-size: 12px;
     margin: 0 auto;
-    height: 20px;
+    height: 25px;
+    color: #d42f2f;
+    font-weight: bold;
 }
 #frontpage-rating{
     font-size: 10px;
@@ -92,5 +91,77 @@ textarea {
 .frontpage-booklist{
     margin-top: 10px;
     margin-bottom: 20px;
+}
+#topten-screen-wrap{
+    background: #f0f0f0;
+}
+#topten-body{
+    background-color: #f0f0f0;
+}
+.topten-container{
+    margin-top: 50px;
+    height: 360px;
+    border: solid lightgray;
+    border-width: 0.5px;
+    background-color: white;
+}
+.topten-inner-container{
+    height: 360px;
+    width: 100%;
+    margin-left: 20px;
+}
+.topten-book-wrap{
+    width: 220px;
+    height: 340px;
+    margin-top: 10px;
+    float: left;
+}
+.topten-image-wrap{
+    height: 210px;
+    width: 150px;
+}
+.topten-image{
+    height: 210px;
+    width: 150px;
+}
+.topten-title-text{
+    width: 180px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 4px auto;
+    color: black;
+}
+.topten-author-text{
+    width: 180px;
+    height: 15px;
+    font-size: 12px;
+    margin: 2px auto;
+}
+.topten-price-text{
+    width: 180px;
+    height: 15px;
+    font-size: 12px;
+    margin: 2px auto;
+    font-weight: bold;
+    color: #d42f2f;
+}
+.topten-rating{
+    width: 180px;
+    height: 15px;
+    font-size: 12px;
+    margin: 4px auto;    
+}
+.topten-button-div{
+    width: 180px;
+    height: 40px;
+    margin-top: 6px;
+}
+.topten-cartbutton{
+    width: 160px;
+}
+#topten-h3{
+    margin-bottom: -35px;
+    font-size: 32px;
 }
 body{padding-top:50px;padding-bottom:20px}#categories,#top-ten{font-size: 14pt;}.input-group input[type=text]{float:right;margin-left: 400px;}#search-bar{margin-top: 5px;} .glyphicon.glyphicon-book{font-size: 30px;}.glyphicon.glyphicon-shopping-cart{font-size: 30px;}.body-content{padding-left:15px;padding-right:15px;padding-top: 80px;}#sign-in{padding-top: 22px;}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}

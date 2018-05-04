@@ -1,6 +1,7 @@
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookCave.Repositories
@@ -44,6 +45,7 @@ namespace BookCave.Repositories
                 orderby b.Rating descending
                 select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
@@ -58,6 +60,7 @@ namespace BookCave.Repositories
                 orderby b.Id descending
                 select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
@@ -71,6 +74,7 @@ namespace BookCave.Repositories
                 orderby Guid.NewGuid()
                 select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
@@ -78,7 +82,6 @@ namespace BookCave.Repositories
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
-                //list = list.OrderBy(emp => Guid.NewGuid()).ToList();
 
             var books = new BookFrontPageViewModel
             {
@@ -87,6 +90,43 @@ namespace BookCave.Repositories
                 RandomBooks = randomBooks
             };
             return books;
+        }
+        public BookTopTenViewModel GetTopTenBooks()
+        {
+            var firstHalf = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                orderby b.Rating descending
+                select new BookTableViewModel
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }).Take(5).ToList();
+            var secondHalf = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                orderby b.Rating descending
+                select new BookTableViewModel
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }).Skip(5).Take(5).ToList();
+            var books = new BookTopTenViewModel
+            {
+                FirstHalf = firstHalf,
+                SecondHalf = secondHalf
+            };
+                return books;
         }
     }
 }

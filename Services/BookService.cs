@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -20,6 +21,12 @@ namespace BookCave.Services
         public BookFrontPageViewModel GetFrontPageBooks()
         {
             var books = _bookRepo.GetFrontPageBooks();
+            return books;
+        }
+        public BookTopTenViewModel GetTopTenBooks()
+        {
+            var books = _bookRepo.GetTopTenBooks();
+
             return books;
         }
         
