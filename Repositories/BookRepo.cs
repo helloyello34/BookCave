@@ -1,6 +1,8 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookCave.Repositories
@@ -38,10 +40,27 @@ namespace BookCave.Repositories
 
         public void AddBook(Book book)
         {
-            _db.Books.Add(book);
+            _db.Add(book);
             _db.SaveChanges();
         }
 
+        public void AddAuthor(Author author)
+        {
+            _db.Add(author);
+            _db.SaveChanges();
+            Console.Write("Book added");
+        }
+
+        public List<AuthorsViewModel> GetAuthorList()
+        {
+            var authorList = (
+                from a in _db.Authors
+                select new AuthorsViewModel {
+                    Id = a.Id,
+                    Name = a.Name
+                    }).ToList();
+                return authorList;
+        }
       /*  public int GetNewBookId()
         {
             var id = 0;

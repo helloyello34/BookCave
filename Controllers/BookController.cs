@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
@@ -31,34 +32,43 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Title"] = "Add book to database";
+
+            var authorList = _bookService.GetAuthorList();
+            ViewData["aList"] = authorList as List<BookCave.Models.ViewModels.AuthorsViewModel>;
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(BookInputModel BookInputModel)
+        public IActionResult Create(BookInputModel bookInputModel)
         {
-            var book = new Book
+            if(ModelState.IsValid)
             {
-                ISBN = BookInputModel.ISBN,
-                Language = BookInputModel.Language,
-                Image = BookInputModel.Image,
-                Title = BookInputModel.Title,
-                Genre = BookInputModel.Genre,
-                Info = BookInputModel.Info,
-                AuthorId = BookInputModel.AuthorId,
-                Publisher = BookInputModel.Publisher,
-                PageCount = BookInputModel.PageCount,
-                ReleaseYear = BookInputModel.ReleaseYear,
-                Price = BookInputModel.Price,
-                Discount = 0,
-                Rating = 0,
-                RatingCount = 0,
-                Stock = 10
+                _bookService.AddBook(bookInputModel);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpGet]
+
+        public IActionResult CreateAuthor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateAuthor(AuthorInputModel AuthorInputModel)
+        {
+            var author = new Author
+            {
+                Name = AuthorInputModel.Name
             };
             if(ModelState.IsValid)
             {
-                _bookService.AddBook(book);
-                RedirectToAction("Index");
+                _bookService.AddAuthor(author);
+                return RedirectToAction("Index");
             }
             return View();
         }

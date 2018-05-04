@@ -1,35 +1,102 @@
-#line-break-about-us{
-    border-width: 1px;
-    border-color: gray;
+@media screen and (min-width: 1201px) {
+    body{
+        padding-top:50px;padding-bottom:20px;
+        
+    }
+    .body-content{
+        padding-left:15px;
+        padding-right:15px;
+        padding-top: 80px;
+    }
+    #categories,#top-ten{
+        font-size: 14pt;
+    }
+    .input-group input[type=text]{
+        float:right;
+        margin-left: 400px;
+    }
+    #search-bar
+    {margin-top: 5px;
+    }
+    .glyphicon.glyphicon-book{
+        font-size: 30px;
+    }
+    .glyphicon.glyphicon-shopping-cart{
+        font-size: 30px;
+    }
+    #sign-in{
+        padding-top: 22px;
+    }
+    .carousel-caption p{
+        font-size:20px;
+        line-height:1.4
+    }
+    .carousel-inner .item img[src$=".svg"]{
+        width:100%
+    }
+    #qrCode{
+        margin:15px
+    }
+    #line-break-about-us{
+        border-width: 1px;
+        border-color: gray;
+    }
+    #aboutus-div{
+        height: 600px;
+    }
+    #contact-details{
+        margin-left: -180px;
+        margin-top: 20px;
+    }
+    .glyphicon-book{
+        font-size: 50px;
+    }
+    #map-container{
+        height: 450px;
+        margin-left: 100px;
+    }
+    #map{
+        width: 850px;
+        height: 450px;
+    }
+    .form-group{
+        margin-left: 115px;
+    }
+    .contact-form{
+        margin-top: 5px;
+    }
+    textarea {
+        resize: none;
+    }
+    #book-details {
+        margin-top: 20px;
+    }
 }
-#aboutus-div{
-    height: 600px;
+@media screen and (max-width: 1200px) {
+    body{
+        background-color: darkorange;
+        padding-top:50px;padding-bottom:20px
+    }
+    .body-content{
+        padding-left:15px;
+        padding-right:15px;
+        padding-top: 100px;
+    }
 }
-#contact-details{
-    margin-left: -180px;
-    margin-top: 20px;
+@media screen and (max-width:767px){
+    .navbar-form{
+        width: auto;
+    }
+    .carousel-caption{
+        display:none
+    }
+    body{
+        background-color: aqua;
+        padding-top:50px;padding-bottom:20px
+    }
+    .body-content{
+        padding-left:15px;
+        padding-right:15px;
+        padding-top: 300px;
+    }
 }
-.glyphicon-book{
-    font-size: 50px;
-}
-#map-container{
-    height: 450px;
-    margin-left: 100px;
-}
-#map{
-    width: 850px;
-    height: 450px;
-}
-.form-group{
-    margin-left: 115px;
-}
-.contact-form{
-    margin-top: 5px;
-}
-textarea {
-    resize: none;
-}
-#book-details {
-    margin-top: 20px;
-}
-body{padding-top:50px;padding-bottom:20px}#categories,#top-ten{font-size: 14pt;}.input-group input[type=text]{float:right;margin-left: 400px;}#search-bar{margin-top: 5px;} .glyphicon.glyphicon-book{font-size: 30px;}.glyphicon.glyphicon-shopping-cart{font-size: 30px;}.body-content{padding-left:15px;padding-right:15px;padding-top: 80px;}#sign-in{padding-top: 22px;}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
