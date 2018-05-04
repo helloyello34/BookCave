@@ -1,3 +1,4 @@
+using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -17,6 +18,16 @@ namespace BookCave.Services
             var book = _bookRepo.GetBookById(id);
             return book;
         }
+
+        public void AddBook(Book book)
+        {
+            _bookRepo.AddBook(book);
+        }
         
+        /*public int GetNewBookId()
+        {
+            var id = _bookRepo.GetNewBookId();
+            return id;
+        }*/
     }
 }

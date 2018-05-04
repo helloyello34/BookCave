@@ -1,0 +1,82 @@
+@model BookCave.Models.InputModels.BookInputModel
+@{
+  ViewData["Title"] = "Create new Book";
+}
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+<form action="" method="POST">
+    <div class="form-group">
+      <label asp-for="Title">Book title</label> <br>
+      <input type="text" asp-for="Title" class="form-controll" 
+             placeholder="Input the book title">
+      <span asp-validation-for="Title"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="AuthorId">Author</label> <br>
+      <input type="text" asp-for="AuthorId" class="form-controll"
+             placeholder="Input the book author">
+      <span asp-validation-for="AuthorId"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Genre">Genre</label> <br>
+      <input type="text" asp-for="Genre" class="form-controll"
+             placeholder="Input the book Genre">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Publisher">Publisher</label> <br>
+      <input type="text" asp-for="Publisher" class="form-controll"
+             placeholder="Input the book Publisher">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Language">Language</label> <br>
+      <input type="text" asp-for="Language" class="form-controll"
+             placeholder="Input the book language">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="ReleaseYear">Release Year</label> <br>
+      <input type="text" asp-for="ReleaseYear" class="form-controll"
+             placeholder="Input the book release year">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="PageCount">Page Count</label> <br>
+      <input type="text" asp-for="PageCount" class="form-controll"
+             placeholder="Input the book page count">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="ISBN">ISBN</label> <br>
+      <input type="text" asp-for="ISBN" class="form-controll"
+             placeholder="Input the book ISBN number">
+      <span asp-validation-for="ISBN"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Image">Image</label> <br>
+      <input type="text" asp-for="Image" class="form-controll"
+             placeholder="Input the bookcover URL">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Price">Price</label> <br>
+      <input type="text" asp-for="Price" class="form-controll"
+             placeholder="Input the book price">
+      <span asp-validation-for="Price"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Info">Info</label> <br>
+       <textarea  asp-for="Info" cols="40" rows="5" placeholder="Write a short description of the book"></textarea>
+    </div>
+
+  <input type="submit" class="btn btn-primary form-group" value="Submit Book">
+
+</form>

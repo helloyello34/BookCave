@@ -1,4 +1,5 @@
 using BookCave.Data;
+using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
 using System.Linq;
 
@@ -24,7 +25,7 @@ namespace BookCave.Repositories
                     ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
                     Info = b.Info,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Genre = b.Genre,
                     Language = b.Language,
@@ -34,5 +35,24 @@ namespace BookCave.Repositories
 
             return book;
         }
+
+        public void AddBook(Book book)
+        {
+            _db.Books.Add(book);
+            _db.SaveChanges();
+        }
+
+      /*  public int GetNewBookId()
+        {
+            var id = 0;
+                foreach (var m in _db.Books)
+                {
+                    if(id < m.Id)   
+                    {
+                        id = m.Id;
+                    };
+                }
+                return id + 1;
+        }*/
     }
 }
