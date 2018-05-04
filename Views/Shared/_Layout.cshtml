@@ -21,11 +21,11 @@
         <div class="container">
         <div class="container-fluid navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-book"></i></a>
+                <a class="navbar-brand" <a asp-area="" asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-book"></i></a>
             </div>
             <form class="navbar-form navbar-left" action="/action_page.php">
                 <div id="search-bar" class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search for a book">
                     <div class="input-group-btn">
                     <button class="btn btn-default" type="submit">
                         <i class="glyphicon glyphicon-search"></i>
@@ -46,6 +46,7 @@
                 
             </li>
             <li id="top-ten"><a href="#">Top 10</a></li>
+            <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
         </ul>
     </div>
     </div>

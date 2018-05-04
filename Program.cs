@@ -24,5 +24,7 @@ namespace BookCave
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+        }
+
     }
 }

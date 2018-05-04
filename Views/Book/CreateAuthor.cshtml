@@ -1,0 +1,29 @@
+@model BookCave.Models.InputModels.AuthorInputModel
+@{
+  ViewData["Title"] = "Create new author";
+}
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <form action="" method="POST">
+      <div class="col col-lg-3">
+        <input type="text" asp-for="Name" class="form-control"
+              placeholder="Enter the authors name">
+        <input type="submit" class="btn btn-primary" value="Create author">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-2">
+      
+    </div>
+    <div class="col col-lg-2">
+      <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Create new book</a>
+    </div>
+  </div>
+</div>

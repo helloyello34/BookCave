@@ -1,4 +1,5 @@
 using BookCave.Data;
+using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace BookCave.Repositories
                     ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
                     Info = b.Info,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Genre = b.Genre,
                     Language = b.Language,
@@ -49,7 +50,7 @@ namespace BookCave.Repositories
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
@@ -64,7 +65,7 @@ namespace BookCave.Repositories
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
@@ -78,7 +79,7 @@ namespace BookCave.Repositories
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
@@ -103,7 +104,7 @@ namespace BookCave.Repositories
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(5).ToList();
@@ -117,7 +118,7 @@ namespace BookCave.Repositories
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
-                    Price = b.price,
+                    Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
                 }).Skip(5).Take(5).ToList();
@@ -128,5 +129,41 @@ namespace BookCave.Repositories
             };
                 return books;
         }
+
+        public void AddBook(Book book)
+        {
+            _db.Add(book);
+            _db.SaveChanges();
+        }
+
+        public void AddAuthor(Author author)
+        {
+            _db.Add(author);
+            _db.SaveChanges();
+            Console.Write("Book added");
+        }
+
+        public List<AuthorsViewModel> GetAuthorList()
+        {
+            var authorList = (
+                from a in _db.Authors
+                select new AuthorsViewModel {
+                    Id = a.Id,
+                    Name = a.Name
+                    }).ToList();
+                return authorList;
+        }
+      /*  public int GetNewBookId()
+        {
+            var id = 0;
+                foreach (var m in _db.Books)
+                {
+                    if(id < m.Id)   
+                    {
+                        id = m.Id;
+                    };
+                }
+                return id + 1;
+        }*/
     }
 }

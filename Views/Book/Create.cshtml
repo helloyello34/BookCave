@@ -1,0 +1,98 @@
+@model BookCave.Models.InputModels.BookInputModel
+@{
+  var authorList = ViewData["aList"] as IEnumerable<BookCave.Models.ViewModels.AuthorsViewModel>;
+
+}
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4">
+      <h2>@ViewData["Title"]</h2>
+      <form action="" method="POST">
+          <div class="">
+            <label asp-for="Title">Book title</label> <br>
+            <input type="text" asp-for="Title" class="form-control" 
+                  placeholder="Input the book title">
+            <span asp-validation-for="Title"></span>
+          </div>
+
+          <div class="">
+            <label asp-for="AuthorId">Author</label> <br>
+            <input type="text" asp-for="AuthorId" class="form-control"
+                  placeholder="Input the book author">
+            <span asp-validation-for="AuthorId"></span>
+          </div>
+
+          <div class="">
+            <label asp-for="Genre">Genre</label> <br>
+            <input type="text" asp-for="Genre" class="form-control"
+                  placeholder="Input the book Genre">
+          </div>
+
+          <div class="">
+            <label asp-for="Publisher">Publisher</label> <br>
+            <input type="text" asp-for="Publisher" class="form-control"
+                  placeholder="Input the book Publisher">
+          </div>
+
+          <div class="">
+            <label asp-for="Language">Language</label> <br>
+            <input type="text" asp-for="Language" class="form-control"
+                  placeholder="Input the book language">
+          </div>
+
+          <div class="">
+            <label asp-for="ReleaseYear">Release Year</label> <br>
+            <input type="text" asp-for="ReleaseYear" class="form-control"
+                  placeholder="Input the book release year">
+          </div>
+
+          <div class="">
+            <label asp-for="PageCount">Page Count</label> <br>
+            <input type="text" asp-for="PageCount" class="form-control"
+                  placeholder="Input the book page count">
+          </div>
+
+          <div class="">
+            <label asp-for="ISBN">ISBN</label> <br>
+            <input type="text" asp-for="ISBN" class="form-control"
+                  placeholder="Input the book ISBN number">
+            <span asp-validation-for="ISBN"></span>
+          </div>
+
+          <div class="">
+            <label asp-for="Image">Image</label> <br>
+            <input type="text" asp-for="Image" class="form-control"
+                  placeholder="Input the bookcover URL">
+          </div>
+
+          <div class="">
+            <label asp-for="Price">Price</label> <br>
+            <input type="text" asp-for="Price" class="form-control"
+                  placeholder="Input the book price">
+            <span asp-validation-for="Price"></span>
+          </div>
+
+          <div class="">
+            <label asp-for="Info">Info</label> <br>
+            <textarea class="form-control" asp-for="Info" cols="40" rows="5" placeholder="Write a short description of the book"></textarea>
+          </div>
+
+        <input type="submit" class="btn btn-primary " value="Submit Book">
+
+      </form>
+    </div>
+      <div class="col col-lg-3">
+        <h2>Author</h2>
+        <ul class="list-group">
+          @foreach(var a in authorList)
+          {
+            <li class="list-group-item">@a.Name | Id =  @a.Id</li>
+          }
+        </ul>
+         <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-primary">Create new author</a>
+      </div>
+      <div class="col col-lg-5">
+       
+      </div>
+  </div>
+</div>
