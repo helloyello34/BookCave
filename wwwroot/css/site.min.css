@@ -255,3 +255,8 @@ textarea {
     margin-bottom: -35px;
     font-size: 32px;
 }
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    border: solid;
+}

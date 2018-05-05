@@ -57,7 +57,19 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - BookCave</p>
+            <div class="flex-container ">
+                <div class="row footer-container">
+                    <div class="col col-lg-2">
+                        <a asp-controller="Home" asp-action="About">About us</a>
+                    </div>
+                    <div class="col col-lg-2">
+                        <p>&copy; 2018 - BookCave</p>
+                    </div>
+                    <div class="col col-lg-2">
+                        <a asp-controller="Home" asp-action="Contact">Contact us</a>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
