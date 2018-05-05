@@ -17,14 +17,14 @@
 
           <div class="">
             <label asp-for="AuthorId">Author</label> <br>
-                  <select asp-for="AuthorId" id="" class="form-control">
-                    <option disabled hidden value="">Select an author</option>
-                    @foreach(var a in authorList)
-                      {
-                        <option value="@a.Id">@a.Name</option>
-                      }
-                  </select>
-                  <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-primary">Create new author</a>
+              <select asp-for="AuthorId" id="" class="form-control">
+                <option disabled hidden value="">Select an author</option>
+                @foreach(var a in authorList)
+                  {
+                    <option value="@a.Id">@a.Name</option>
+                  }
+              </select>
+              <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-primary">Create new author</a>
 
             <span asp-validation-for="AuthorId"></span>
           </div>
