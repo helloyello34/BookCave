@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
@@ -36,7 +37,7 @@
             <div class="container-fluid">
                         @await Html.PartialAsync("_LoginPartial")
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                            <li><a asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
                         </ul>
                     </div>
         </div>
@@ -45,7 +46,7 @@
             <li id="categories"><a href="#">Categories</a>
                 
             </li>
-            <li id="top-ten"><a href="#">Top 10</a></li>
+            <li id="top-ten"><a asp-controller="Book" asp-action="Top10">Top 10</a></li>
             <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
         </ul>
     </div>
@@ -55,7 +56,7 @@
     
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr id="footer-hr">
         <footer>
             <div class="flex-container ">
                 <div class="row footer-container">

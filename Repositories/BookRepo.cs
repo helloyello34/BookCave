@@ -69,6 +69,15 @@ namespace BookCave.Repositories
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
+
+            /*var genre = (
+                from b in _db.Books
+                select b.Genre).ToList();
+
+            var random = new Random();
+            var index = random.Next(0, genre.Count() + 1);
+            var chosenGenre = genre[index]; */             
+
             var randomBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id

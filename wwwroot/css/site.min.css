@@ -128,9 +128,12 @@ textarea {
     margin-bottom: 50px;
     margin-top: 20px;
 }
+#body-frontpage{
+    background-color: #f0f0f0;
+}
 .book-display-frontpage{
     height: 320px;
-    background-color: #f0f0f0e7
+    background-color: white;
 }
 .book-image-div{
     height: 160px;
@@ -166,13 +169,15 @@ textarea {
     color: #d42f2f;
     font-weight: bold;
 }
-#frontpage-rating{
+.frontpage-rating{
     font-size: 10px;
     margin: 0 auto;
     height: 20px;
+    margin-bottom: 6px
 }
 .frontpage-cartbutton{
     margin-bottom: 4px;
+    width: 135px;
 }
 .frontpage-category{
     margin-left: 14px;
@@ -198,13 +203,16 @@ textarea {
 .topten-inner-container{
     height: 360px;
     width: 100%;
-    margin-left: 50px;
+    margin-left: 35px;
 }
 .topten-book-wrap{
     width: 220px;
     height: 340px;
     margin-top: 10px;
     float: left;
+}
+.topten-row{
+    width: 1135px;
 }
 .topten-image-wrap{
     height: 210px;
@@ -256,5 +264,18 @@ textarea {
 .footer-container{
     display: flex;
     justify-content: space-between;
-    border: solid;
+}
+#footer-hr{
+    border-width: 1px;
+    border-color: rgba(128, 128, 128, 0.938);
+    width: 1170px;
+}
+.checked {
+    color: orange;
+}
+.star{
+    font-size: 18px;
+    margin: 0 auto;
+    color: orange;
+    margin-left: -4px;
 }
