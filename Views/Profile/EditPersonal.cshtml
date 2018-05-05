@@ -1,0 +1,19 @@
+@model BookCave.Models.InputModels.UserPersonalInputModel
+
+<div class="form-group">
+  <form asp-action="EditPersonal" asp-controller="Profile" method="POST">
+    <div class="input-model">
+      <label>
+        First Name: <input type="text" asp-for="FirstName" placeholder="@Model.FirstName">
+      </label>
+    </div>
+    <div class="input-model">
+      <label>
+        Last Name: <input type="text" asp-for="LastName" placeholder="@Model.LastName">
+      </label>
+    </div>
+    <div class="input-model">
+      <input type="submit" value="Change Info">
+    </div>
+  </form>
+</div>
