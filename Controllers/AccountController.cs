@@ -60,7 +60,9 @@ namespace BookCave.Controllers
                 Street = "",
                 ZipCode = "",
                 City = "",
-                Country = ""
+                Country = "",
+                Gender = "",
+                Phone = "",
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

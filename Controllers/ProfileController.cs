@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Principal;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -54,13 +56,18 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPersonal(UserPersonalInputModel model)
         {
-            var user = await GetCrurentUserAsync();
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            
-            await _userManager.UpdateAsync(user);
+            if( ModelState.IsValid )
+            {
+                var user = await GetCrurentUserAsync();
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Gender = model.Gender;
+                
+                await _userManager.UpdateAsync(user);
 
-            return RedirectToAction("Home", "Profile");
+                return RedirectToAction("Home", "Profile");
+            }
+            return View();
         }
         // [HttpPost]
         // public async Task<IActionResult> Home(UserInputModel model)
