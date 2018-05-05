@@ -43,7 +43,7 @@ namespace BookCave.Repositories
             var temp = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                where b.Genre == selectedGenre
+                where b.Genre.ToLower().Contains(selectedGenre.ToLower())
                 select new BookTableViewModel
                 {
                     Id = b.Id,
