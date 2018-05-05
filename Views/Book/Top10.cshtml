@@ -1,0 +1,76 @@
+@model BookCave.Models.ViewModels.BookTopTenViewModel
+<body id="topten-body">
+    <h1 id="topten-h3">Our top ten highest rated books</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-12 topten-container">
+                <div class="topten-inner-container flex-container">
+                    @foreach(var books in Model.FirstHalf)
+                    {
+                    <div class="topten-book-wrap">
+                        <div class="topten-image-wrap">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                                <img class="topten-image" src="@books.Image" alt="Book">
+                            </a>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                                <h3 class="topten-title-text">@books.Title</h3>
+                            </a>
+                            <p class="topten-author-text">@books.Author</p>
+                            <p class="topten-rating">@books.Rating</p>
+                            <p class="topten-price-text">@books.Price$</p>
+                            <div class="topten-button-div">
+                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-12 topten-container">
+                <div class="topten-inner-container">
+                    @foreach(var booksSecondHalf in Model.SecondHalf)
+                    {
+                    <div class="topten-book-wrap">
+                        <div class="topten-image-wrap">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id">
+                                <img class="topten-image" src="@booksSecondHalf.Image" alt="Book">
+                            </a>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id">
+                                <h3 class="topten-title-text">@booksSecondHalf.Title</h3>
+                            </a>
+                            <p class="topten-author-text">@booksSecondHalf.Author</p>
+                            <p class="topten-rating">@booksSecondHalf.Rating</p>
+                            <p class="topten-price-text">@booksSecondHalf.Price$</p>
+                            <div class="topten-button-div">
+                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--
+                    <div class="topten-book-wrap">
+                        <div class="topten-image-wrap">
+                            <a href="#">
+                                <img class="topten-image" src="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" alt="Book">
+                            </a>
+                            <a href="#">
+                                <h3 class="topten-title-text">Harry Potter and the philosopher's stone</h3>
+                            </a>
+                            <p class="topten-author-text">J.K Rowling</p>
+                            <p class="topten-rating">Rating: 0</p>
+                            <p class="topten-price-text">39.99$</p>
+                            <div class="topten-button-div">
+                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+-->
