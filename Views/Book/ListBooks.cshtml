@@ -1,0 +1,29 @@
+@model BookCave.Models.ViewModels.BookListViewModel
+
+<body id="ListBooksBody">
+    <div>
+        <div class="col col-lg-12 frontpage-booklist"></div>
+            @foreach(var books in Model.Books)
+            {
+                <div class="col col-lg-2 col-sm-2 book-display-frontpage">
+                    <div class="row">
+                        <div class="col col-lg-12 book-image-div">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                            <img class="book-image-frontpage" src="@books.Image" alt="@books.Title">
+                            </a>                    
+                        </div>
+                    </div>
+                        <div class="book-info-frontpage">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                                <h3 id="frontpage-title">@books.Title</h3>
+                            </a>
+                            <p id="frontpage-author">@books.Author</p>
+                            <p id="frontpage-rating">@books.Rating</p>
+                            <p id="frontpage-price">@books.Price $</p>
+                            <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
