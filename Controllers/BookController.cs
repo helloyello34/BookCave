@@ -23,7 +23,11 @@ namespace BookCave.Controllers
         }
         public IActionResult ListBooks(string selectedGenre)
         {
-            var books = _bookService.GetBooksByGenre(selectedGenre);
+            var books = _bookService.GetBooksByGenre();
+            if(selectedGenre != null)
+            {
+                books = _bookService.GetBooksByGenre(selectedGenre);
+            }
             return View(books);
         }
         public IActionResult Details(int id)
