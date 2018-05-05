@@ -38,6 +38,31 @@ namespace BookCave.Repositories
 
             return book;
         }
+        public BookListViewModel GetBooksByGenre()
+        {
+
+            var temp = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                select new BookTableViewModel
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = a.Name,
+                    Rating = b.Rating,
+                    Price = b.Price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }
+            ).ToList();
+
+            var books = new BookListViewModel
+            {
+                Books = temp
+            };
+
+            return books;
+        }
         public BookListViewModel GetBooksByGenre(string selectedGenre)
         {
             var temp = (
