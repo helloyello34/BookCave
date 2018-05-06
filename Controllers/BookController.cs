@@ -32,9 +32,17 @@ namespace BookCave.Controllers
         public IActionResult Details(int id)
         {
             var book = _bookService.GetBookById(id);
-
             return View(book);
         }
+
+        [HttpPost]
+        public IActionResult Details(int id, CommentInputModel model)
+        {
+            _bookService.AddComment(id, model);
+            var book = _bookService.GetBookById(id);
+            return View(book);
+        }
+
         public IActionResult Top10()
         {
             var books = _bookService.GetTopTenBooks();
