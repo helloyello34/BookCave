@@ -45,12 +45,12 @@ namespace BookCave.Controllers
         public async Task<IActionResult> EditPersonal()
         {
             var user = await GetCrurentUserAsync();
-            var personal = new UserPersonalInputModel {
+            var person = new UserPersonalInputModel {
                 FirstName = user.FirstName,
                 LastName = user.LastName
             };
 
-            return View(personal);
+            return View(person);
         }
 
         [HttpPost]
@@ -69,16 +69,38 @@ namespace BookCave.Controllers
             }
             return View();
         }
-        // [HttpPost]
-        // public async Task<IActionResult> Home(UserInputModel model)
-        // {
-        //     var user = await GetCrurentUserAsync();
-        //     user.FirstName = model.FirstName;
-        //     user.LastName = model.LastName;
-            
-        //     await _userManager.UpdateAsync(user);
 
-        //     return View();
-        // }
+        public async Task<IActionResult> EditShipping()
+        {
+            var user = await GetCrurentUserAsync();
+            var person = new UserShippingInputModel {
+                StreetAddress = user.Street,
+                ZipCode = user.ZipCode,
+                City = user.City,
+                Country = user.Country
+            };
+
+            return View(person);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditShipping( UserShippingInputModel model )
+        {
+
+            if( ModelState.IsValid )
+            {
+                var user = await GetCrurentUserAsync();
+                user.Street = model.StreetAddress;
+                user.ZipCode = model.ZipCode;
+                user.City = model.City;
+                user.Country = model.Country;
+
+                await _userManager.UpdateAsync(user);
+
+                return RedirectToAction("Home", "Profile");
+            }
+
+            return View();
+        }
     }
 }

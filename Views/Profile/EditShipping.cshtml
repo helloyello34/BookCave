@@ -1,0 +1,35 @@
+@model BookCave.Models.InputModels.UserShippingInputModel
+
+<div class="form-group">
+  <form asp-action="EditShipping" asp-controller="Profile" method="POST">
+    <div class="input-group">
+      <label>
+        Street Address
+        <input type="text" asp-for="StreetAddress" placeholder="@Model.StreetAddress">
+      </label>
+    </div>
+    <div class="input-group">
+      <label>
+        ZipCode
+        <input type="text" asp-for="ZipCode" placeholder="@Model.ZipCode">
+      </label>
+    </div>
+    <div class="input-group">
+      <label>
+        City
+        <input type="text" asp-for="City" placeholder="@Model.City">
+      </label>
+    </div>
+    <div class="input-group">
+      <label>
+        Country
+        <input type="text" asp-for="Country" placeholder="@Model.Country">
+      </label>
+    </div>
+    <div class="input-group">
+      <label>
+        <input type="submit" value="Accept Changes">
+      </label>
+    </div>
+  </form>
+</div>
