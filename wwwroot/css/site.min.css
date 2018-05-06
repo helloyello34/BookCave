@@ -173,7 +173,8 @@ textarea {
     font-size: 10px;
     margin: 0 auto;
     height: 20px;
-    margin-bottom: 6px
+    margin-bottom: 6px;
+
 }
 .frontpage-cartbutton{
     margin-bottom: 4px;
@@ -278,4 +279,7 @@ textarea {
     margin: 0 auto;
     color: orange;
     margin-left: -4px;
+}
+.frontpage-star-link{
+    text-decoration: none !important;
 }
