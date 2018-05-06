@@ -2,6 +2,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Models;
 using BookCave.Models.ViewModels;
+using BookCave.Models.EntityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +54,15 @@ namespace BookCave.Controllers
 
             var user = new ApplicationUser {
                 UserName = model.Email,
-                Email = model.Email
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Street = "",
+                ZipCode = "",
+                City = "",
+                Country = "",
+                Gender = "",
+                Phone = "",
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -64,7 +73,8 @@ namespace BookCave.Controllers
 
                 // Add the concatenated first andd last name as fullName in claims
 
-                await _userManager.AddClaimAsync(user, new Claim("Name", $"{model.FirstName} {model.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("FirstName", $"{model.FirstName}"));
+                await _userManager.AddClaimAsync(user, new Claim("LastName", $"{model.LastName}"));
                 await _signInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home");
