@@ -283,3 +283,45 @@ textarea {
 .frontpage-star-link{
     text-decoration: none !important;
 }
+#login-container{
+    border: solid gray;
+    border-width: 1px;
+    height: 450px;
+    float: none;
+    margin: 0 auto;
+}
+#login-form{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.login-row-size{
+    margin-top: 50px;
+}
+#login-container-size{
+    height: 490px;
+    margin-top: 50px;
+}
+#login-text{
+    margin: 40px 40% 60px 40%;
+}
+.register-me-link{
+    float: right;
+}
+#register-container{
+    float: none;
+    margin: 0 auto;
+    border: solid gray;
+    border-width: 1px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+#register-signup-text{
+    color: red;
+}
+#register-form{
+    margin-left: 150px;
+    margin-right: 150px;    
+}
+#register-container-size{
+    margin-top: 50px;
+}
