@@ -9,19 +9,26 @@ namespace BookCave.Controllers
 {
     public class BookController : Controller
     {
-
         private BookService _bookService;
 
         public BookController()
         {
             _bookService = new BookService();
         }
-
+    
         public IActionResult Index()
         {
             return View();
         }
-
+        public IActionResult ListBooks(string selectedGenre)
+        {
+            var books = _bookService.GetBooksByGenre();
+            if(selectedGenre != null)
+            {
+                books = _bookService.GetBooksByGenre(selectedGenre);
+            }
+            return View(books);
+        }
         public IActionResult Details(int id)
         {
             var book = _bookService.GetBookById(id);

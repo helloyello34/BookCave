@@ -5,21 +5,23 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-  var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
+  var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value;
+  claim += " ";
+  claim += ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "LastName")?.Value;
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
-  <ul class="nav navbar-nav navbar-right">
-    <li>
-      <a asp-controller="Profile" asp-action="Home" class="btn btn-link navbar-btn navbar-link">@claim</a>
-    </li>
-    <li>
-  <form asp-action="LogOut" asp-controller="Account" method="POST">
-      <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
-  </form>
-    </li>
-  </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a asp-controller="Profile" asp-action="Home" class="btn btn-link navbar-link">@claim</a>
+      </li>
+      <li>
+        <form asp-action="LogOut" asp-controller="Account" method="POST">
+          <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+        </form>
+      </li>
+    </ul>
 }
 else
 {
