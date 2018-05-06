@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
@@ -19,7 +20,7 @@ namespace BookCave.Services
         {
             var book = _bookRepo.GetBookById(id);
             var bookComments = _bookRepo.GetComments(id);
-            if( bookComments != null ) { book.Comments = bookComments; }
+            if( bookComments.Any() ) { book.Comments = bookComments; }
 
             return book;
         }
