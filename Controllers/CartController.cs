@@ -14,7 +14,7 @@ namespace BookCave.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Title"] = "Cart";
+            ViewData["Title"] = "Your shopping cart";
             return View();
         }
     }
