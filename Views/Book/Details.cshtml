@@ -126,20 +126,23 @@ else
 
   <div class="col-sm-1"></div>
   <div class="col-sm-11">
-    @foreach(var c in Model.Comments)
+    @if ( Model.Comments != null )
     {
-      <div class="row">
-        <div class="col-sm-5">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <strong>Rating: </strong> <span class="text-muted"> @c.Rating </span>
-            </div>
-            <div class="panel-body">
-              @c.Comment
-            </div>
+      @foreach(var c in Model.Comments)
+      {
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>Rating: </strong> <span class="text-muted"> @c.Rating </span>
+              </div>
+              <div class="panel-body">
+                @c.Comment
+              </div>
+            </div> 
           </div> 
-        </div> 
-        </div>
+          </div>
+      }
     }
   </div>
 
