@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
@@ -18,6 +19,9 @@ namespace BookCave.Services
         public BookDetailsViewModel GetBookById(int id)
         {
             var book = _bookRepo.GetBookById(id);
+            var bookComments = _bookRepo.GetComments(id);
+            if( bookComments.Any() ) { book.Comments = bookComments; }
+
             return book;
         }
         public BookListViewModel GetBooksByGenre()
@@ -73,10 +77,16 @@ namespace BookCave.Services
         {
             return _bookRepo.GetAuthorList();
         }
-        /*public int GetNewBookId()
+
+        public void AddComment (int id, CommentInputModel comment)
         {
-            var id = _bookRepo.GetNewBookId();
-            return id;
-        }*/
+            var newComment = new Comment {
+                BookId = id,
+                Comments = comment.Comment,
+                Rating = comment.Rating
+            };
+            _bookRepo.AddComment(newComment);
+        }
+
     }
 }
