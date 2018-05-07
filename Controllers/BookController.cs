@@ -43,7 +43,7 @@ namespace BookCave.Controllers
 
             _bookService.AddComment(id, model);
             var book = _bookService.GetBookById(id);
-            return View(book);
+            return RedirectToAction("Details", id);
         }
 
         public IActionResult Top10()
