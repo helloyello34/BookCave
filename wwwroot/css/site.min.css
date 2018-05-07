@@ -22,7 +22,7 @@
         font-size: 30px;
     }
     .glyphicon.glyphicon-shopping-cart{
-        font-size: 30px;
+        font-size: 20px;
     }
     #sign-in{
         padding-top: 22px;
@@ -78,14 +78,13 @@
     }
 }
 @media screen and (max-width: 1200px) {
-    body{
-        background-color: darkorange;
-        padding-top:50px;padding-bottom:20px
-    }
+    
     .body-content{
+        background-color: darkorange;
         padding-left:15px;
         padding-right:15px;
         padding-top: 100px;
+        padding-bottom:20px
     }
 }
 @media screen and (max-width:767px){
@@ -95,14 +94,13 @@
     .carousel-caption{
         display:none
     }
-    body{
-        background-color: aqua;
-        padding-top:50px;padding-bottom:20px
-    }
+    
     .body-content{
+        background-color: aqua;
         padding-left:15px;
         padding-right:15px;
-        padding-top: 300px;
+        padding-top: 400px;
+        padding-bottom:20px
     }
 }
 .glyphicon-book{
@@ -300,6 +298,7 @@ textarea {
 .cart-book-info{
     display: inline-block;
 }
+
 #login-container{
     border: solid gray;
     border-width: 1px;
