@@ -40,19 +40,22 @@ namespace BookCave.Repositories
         }
         public BookListViewModel GetBooksByGenre()
         {
-
             var temp = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                select new BookTableViewModel
+                select new BookDetailsViewModel
                 {
-                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
+                    ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
+                    Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Discount = b.Discount
+                    Genre = b.Genre,
+                    Language = b.Language,
+                    Publisher = b.Publisher,
+                    ISBN = b.ISBN
                 }
             ).ToList();
 
@@ -65,19 +68,28 @@ namespace BookCave.Repositories
         }
         public BookListViewModel GetBooksByGenre(string selectedGenre)
         {
+            var genrestring = selectedGenre.Split(',').ToList();
             var temp = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                where b.Genre.ToLower().Contains(selectedGenre.ToLower())
-                select new BookTableViewModel
+                // // where b.Genre.ToLower().Contains(genrestring)
+                // // where b.Genre.Contains(selectedGenre)
+                // // where selectedGenre.Contains(b.Genre.Split(','))
+                // where b.Genre.ToList().
+                where selectedGenre.Any(val => b.Genre.Contains(val))
+                select new BookDetailsViewModel
                 {
-                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
+                    ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
+                    Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Discount = b.Discount
+                    Genre = b.Genre,
+                    Language = b.Language,
+                    Publisher = b.Publisher,
+                    ISBN = b.ISBN
                 }
             ).ToList();
 
@@ -86,15 +98,19 @@ namespace BookCave.Repositories
                 temp = (
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
-                    select new BookTableViewModel
+                    select new BookDetailsViewModel
                     {
-                        Id = b.Id,
                         Title = b.Title,
                         Author = a.Name,
+                        ReleaseYear = b.ReleaseYear,
                         Rating = b.Rating,
+                        Info = b.Info,
                         Price = b.Price,
                         Image = b.Image,
-                        Discount = b.Discount
+                        Genre = b.Genre,
+                        Language = b.Language,
+                        Publisher = b.Publisher,
+                        ISBN = b.ISBN
                     }
                 ).ToList();
             }            
