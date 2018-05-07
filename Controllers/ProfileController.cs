@@ -36,7 +36,8 @@ namespace BookCave.Controllers
                 StreetAddress = user.Street,
                 ZipCode = user.ZipCode,
                 City = user.City,
-                Country = user.Country
+                Country = user.Country,
+                ImageUrl = user.ImageUrl
             };
 
             return View(profile);
@@ -62,6 +63,8 @@ namespace BookCave.Controllers
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Gender = model.Gender;
+                user.ImageUrl = model.ImageUrl;
+                user.Birthday = model.Birthday;
                 
                 await _userManager.UpdateAsync(user);
 
