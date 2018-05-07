@@ -4,17 +4,18 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
-@{
-  var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value;
-  claim += " ";
-  claim += ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "LastName")?.Value;
-}
-
 @if (SignInManager.IsSignedIn(User))
 {
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <a asp-controller="Profile" asp-action="Home" class="btn btn-link navbar-link">@claim</a>
+        <a asp-controller="Cart" asp-action="Index" class="btn btn-lg btn-link navbar-link icon">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        </a>
+      </li>
+      <li>
+        <a asp-controller="Profile" asp-action="Home" class="btn btn-lg btn-link navbar-link icon">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </a>
       </li>
       <li>
         <form asp-action="LogOut" asp-controller="Account" method="POST">
