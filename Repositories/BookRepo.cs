@@ -217,7 +217,20 @@ namespace BookCave.Repositories
             _db.Add(comment);
             _db.SaveChanges();
         }
+        public Book GetBookEntity(int id)
+        {
+            var book = (
+                from b in _db.Books
+                where b.Id == id
+                select b).SingleOrDefault();
 
+                return book;            
+        }
+        public void UpdateBook(Book book)
+        {
+            _db.Update(book);
+            _db.SaveChanges();
+        }
         public List<AuthorsViewModel> GetAuthorList()
         {
             var authorList = (

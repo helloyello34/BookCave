@@ -10,7 +10,7 @@
         <div class="col col-lg-12 frontpage-booklist">
             @foreach(var books in Model.PopularBooks)
             {
-            <div class="col col-lg-2 col-sm-2 book-display-frontpage">
+            <div class="col col-lg-2 book-display-frontpage">
                 <div class="row">
                     <div class="col col-lg-12 book-image-div">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
@@ -25,13 +25,22 @@
                         <p id="frontpage-author">@books.Author</p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
+                                <div class="stars">
                                 @for(int i = 0; i < @books.Rating; i++)
                                 {
                                     <span class="star">&#9733;</span>
                                 }
+                                @{
+                                    var count = Convert.ToInt32(books.Rating);
+                                }
+                                @for(int a = count; a < 5; a++)
+                                {
+                                    <span class=" star unchecked-star">&#9733;</span>
+                                }                                
+                                </div>
                             </div>
                         </a>
-                        <p id="frontpage-price">@books.Price </p>
+                        <p id="frontpage-price">@books.Price $</p>
                         <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
                     </div>
             </div>
@@ -60,6 +69,13 @@
                                 {
                                     <span class="star">&#9733;</span>
                                 }
+                                @{
+                                    var countRecentlyAdded = Convert.ToInt32(booksRecentlyAdded.Rating);
+                                }
+                                @for(int b = countRecentlyAdded; b < 5; b++)
+                                {
+                                    <span class=" star unchecked-star">&#9733;</span>
+                                }                                 
                             </div>
                         </a>
                         <p id="frontpage-price">@booksRecentlyAdded.Price $</p>
@@ -90,6 +106,13 @@
                                 @for(int c = 0; c < @booksRandom.Rating; c++)
                                 {
                                     <span class="star">&#9733;</span>
+                                }
+                                @{
+                                    var countRandom = Convert.ToInt32(booksRandom.Rating);
+                                }
+                                @for(int c = countRandom; c < 5; c++)
+                                {
+                                    <span class=" star unchecked-star">&#9733;</span>
                                 }
                             </div>
                         </a>
