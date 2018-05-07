@@ -153,14 +153,7 @@ namespace BookCave.Repositories
                     Image = b.Image,
                     Discount = b.Discount
                 }).Take(6).ToList();
-
-            /*var genre = (
-                from b in _db.Books
-                select b.Genre).ToList();
-
-            var random = new Random();
-            var index = random.Next(0, genre.Count() + 1);
-            var chosenGenre = genre[index]; */             
+        
 
             var randomBooks = (
                 from b in _db.Books
@@ -233,9 +226,27 @@ namespace BookCave.Repositories
         {
             _db.Add(author);
             _db.SaveChanges();
-            Console.Write("Book added");
         }
 
+        public void AddComment(Comment comment)
+        {
+            _db.Add(comment);
+            _db.SaveChanges();
+        }
+        public Book GetBookEntity(int id)
+        {
+            var book = (
+                from b in _db.Books
+                where b.Id == id
+                select b).SingleOrDefault();
+
+                return book;            
+        }
+        public void UpdateBook(Book book)
+        {
+            _db.Update(book);
+            _db.SaveChanges();
+        }
         public List<AuthorsViewModel> GetAuthorList()
         {
             var authorList = (
@@ -246,17 +257,18 @@ namespace BookCave.Repositories
                     }).ToList();
                 return authorList;
         }
-      /*  public int GetNewBookId()
+
+        public List<CommentViewModel> GetComments(int id)
         {
-            var id = 0;
-                foreach (var m in _db.Books)
-                {
-                    if(id < m.Id)   
-                    {
-                        id = m.Id;
-                    };
+            var commentList = (
+                from c in _db.Comments
+                where c.BookId == id
+                select new CommentViewModel {
+                    Comment = c.Comments,
+                    Rating = c.Rating
                 }
-                return id + 1;
-        }*/
+            ).ToList();
+            return commentList;
+        }
     }
 }

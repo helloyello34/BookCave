@@ -1,0 +1,52 @@
+@model BookCave.Models.ViewModels.CartViewModel
+
+<div class="container-fluid cart-title-container">
+    <div class="row">
+        <div class="col col-lg-12" style="border:solid;">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid cart-view-order-continer" style="border:solid red; justify-content:space-between;">
+    <div class="col col-lg-10" style="border:solid green;">
+        <div class="container-fluid" style="border:solid blue;">
+            <div class="row" align="left">
+                <div class="col col-lg-10 book-description " align="left" style="border:solid orange;">
+                    <div class="col col-lg-3 cart-book-cover" style="border:solid red; float: left;">
+                        <img class="topten-image" src="images/bookcave_logo.png" alt="">
+                    </div>
+                    <div class="col col-lg-9 cart-book-info" style="border:solid green;">
+                        <p>Info1</p>
+                        <p>Info2</p>
+                        <p>Info3</p>
+                    </div>
+                </div>
+                <div class="col col-lg-2 book-quantity" style="border:solid brown;">
+                    <p>Quantity: </p>
+                    <p>Selection</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-10 book-description text-left" style="border:solid orange;">
+                    <p> Quaerat molestiae excepturi, aperiam neque natus vero atque obcaecati quas aliquam id, dolor laborum totam. Repudiandae ipsa magnam quam? Ducimus, eaque consequuntur.</p>
+                    <br><br><br>
+                </div>
+                <div class="col col-lg-2 book-quantity" style="border:solid brown;">
+                    <p>Quantity2: </p>
+                    <p>Selection2</p>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="text-center">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-group text-center">Continue shopping</a>
+            <a href="#" class="btn btn-primary btn-group text-center">Proceed to checkout</a>
+        </div>
+
+    </div>
+    <div class="col col-lg-2" style="border:solid green;">
+        <p>order summary</p>
+    </div>
+  
+</div>

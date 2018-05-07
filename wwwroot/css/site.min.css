@@ -45,7 +45,7 @@
         height: 600px;
     }
     #contact-details{
-        margin-left: -180px;
+        margin-left: -190px;
         margin-top: 20px;
     }
     .glyphicon-book{
@@ -54,6 +54,11 @@
     #map-container{
         height: 450px;
         margin-left: 100px;
+    }
+    #iframe-container{
+        width: 855px;
+        height: 455px;
+        border: solid gray;
     }
     #map{
         width: 850px;
@@ -280,6 +285,78 @@ textarea {
     color: orange;
     margin-left: -4px;
 }
+.unchecked-star{
+    color: lightgray;
+}
+.stars{
+    height: 20px;
+    width: 160px;
+    position: absolute;
+}
 .frontpage-star-link{
     text-decoration: none !important;
+}
+
+.cart-book-info{
+    display: inline-block;
+}
+#login-container{
+    border: solid gray;
+    border-width: 1px;
+    height: 450px;
+    float: none;
+    margin: 0 auto;
+}
+#login-form{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.login-row-size{
+    margin-top: 50px;
+}
+#login-container-size{
+    height: 490px;
+    margin-top: 50px;
+}
+#login-text{
+    margin: 40px 40% 60px 40%;
+}
+.register-me-link{
+    float: right;
+}
+#register-container{
+    float: none;
+    margin: 0 auto;
+    border: solid gray;
+    border-width: 1px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+#register-signup-text{
+    color: red;
+}
+#register-form{
+    margin-left: 150px;
+    margin-right: 150px;    
+}
+#register-container-size{
+    margin-top: 50px;
+}
+#category-layout{
+
+}
+#category-container{
+    
+}
+#contact-us-logo{
+    height: 100px;
+    width: 100px;
+}
+.contact-us-info{
+    margin-bottom: 5px;
+    font-style: italic;
+}
+#contact-us-h3{
+    font-size: 18px;
+    font-weight: bold;
 }

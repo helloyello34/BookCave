@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BookCave.Models.ViewModels
 {
     public class BookDetailsViewModel
@@ -14,5 +16,6 @@ namespace BookCave.Models.ViewModels
         public string Genre { get; set; }
         public string Publisher { get; set; }
         public string Language { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
     }
 }
