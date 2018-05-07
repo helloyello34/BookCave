@@ -41,7 +41,21 @@ p > span {
           </tr>
           <tr>
             <th valign="top">Rating:</th>
-            <td>@Model.Rating</td>
+            <td>
+              <div class="stars">
+              @for(int i = 0; i < @Model.Rating; i++)
+              {
+                  <span class="star">&#9733;</span>
+              }
+              @{
+                  var count = Convert.ToInt32(Model.Rating);
+              }
+              @for(int a = count; a < 5; a++)
+              {
+                  <span class=" star unchecked-star">&#9733;</span>
+              }                                
+              </div>
+            </td>
           </tr>
           <tr>
             <th valign="top">Book Information:</th>

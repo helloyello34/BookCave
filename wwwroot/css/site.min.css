@@ -280,6 +280,14 @@ textarea {
     color: orange;
     margin-left: -4px;
 }
+.unchecked-star{
+    color: lightgray;
+}
+.stars{
+    height: 20px;
+    width: 160px;
+    position: absolute;
+}
 .frontpage-star-link{
     text-decoration: none !important;
 }
@@ -353,4 +361,10 @@ textarea {
 }
 #register-container-size{
     margin-top: 50px;
+}
+#category-layout{
+
+}
+#category-container{
+    
 }
