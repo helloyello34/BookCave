@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Models
@@ -12,5 +13,7 @@ namespace BookCave.Models
         public string ZipCode { get; set; }
         public string Phone { get; set; }
         public string Gender { get; set; }
+        public string ImageUrl { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }
