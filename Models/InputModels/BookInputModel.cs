@@ -8,24 +8,25 @@ namespace BookCave.Models.InputModels
 
         [Required (ErrorMessage = "You need to enter the ISBN number")] 
         public string ISBN { get; set; }
+        [Required (ErrorMessage = "Type in language")]
         public string Language { get; set; }
         public string Image { get; set; }
 
         [Required (ErrorMessage = "You need to enter a title")]
         public string Title { get; set; }
+        [Required (ErrorMessage = "Select at least one genre")]
         public string Genre { get; set; }
         public string Info { get; set; }
 
         [Required (ErrorMessage = "You have to enter the author id")]
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
+        [Required (ErrorMessage = "Type in the publisher")]
         public string Publisher { get; set; }
         public int PageCount { get; set; }
-        
-        [Required (ErrorMessage = "You must enter a release year")]
-        [Range (0,2030, ErrorMessage = "Release year must be between 1900 - 2030")]
-        public int ReleaseYear { get; set; }
+        [Required (ErrorMessage = "Type in the release year")]
+        public int? ReleaseYear { get; set; }
 
         [Required (ErrorMessage = "You must enter a price")]
-        public double Price { get; set; }
+        public double? Price { get; set; }
     }
 }

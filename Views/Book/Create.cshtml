@@ -18,7 +18,7 @@
           <div class="">
             <label asp-for="AuthorId">Author</label> <br>
               <select asp-for="AuthorId" id="" class="form-control">
-                <option disabled hidden value="">Select an author</option>
+                <option selected hidden value="1">Select an author</option>
                 @foreach(var a in authorList)
                   {
                     <option value="@a.Id">@a.Name</option>
