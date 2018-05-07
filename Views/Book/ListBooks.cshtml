@@ -18,7 +18,14 @@
                                 <h3 id="frontpage-title">@books.Title</h3>
                             </a>
                             <p id="frontpage-author">@books.Author</p>
-                            <p id="frontpage-rating">@books.Rating</p>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
+                                <div class="frontpage-rating">
+                                    @for(int i = 0; i < @books.Rating; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                </div>
+                            </a>
                             <p id="frontpage-price">@books.Price $</p>
                             <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
                         </div>

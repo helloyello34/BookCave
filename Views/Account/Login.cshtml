@@ -1,22 +1,30 @@
 @model BookCave.Models.ViewModels.LoginViewModel
 
-<h1>Log In</h1>
+<div class="container" id="login-container-size">
+  <div class="row" id="login-row-size">
+    <div class="col col-lg-8 align-self-center" id="login-container">
+      <div>
+        <h1 id="login-text">Sign in</h1>
+        <form asp-action="Login" asp-controller="Account" class="form-horizontal" id="login-form">
 
-<form asp-action="Login" asp-controller="Account" class="form-horizontal">
-
-  <div class="form-group">
-    <input type="email" asp-for="Email" class="form-control" placeholder="Example@example.com">
+          <div class="form-group">
+            <input type="email" asp-for="Email" class="form-control" placeholder="Example@example.com">
+          </div>
+          <div class="form-group">
+            <input type="password" asp-for="Password" class="form-control" placeholder="Password">
+            <small id="email-small-text" class="form-text text-muted">Never give out your password to anyone.</small><br>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" asp-for="RememberMe"> Remember me
+            </label>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Login">
+            <a asp-controller="Account" asp-action="Register" class="register-me-link">Register me</a>
+          </div>
+        </div>
+        </form>
+    </div>
   </div>
-  <div class="form-group">
-    <input type="password" asp-for="Password" class="form-control" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label>
-      <input type="checkbox" asp-for="RememberMe"> Remember me
-    </label>
-  </div>
-  <div class="form-group">
-    <input type="submit" class="btn btn-default" value="Login">
-  </div>
-
-</form>
+</div>

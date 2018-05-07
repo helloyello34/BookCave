@@ -16,7 +16,14 @@
                                 <h3 class="topten-title-text">@books.Title</h3>
                             </a>
                             <p class="topten-author-text">@books.Author</p>
-                            <p class="topten-rating">@books.Rating</p>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
+                                <div class="frontpage-rating">
+                                    @for(int i = 0; i < @books.Rating; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                </div>
+                            </a>
                             <p class="topten-price-text">@books.Price$</p>
                             <div class="topten-button-div">
                                 <button class="btn btn-primary topten-cartbutton">Add to cart</button>
@@ -43,7 +50,14 @@
                                 <h3 class="topten-title-text">@booksSecondHalf.Title</h3>
                             </a>
                             <p class="topten-author-text">@booksSecondHalf.Author</p>
-                            <p class="topten-rating">@booksSecondHalf.Rating</p>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id" class="frontpage-star-link">
+                                <div class="frontpage-rating">
+                                    @for(int i = 0; i < @booksSecondHalf.Rating; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                </div>
+                            </a>
                             <p class="topten-price-text">@booksSecondHalf.Price$</p>
                             <div class="topten-button-div">
                                 <button class="btn btn-primary topten-cartbutton">Add to cart</button>
