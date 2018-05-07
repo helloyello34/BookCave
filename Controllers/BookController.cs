@@ -67,12 +67,16 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult Create(BookInputModel bookInputModel)
         {
+             ViewData["Title"] = "Add book to database";
+
+            var authorList = _bookService.GetAuthorList();
+            ViewData["aList"] = authorList as List<BookCave.Models.ViewModels.AuthorsViewModel>;
             if(ModelState.IsValid)
             {
                 _bookService.AddBook(bookInputModel);
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(bookInputModel);
         }
 
         [HttpGet]
