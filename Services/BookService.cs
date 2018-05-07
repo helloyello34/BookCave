@@ -86,8 +86,6 @@ namespace BookCave.Services
                 Comments = comment.Comment,
                 Rating = comment.Rating
             };
-            var rating = Convert.ToInt32(comment.Rating);
-            UpdateBookRating(id, rating);
             
             _bookRepo.AddComment(newComment);
         }
@@ -97,6 +95,7 @@ namespace BookCave.Services
             var currentRatingSum = book.Rating * book.RatingCount;
             book.RatingCount++;
             book.Rating = (currentRatingSum + rating) / book.RatingCount;
+            _bookRepo.UpdateBook(book);
         }
 
     }

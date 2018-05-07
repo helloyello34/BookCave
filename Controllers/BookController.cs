@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
@@ -42,7 +43,8 @@ namespace BookCave.Controllers
         {
 
             _bookService.AddComment(id, model);
-            var book = _bookService.GetBookById(id);
+            var book = _bookService.GetBookById(id); //onotuð lina ?
+            _bookService.UpdateBookRating(id, Convert.ToInt32(model.Rating));
             return RedirectToAction("Details", id);
         }
 

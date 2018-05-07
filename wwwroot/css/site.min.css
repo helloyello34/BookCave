@@ -45,7 +45,7 @@
         height: 600px;
     }
     #contact-details{
-        margin-left: -180px;
+        margin-left: -190px;
         margin-top: 20px;
     }
     .glyphicon-book{
@@ -54,6 +54,11 @@
     #map-container{
         height: 450px;
         margin-left: 100px;
+    }
+    #iframe-container{
+        width: 855px;
+        height: 455px;
+        border: solid gray;
     }
     #map{
         width: 850px;
@@ -342,4 +347,16 @@ textarea {
 }
 #category-container{
     
+}
+#contact-us-logo{
+    height: 100px;
+    width: 100px;
+}
+.contact-us-info{
+    margin-bottom: 5px;
+    font-style: italic;
+}
+#contact-us-h3{
+    font-size: 18px;
+    font-weight: bold;
 }
