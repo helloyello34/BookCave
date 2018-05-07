@@ -30,7 +30,7 @@ namespace BookCave.Services
             var books = _bookRepo.GetBooksByGenre();
             return books;
         }
-        public BookListViewModel GetBooksByGenre(string selectedGenre)
+        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
         {
             var books = _bookRepo.GetBooksByGenre(selectedGenre);
             return books;
@@ -54,7 +54,7 @@ namespace BookCave.Services
                 Language = bookInputModel.Language,
                 Image = bookInputModel.Image,
                 Title = bookInputModel.Title,
-                Genre = bookInputModel.Genre,
+                // Genre = bookInputModel.Genre,
                 Info = bookInputModel.Info,
                 AuthorId = bookInputModel.AuthorId,
                 Publisher = bookInputModel.Publisher,

@@ -66,17 +66,12 @@ namespace BookCave.Repositories
 
             return books;
         }
-        public BookListViewModel GetBooksByGenre(string selectedGenre)
-        {
-            var genrestring = selectedGenre.Split(',').ToList();
+        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
+        {     
             var temp = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                // // where b.Genre.ToLower().Contains(genrestring)
-                // // where b.Genre.Contains(selectedGenre)
-                // // where selectedGenre.Contains(b.Genre.Split(','))
-                // where b.Genre.ToList().
-                where selectedGenre.Any(val => b.Genre.Contains(val))
+                where !selectedGenre.Except(b.Genre).Any()
                 select new BookDetailsViewModel
                 {
                     Title = b.Title,
