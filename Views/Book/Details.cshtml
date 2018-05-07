@@ -1,5 +1,10 @@
 @model BookCave.Models.ViewModels.BookDetailsViewModel
 
+@using Microsoft.AspNetCore.Identity
+@using BookCave.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
 <style>
 .img-bookdetail {
     width: 160px;
@@ -49,7 +54,7 @@ p > span {
     <div class="row">
       <div class="col-sm-10"></div>
       <div class="col-sm-2">
-        <span id="price-tag">Price : <span>@Model.Price</span> </span>  
+        <span id="price-tag">Price : <span>@Model.Price$</span> </span>  
         <a id="buy" class="btn btn-primary">Buy!</a>
       </div>
     </div>
@@ -80,4 +85,66 @@ p > span {
         </table> 
       </div>
     </div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="form-group col-sm-10">
+      <form asp-action="Details" asp-controller="Book" class="form">
+        <div class="input-group">
+          <label>
+            <textarea name="Comment" id="Comment" cols="100" rows="10" class="form-control" placeholder="Enter your comment here"></textarea>
+          </label>
+        </div> <!-- input group -->
+        <div class="input-group">
+          <label>
+            Rating: 1
+            <input type="radio" name="Rating" value="1">
+          </label>
+            <input type="radio" name="Rating" value="2">
+            <input type="radio" name="Rating" value="3" checked>
+            <input type="radio" name="Rating" value="4">
+          <label>
+            <input type="radio" name="Rating" value="5">
+            5
+            </label>
+        </div> <!-- input-group -->
+        <div class="input-group">
+          <input type="submit" class="btn btn-default" value="Post">
+        </div> <!-- input-group -->
+      </form>  
+    </div> <!-- form-group -->
+  </div> <!-- row -->
+}
+else
+{
+  <a asp-action="Login" asp-controller="Account" class="btn btn-default">Log in to comment</a>
+}
+
+
+
+  <div class="col-sm-1"></div>
+  <div class="col-sm-11">
+    @if ( Model.Comments != null )
+    {
+      @foreach(var c in Model.Comments)
+      {
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>Rating: </strong> <span class="text-muted"> @c.Rating </span>
+              </div>
+              <div class="panel-body">
+                @c.Comment
+              </div>
+            </div> 
+          </div> 
+          </div>
+      }
+    }
+  </div>
+
 </div>
+

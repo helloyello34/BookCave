@@ -281,6 +281,75 @@ textarea {
 .frontpage-star-link{
     text-decoration: none !important;
 }
+
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
 .cart-book-info{
     display: inline-block;
+}
+}
+#login-container{
+    border: solid gray;
+    border-width: 1px;
+    height: 450px;
+    float: none;
+    margin: 0 auto;
+}
+#login-form{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.login-row-size{
+    margin-top: 50px;
+}
+#login-container-size{
+    height: 490px;
+    margin-top: 50px;
+}
+#login-text{
+    margin: 40px 40% 60px 40%;
+}
+.register-me-link{
+    float: right;
+}
+#register-container{
+    float: none;
+    margin: 0 auto;
+    border: solid gray;
+    border-width: 1px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+#register-signup-text{
+    color: red;
+}
+#register-form{
+    margin-left: 150px;
+    margin-right: 150px;    
+}
+#register-container-size{
+    margin-top: 50px;
 }
