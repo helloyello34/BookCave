@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookCave.Models.EntityModels;
@@ -85,7 +86,17 @@ namespace BookCave.Services
                 Comments = comment.Comment,
                 Rating = comment.Rating
             };
+            var rating = Convert.ToInt32(comment.Rating);
+            UpdateBookRating(id, rating);
+            
             _bookRepo.AddComment(newComment);
+        }
+        public void UpdateBookRating(int id, int rating)
+        {
+            var book = _bookRepo.GetBookEntity(id);
+            var currentRatingSum = book.Rating * book.RatingCount;
+            book.RatingCount++;
+            book.Rating = (currentRatingSum + rating) / book.RatingCount;
         }
 
     }
