@@ -38,9 +38,9 @@ namespace BookCave.Repositories
 
             return book;
         }
-        public BookListViewModel GetBooksByGenre()
+        public List<BookDetailsViewModel> GetBooksByGenre()
         {
-            var temp = (
+            var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
                 select new BookDetailsViewModel
@@ -59,16 +59,11 @@ namespace BookCave.Repositories
                 }
             ).ToList();
 
-            var books = new BookListViewModel
-            {
-           //     Books = temp
-            };
-
             return books;
         }
-        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
+        public List<BookDetailsViewModel> GetBooksByGenre(string selectedGenre)
         {     
-            var temp = (
+            var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
                 //where !selectedGenre.Except(b.Genre).Any()
@@ -90,7 +85,7 @@ namespace BookCave.Repositories
 
             if(selectedGenre == null)
             {
-                temp = (
+                books = (
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
                     select new BookDetailsViewModel
@@ -109,11 +104,6 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }            
-
-            var books = new BookListViewModel
-            {
-               // Books = temp
-            };
 
             return books;
         }

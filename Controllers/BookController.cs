@@ -21,12 +21,12 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        public IActionResult ListBooks(int[] selectedGenre)
+        public IActionResult ListBooks(string selectedGenre)
         {
             var books = _bookService.GetBooksByGenre();
             if(selectedGenre != null)
             {
-      //          books = _bookService.GetBooksByGenre(selectedGenre);
+               books = _bookService.GetBooksByGenre(selectedGenre);
             }
             return View(books);
         }
