@@ -1,3 +1,4 @@
+using BookCave.Models.EntityModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,5 +18,13 @@ namespace BookCave.Controllers
             ViewData["Title"] = "Your shopping cart";
             return View();
         }
+        [HttpPost]
+        public IActionResult AddItemToCart(int id)
+        {
+            _cartService.AddItemToCart(id);
+            return View();
+        }
+
+        
     }
 }
