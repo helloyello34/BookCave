@@ -52,7 +52,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Genre = b.Genre,
+                    Genre = b.GenreId,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -102,7 +102,7 @@ namespace BookCave.Repositories
                         Info = b.Info,
                         Price = b.Price,
                         Image = b.Image,
-                        Genre = b.Genre,
+                        Genre = b.GenreId,
                         Language = b.Language,
                         Publisher = b.Publisher,
                         ISBN = b.ISBN

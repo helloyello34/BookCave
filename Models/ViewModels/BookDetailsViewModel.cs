@@ -13,7 +13,7 @@ namespace BookCave.Models.ViewModels
         public string Info { get; set; }
         public double Price { get; set; }
         public string Image { get; set; }
-        public int[] Genre { get; set; }
+        public string Genre { get; set; }
         public string Publisher { get; set; }
         public string Language { get; set; }
         public List<CommentViewModel> Comments { get; set; }
