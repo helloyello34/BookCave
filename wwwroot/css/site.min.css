@@ -359,3 +359,47 @@ textarea {
     font-size: 18px;
     font-weight: bold;
 }
+.profile-image{
+    height: 220px;
+    width: 180px;
+    margin-bottom: 20px;
+}
+.profile-border{
+    border: solid gray;
+    border-width: 1px;
+    padding-top: 50px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+.profile-wrap{
+    margin-top: 30px;
+}
+.table{
+    height: 400px;
+}
+.table>tbody>tr>th{
+    padding-top: 20px;
+}
+.table>tbody>tr>td{
+    padding-top: 20px;
+}
+.personal-info-button-wrap{
+    margin-bottom: 20px;
+}
+.profile-personal-form{
+    margin-left: 0px;
+}
+.gender-div{
+    margin-top: 8px;
+}
+#last-name-label{
+    margin-top: 4px;
+}
+#birthday-input{
+    float: right;
+    margin-left: 24px;
+    margin-top: -20px;
+}
+#submit-profile-div{
+    margin-top: 120px;
+}

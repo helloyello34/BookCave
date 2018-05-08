@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookCave.Models.InputModels
@@ -9,6 +10,9 @@ namespace BookCave.Models.InputModels
         [Required]
         public string LastName { get; set; }
         public string Gender { get; set; }
+
+        public string ImageUrl { get; set; }
+        public DateTime Birthday { get; set; }
 
     }
 }
