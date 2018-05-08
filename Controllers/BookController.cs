@@ -26,7 +26,7 @@ namespace BookCave.Controllers
             var books = _bookService.GetBooksByGenre();
             if(selectedGenre != null)
             {
-                books = _bookService.GetBooksByGenre(selectedGenre);
+      //          books = _bookService.GetBooksByGenre(selectedGenre);
             }
             return View(books);
         }
