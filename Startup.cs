@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookCave.Data;
 using BookCave.Models;
+using BookCave.Models.EntityModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,7 +47,12 @@ namespace BookCave
                 options.SlidingExpiration = true;
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+         //   services.AddScoped(sp => Cart.GetCart(sp));
             services.AddMvc();
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +69,7 @@ namespace BookCave
 
             app.UseStaticFiles();
             app.UseAuthentication();
-
+            app.UseSession(); //Use session for cart
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

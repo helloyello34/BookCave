@@ -5,7 +5,7 @@ namespace BookCave.Models.EntityModels
         public int CartItemId { get; set; }
         public Book Book { get; set; }
         public double Amount { get; set; }
-        public int CartId { get; set; }
+        public string CartId { get; set; }
     }
 
 }
