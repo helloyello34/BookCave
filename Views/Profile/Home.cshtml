@@ -1,67 +1,88 @@
 @model BookCave.Models.ViewModels.ProfileHomeViewModel;
 
-<div>
-  <a asp-action="EditPersonal" asp-controller="Profile" class="btn btn-default">Edit Personal Info</a>
-  <a asp-action="EditShipping" asp-controller="Profile" class="btn btn-default">Edit Shipping Info</a>
-</div>
+<div class="container profile-wrap">
+  <div class="row">
+    <div class="col col-lg-2"></div>
+    <div class="col-lg-8 profile-border">
+      <div class="col-lg-1">
+      </div>
+      <div class="col col-lg-4">
+        <div class="col col-lg-12 profile-image-wrap" >
+          <img class="profile-image" src="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" alt="picture">
+        </div>
+        <div class="col col-lg-12 personal-info-button-wrap">
+          <a asp-action="EditPersonal" asp-controller="Profile" class="btn btn-info">Edit Personal Info</a>       
+        </div>
+        <div class="col col-lg-12">
+          <a asp-action="EditShipping" asp-controller="Profile" class="btn btn-info">Edit Shipping Info</a>        
+        </div>
+      </div>
+      <div class="col col-lg-7">
+        <div class="col col-lg-12">
+          <table class="table">
+            <tr>
+              <th>
+                First Name: 
+              </th>
+              <td>
+                @Model.FirstName
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Last Name: 
+              </th>
+              <td>
+                @Model.LastName
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Email: 
+              </th>
+              <td>
+                @Model.Email
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Street Address: 
+              </th>
+              <td>
+                @Model.StreetAddress
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Post Code: 
+              </th>
+              <td>
+                @Model.ZipCode
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Town/City: 
+              </th>
+              <td>
+                @Model.City
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Country: 
+              </th>
+              <td>
+                @Model.Country
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col col-lg-3">
 
-<div>
-  <table class="table">
-    <tr>
-      <th>
-        First Name: 
-      </th>
-      <td>
-        @Model.FirstName
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Last Name: 
-      </th>
-      <td>
-        @Model.LastName
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Email: 
-      </th>
-      <td>
-        @Model.Email
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Street Address: 
-      </th>
-      <td>
-        @Model.StreetAddress
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Post Code: 
-      </th>
-      <td>
-        @Model.ZipCode
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Town/City: 
-      </th>
-      <td>
-        @Model.City
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Country: 
-      </th>
-      <td>
-        @Model.Country
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+    <div class="col col-lg-2"></div>
+  </div>
 </div>
