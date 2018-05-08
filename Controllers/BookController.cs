@@ -100,5 +100,12 @@ namespace BookCave.Controllers
             }
             return View();
         }
+
+        public IActionResult Search(string q)
+        {
+            
+
+            return View();
+        }
     }
 }
