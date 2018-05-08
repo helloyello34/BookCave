@@ -50,6 +50,8 @@ namespace BookCave.Controllers
                 LastName = user.LastName
             };
 
+
+
             return View(person);
         }
 
@@ -65,6 +67,17 @@ namespace BookCave.Controllers
                 
                 await _userManager.UpdateAsync(user);
 
+                var userr = User as ClaimsPrincipal;
+                var identity = userr.Identity as ClaimsIdentity;
+                var claim = (
+                    from c in userr.Claims
+                    where c.Type == "FullName"
+                    select c).Single();
+                identity.RemoveClaim(claim);
+                identity.AddClaim(new Claim("FullName", $"{model.FirstName} {model.LastName}"));
+                // await _userManager.AddClaimAsync(user, new Claim("FullName", $"{model.FirstName} {model.LastName}"));
+
+                
                 return RedirectToAction("Home", "Profile");
             }
             return View();
