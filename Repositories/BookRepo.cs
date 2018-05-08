@@ -61,7 +61,7 @@ namespace BookCave.Repositories
 
             var books = new BookListViewModel
             {
-                Books = temp
+           //     Books = temp
             };
 
             return books;
