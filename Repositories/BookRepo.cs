@@ -30,7 +30,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Genre = b.Genre,
+                    //Genre = b.Genre,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -52,7 +52,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Genre = b.GenreId,
+                    //Genre = b.GenreId,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -71,7 +71,7 @@ namespace BookCave.Repositories
             var temp = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                where !selectedGenre.Except(b.Genre).Any()
+                //where !selectedGenre.Except(b.Genre).Any()
                 select new BookDetailsViewModel
                 {
                     Title = b.Title,
@@ -81,7 +81,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    Genre = b.Genre,
+                    //Genre = b.Genre,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -102,7 +102,7 @@ namespace BookCave.Repositories
                         Info = b.Info,
                         Price = b.Price,
                         Image = b.Image,
-                        Genre = b.GenreId,
+                        //Genre = b.GenreId,
                         Language = b.Language,
                         Publisher = b.Publisher,
                         ISBN = b.ISBN
@@ -112,7 +112,7 @@ namespace BookCave.Repositories
 
             var books = new BookListViewModel
             {
-                Books = temp
+               // Books = temp
             };
 
             return books;

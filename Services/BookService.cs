@@ -32,8 +32,9 @@ namespace BookCave.Services
         }
         public BookListViewModel GetBooksByGenre(int[] selectedGenre)
         {
-            var books = _bookRepo.GetBooksByGenre(selectedGenre);
-            return books;
+   //         var books = _bookRepo.GetBooksByGenre(selectedGenre);
+      //      return books;
+        return new BookListViewModel();
         }
         public BookFrontPageViewModel GetFrontPageBooks()
         {
