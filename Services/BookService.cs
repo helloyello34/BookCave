@@ -25,12 +25,12 @@ namespace BookCave.Services
 
             return book;
         }
-        public List<BookDetailsViewModel> GetBooksByGenre()
+        public List<BookTableViewModel> GetBooksByGenre()
         {
             var books = _bookRepo.GetBooksByGenre();
             return books;
         }
-        public List<BookDetailsViewModel> GetBooksByGenre(string selectedGenre)
+        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre)
         {
            var books = _bookRepo.GetBooksByGenre(selectedGenre);
            return books;
