@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 namespace BookCave
 {
     public class Startup
@@ -46,7 +47,7 @@ namespace BookCave
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -66,10 +67,10 @@ namespace BookCave
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            await CreateRolesAndUsers(serviceProvider);
+            //await CreateRolesAndUsers(serviceProvider);
         }
         
-        private async Task CreateRolesAndUsers(IServiceProvider serviceProvider)
+       /* private async Task CreateRolesAndUsers(IServiceProvider serviceProvider)
         {
 
 
@@ -77,7 +78,8 @@ namespace BookCave
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             string[] roleNames = { "Admin", "User" };
-            IdentityResult roleResult;
+            //IdentityResult roleResult;
+            
             foreach (var roleName in roleNames)
             {
                 var roleExist = await RoleManager.RoleExistsAsync(roleName);
@@ -89,31 +91,8 @@ namespace BookCave
                 }
             }
             //finna user
-            var user = await UserManager.FindByEmailAsync("admin@admin.is");
-
-            if(user != null)
-            {
-                var adminUser = new ApplicationUser
-                {
-                    UserName = "admin@admin.is",
-                    Email = "admin@admin.is",
-                    FirstName = "admin",
-                    LastName = "admin",
-                    Street = "",
-                    ZipCode = "",
-                    City = "",
-                    Country = "",
-                    Gender = "",
-                    Phone = "",
-                };
-                string adminPassword = "Admin123!";
-                var createAdminUser = await UserManager.CreateAsync(adminUser, adminPassword);
-                if (createAdminUser.Succeeded)
-                {
-                    //Admin gefið role
-                    await UserManager.AddToRoleAsync(adminUser, "Admin");
-                }
+            
             }
-        }
+        } */
     }
 }

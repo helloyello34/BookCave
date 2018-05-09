@@ -98,6 +98,11 @@ namespace BookCave.Services
             book.Rating = (currentRatingSum + rating) / book.RatingCount;
             _bookRepo.UpdateBook(book);
         }
+        public List<string> GetGenresList()
+        {
+            var genresList = _bookRepo.GetGenresList();
 
+            return genresList;
+        }
     }
 }

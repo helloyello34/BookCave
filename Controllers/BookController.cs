@@ -53,6 +53,9 @@ namespace BookCave.Controllers
 
         public IActionResult Top10()
         {
+            var genres = _bookService.GetGenresList();
+            
+            ViewData["Genres"] = genres;
             var books = _bookService.GetTopTenBooks();
             return View(books);
         }

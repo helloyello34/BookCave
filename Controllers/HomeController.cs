@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Services;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
 {
@@ -17,8 +18,17 @@ namespace BookCave.Controllers
         {
             _bookService = new BookService();
         }
+        public List<string> CategoryDropDown()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;
+        }
         public IActionResult Index()
         {
+            var genres = _bookService.GetGenresList();
+            
+            ViewData["Genres"] = genres;
+
             var books = _bookService.GetFrontPageBooks();
             return View(books);
         }
@@ -33,6 +43,7 @@ namespace BookCave.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+
 
             return View();
         }
