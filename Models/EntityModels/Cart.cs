@@ -9,50 +9,50 @@ namespace BookCave.Models.EntityModels
 {
     public class Cart
     {
-        private readonly DataContext _db;
-        private Cart(DataContext db)
-        {
-            _db = db;
-        }
-        public string CartId { get; set; }
-        public List<CartItem> CartItems { get; set; }
-        public double Price { get; set; }
+        public int Id { get; set; }
 
-        public static Cart GetCart(IServiceProvider services)
-        {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-                .HttpContext.Session;
+        // private readonly DataContext _db;
+        // private Cart(DataContext db)
+        // {
+        //     _db = db;
+        // }
+        // public string CartId { get; set; }
+        // public List<CartItem> CartItems { get; set; }
+        // public double Price { get; set; }
 
-                var context = services.GetService<DataContext>();
-                string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+        // public static Cart GetCart(IServiceProvider services)
+        // {
+        //     ISession session = services.GetRequiredService<IHttpContextAccessor>()?
+        //         .HttpContext.Session;
 
-                session.SetString("CartId", cartId);
+        //         var context = services.GetService<DataContext>();
+        //         string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 
-                return new Cart(context) {CartId = cartId};
-        }
+        //         session.SetString("CartId", cartId);
 
-        public void AddToCart(Book book, int amount)
-        {
-            var cartItem = 
-                _db.CartItems.SingleOrDefault(
-                    s => s.Book.Id == book.Id && s.CartId == CartId);
-            if(cartItem == null)
-            {
-                cartItem = new CartItem
-                {
-                    CartId = CartId,
-                    Book = book,
-                    Amount = 1
-                };
-                _db.CartItems.Add(cartItem);
-            }
-            else
-            {
-                cartItem.Amount++;
-            }
-            _db.SaveChanges();
-        }
+        //         return new Cart(context) {CartId = cartId};
+        // }
+
+        // public void AddToCart(Book book, int amount)
+        // {
+        //     var cartItem = 
+        //         _db.CartItems.SingleOrDefault(
+        //             s => s.Book.Id == book.Id && s.CartId == CartId);
+        //     if(cartItem == null)
+        //     {
+        //         cartItem = new CartItem
+        //         {
+        //             CartId = CartId,
+        //             Book = book,
+        //             Amount = 1
+        //         };
+        //         _db.CartItems.Add(cartItem);
+        //     }
+        //     else
+        //     {
+        //         cartItem.Amount++;
+        //     }
+        //     _db.SaveChanges();
+        // }
     }
-
-
 }
