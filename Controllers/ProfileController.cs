@@ -23,11 +23,11 @@ namespace BookCave.Controllers
             _userManager = userManager;
         }
 
-        private Task<ApplicationUser> GetCrurentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         public async Task<IActionResult> Home()
         {
-            var user = await GetCrurentUserAsync();
+            var user = await GetCurrentUserAsync();
 
             var profile = new ProfileHomeViewModel {
                 FirstName = user.FirstName,
@@ -45,7 +45,7 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> EditPersonal()
         {
-            var user = await GetCrurentUserAsync();
+            var user = await GetCurrentUserAsync();
             var person = new UserPersonalInputModel {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -64,7 +64,7 @@ namespace BookCave.Controllers
         {
             if( ModelState.IsValid )
             {
-                var user = await GetCrurentUserAsync();
+                var user = await GetCurrentUserAsync();
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Gender = model.Gender;
@@ -80,7 +80,7 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> EditShipping()
         {
-            var user = await GetCrurentUserAsync();
+            var user = await GetCurrentUserAsync();
             var person = new UserShippingInputModel {
                 StreetAddress = user.Street,
                 ZipCode = user.ZipCode,
@@ -99,7 +99,7 @@ namespace BookCave.Controllers
 
             if( ModelState.IsValid )
             {
-                var user = await GetCrurentUserAsync();
+                var user = await GetCurrentUserAsync();
                 user.Street = model.StreetAddress;
                 user.ZipCode = model.ZipCode;
                 user.City = model.City;

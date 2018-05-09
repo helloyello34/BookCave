@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Data;
 using BookCave.Models;
@@ -15,7 +16,7 @@ namespace BookCave
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup( IConfiguration configuration )
         {
             Configuration = configuration;
             //ServiceProvider = serviceProvider; 
@@ -67,32 +68,6 @@ namespace BookCave
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            //await CreateRolesAndUsers(serviceProvider);
         }
-        
-       /* private async Task CreateRolesAndUsers(IServiceProvider serviceProvider)
-        {
-
-
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-            string[] roleNames = { "Admin", "User" };
-            //IdentityResult roleResult;
-            
-            foreach (var roleName in roleNames)
-            {
-                var roleExist = await RoleManager.RoleExistsAsync(roleName);
-                // athuga hvort role er til
-                if (!roleExist)
-                {
-                    //bua til role og setja i database
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-            //finna user
-            
-            }
-        } */
     }
 }
