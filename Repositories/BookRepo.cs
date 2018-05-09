@@ -32,7 +32,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    //Genre = b.Genre,
+                    Genre = b.Genre,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -47,6 +47,7 @@ namespace BookCave.Repositories
                 join a in _db.Authors on b.AuthorId equals a.Id
                 select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
@@ -65,6 +66,7 @@ namespace BookCave.Repositories
                 where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
                 select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
                     Rating = b.Rating,
