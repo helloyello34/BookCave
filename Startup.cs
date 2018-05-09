@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BookCave.Data;
 using BookCave.Models;
 using BookCave.Models.EntityModels;
+using BookCave.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

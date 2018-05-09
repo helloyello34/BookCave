@@ -1,5 +1,4 @@
 using BookCave.Data;
-using BookCave.Data.Interfaces;
 using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 
 namespace BookCave.Repositories
 {
-    public class BookRepo : IBookRepository
+    public class BookRepo
     {
         private DataContext _db;
         public BookRepo()
@@ -255,5 +254,8 @@ namespace BookCave.Repositories
             ).ToList();
             return commentList;
         }
+
+        public IEnumerable<Book> Books => _db.Books.ToList();
+        public Book GetBookOnId(int id) => _db.Books.FirstOrDefault(p => p.Id == id);
     }
 }
