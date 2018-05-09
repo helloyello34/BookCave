@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BookCave.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookCave.Models.EntityModels
@@ -10,26 +13,12 @@ namespace BookCave.Models.EntityModels
     public class Cart
     {
         private readonly DataContext _db;
-        private Cart(DataContext db)
-        {
-            _db = db;
-        }
+        private readonly UserManager<ApplicationUser> _userManager;
+
+
         public string CartId { get; set; }
         public List<CartItem> CartItems { get; set; }
-        public double Price { get; set; }
 
-        public static Cart GetCart(IServiceProvider services)
-        {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-                .HttpContext.Session;
-
-                var context = services.GetService<DataContext>();
-                string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-
-                session.SetString("CartId", cartId);
-
-                return new Cart(context) {CartId = cartId};
-        }
 
         public void AddToCart(Book book, int amount)
         {

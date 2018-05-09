@@ -2,6 +2,7 @@ using BookCave.Data;
 using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookCave.Services
@@ -28,6 +29,12 @@ namespace BookCave.Services
                     Amount = b.Price
                 }).SingleOrDefault();
             _cartRepo.AddBookToDb(cartItem);
+        }
+
+        public List<CartItem> GetItems(string id)
+        {
+            var items = _cartRepo.GetItems(id);
+            return items;
         }
     }
 }

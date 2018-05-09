@@ -5,8 +5,7 @@ namespace BookCave.Models.ViewModels
 {
     public class CartViewModel
     {
-        public int Id { get; set; }
-        public List<Book> BookList { get; set; }
-        public double Price { get; set; }
+        public Cart Cart { get; set; }
+        public double CartTotal { get; set; }
     }
 }
