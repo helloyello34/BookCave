@@ -31,10 +31,6 @@ namespace BookCave.Services
             _cartRepo.AddBookToDb(cartItem);
         }
 
-        public List<CartItem> GetItems(string id)
-        {
-            var items = _cartRepo.GetItems(id);
-            return items;
-        }
+       
     }
 }
