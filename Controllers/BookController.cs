@@ -41,9 +41,11 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult Details(int id, CommentInputModel model)
         {
-
+            if(model.Comment != null)
+            {
             _bookService.AddComment(id, model);
-            var book = _bookService.GetBookById(id); //onotuð lina ?
+            }
+            //var book = _bookService.GetBookById(id); //onotuð lina ?
             _bookService.UpdateBookRating(id, Convert.ToInt32(model.Rating));
             return RedirectToAction("Details", id);
         }
