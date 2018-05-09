@@ -1,7 +1,9 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -254,6 +256,18 @@ namespace BookCave.Repositories
                 }
             ).ToList();
             return commentList;
+        }
+
+        public DbSet<Book> GetBooks()
+        {
+            var books = _db.Books;
+            return books;
+        }
+
+        public DbSet<Author> GetAuthors()
+        {
+            var authors = _db.Authors;
+            return authors;
         }
     }
 }

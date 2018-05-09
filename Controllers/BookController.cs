@@ -103,11 +103,24 @@ namespace BookCave.Controllers
             return View();
         }
 
+        public IActionResult BookNotFound()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Search(string q)
         {
-            
-
-            return View();
+            if (q != null)
+            {
+                ViewData["SearchString"] = q;
+                var searchedBooks = _bookService.findBooks(q);
+                if(searchedBooks.Count != 0)
+                {
+                    return View(searchedBooks);
+                }
+            }
+            return RedirectToAction("BookNotFound");
         }
     }
 }
