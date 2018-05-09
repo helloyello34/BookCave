@@ -54,7 +54,7 @@ namespace BookCave.Services
                 Language = bookInputModel.Language,
                 Image = bookInputModel.Image,
                 Title = bookInputModel.Title,
-                // Genre = bookInputModel.Genre,
+                Genre = bookInputModel.Genre,
                 Info = bookInputModel.Info,
                 AuthorId = (int)bookInputModel.AuthorId,
                 Publisher = bookInputModel.Publisher,
