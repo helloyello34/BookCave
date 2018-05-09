@@ -1,30 +1,74 @@
 @model BookCave.Models.InputModels.UserPersonalInputModel
+@{
+  var imageurl = ViewData["Image"];
+}
+<div class="container profile-wrap">
+  <div class="row">
+    <div class="col col-lg-2"></div>
+      <div class="col-lg-8 profile-border">
+        <div class="col-lg-1">
 
-<div class="form-group">
-  <form asp-action="EditPersonal" asp-controller="Profile" method="POST">
-    <div class="input-group">
-      <label>
-        First Name: <input type="text" asp-for="FirstName" placeholder="@Model.FirstName">
-      </label>
-    </div>
-    <div class="input-group">
-      <label>
-        Last Name: <input type="text" asp-for="LastName" placeholder="@Model.LastName">
-      </label>
-    </div>
-    <div class="input-group">
-      <label>
-        <input type="radio" asp-for="Gender" value="Male"> Male
-      </label>
-      <label>
-        <input type="radio" asp-for="Gender" value="Female"> Female
-      </label>
-      <label>
-        <input type="radio" asp-for="Gender" value="Other"> Other
-      </label>
-    </div>
-    <div class="input-group">
-      <input type="submit" value="Change Info">
-    </div>
-  </form>
+        </div>
+        <div class="col col-lg-4">
+          <div class="col col-lg-12 profile-image-wrap" >
+            <img class="profile-image" src="@imageurl" alt="picture">
+          </div>
+          <div class="col col-lg-12 personal-info-button-wrap">
+            <a asp-action="EditPersonal" asp-controller="Profile" class="btn btn-info">Edit Personal Info</a>       
+          </div>
+          <div class="col col-lg-12">
+            <a asp-action="EditShipping" asp-controller="Profile" class="btn btn-info">Edit Shipping Info</a>        
+          </div>
+        </div>
+        <div class="col col-lg-7">
+          <div class="col col-lg-12 form-group profile-personal-form">
+            <form asp-action="EditPersonal" asp-controller="Profile" method="POST">
+              <label>First Name</label><br>
+              <input type="text" asp-for="FirstName" placeholder="@Model.FirstName" class="form-control">
+              <label id="last-name-label">Last Name</label><br>
+              <input type="text" asp-for="LastName" placeholder="@Model.LastName" class="form-control">
+              <label id="last-name-label">Profile Image Url</label><br>
+              <input type="text" asp-for="ImageUrl" placeholder="@imageurl" class="form-control" value="@imageurl">              
+              <div class="input-group gender-div">
+                <span>Gender</span><br>
+                @if(Model.Gender == "Male")
+                {
+                <label>
+                  <input type="radio" asp-for="Gender" value="Male" checked> Male
+                </label>                 
+                }
+                else{
+                <label>
+                  <input type="radio" asp-for="Gender" value="Male"> Male
+                </label>
+                }
+                @if(Model.Gender == "Female")
+                {
+                <label>
+                  <input type="radio" asp-for="Gender" value="Female" checked> Female
+                </label>
+                }
+                else{
+                <label>
+                  <input type="radio" asp-for="Gender" value="Female"> Female
+                </label>                  
+                }
+                <div id="birthday-input">
+                  <span>Birthday</span><br>
+                  <input type="date" asp-for="Birthday" name="birthday" value="@Model.Birthday.Year-@Model.Birthday.Month-@Model.Birthday.Day">
+                </div>
+                <div id="submit-profile-div">
+                  <input type="submit"class="btn btn-primary" value="Accept changes">
+                  <a asp-controller="Profile" asp-action="Home" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+          </div>
+        </div>
+        <div class="col col-lg-3">
+
+        </div>
+      </div>
+    <div class="col col-lg-2"></div>
+  </div>
 </div>
+

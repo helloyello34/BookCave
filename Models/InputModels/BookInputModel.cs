@@ -27,6 +27,7 @@ namespace BookCave.Models.InputModels
         public int? ReleaseYear { get; set; }
 
         [Required (ErrorMessage = "You must enter a price")]
+        [Range(0, double.MaxValue, ErrorMessage = "A book cant have a negative price")]
         public double? Price { get; set; }
     }
 }

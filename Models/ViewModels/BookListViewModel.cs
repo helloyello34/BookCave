@@ -4,6 +4,6 @@ namespace BookCave.Models.ViewModels
 {
     public class BookListViewModel
     {
-        public List<BookTableViewModel> Books { get; set; }
+        public List<BookDetailsViewModel> Books { get; set; }
     }
 }

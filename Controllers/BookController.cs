@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
@@ -20,12 +21,12 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        public IActionResult ListBooks(string selectedGenre)
+        public IActionResult ListBooks(int[] selectedGenre)
         {
             var books = _bookService.GetBooksByGenre();
             if(selectedGenre != null)
             {
-                books = _bookService.GetBooksByGenre(selectedGenre);
+      //          books = _bookService.GetBooksByGenre(selectedGenre);
             }
             return View(books);
         }
@@ -40,9 +41,12 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult Details(int id, CommentInputModel model)
         {
-
+            if(model.Comment != null)
+            {
             _bookService.AddComment(id, model);
-            var book = _bookService.GetBookById(id);
+            }
+            //var book = _bookService.GetBookById(id); //onotuð lina ?
+            _bookService.UpdateBookRating(id, Convert.ToInt32(model.Rating));
             return RedirectToAction("Details", id);
         }
 

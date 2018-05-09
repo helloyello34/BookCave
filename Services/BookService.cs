@@ -30,10 +30,11 @@ namespace BookCave.Services
             var books = _bookRepo.GetBooksByGenre();
             return books;
         }
-        public BookListViewModel GetBooksByGenre(string selectedGenre)
+        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
         {
-            var books = _bookRepo.GetBooksByGenre(selectedGenre);
-            return books;
+   //         var books = _bookRepo.GetBooksByGenre(selectedGenre);
+      //      return books;
+        return new BookListViewModel();
         }
         public BookFrontPageViewModel GetFrontPageBooks()
         {
@@ -54,7 +55,7 @@ namespace BookCave.Services
                 Language = bookInputModel.Language,
                 Image = bookInputModel.Image,
                 Title = bookInputModel.Title,
-                Genre = bookInputModel.Genre,
+                // Genre = bookInputModel.Genre,
                 Info = bookInputModel.Info,
                 AuthorId = (int)bookInputModel.AuthorId,
                 Publisher = bookInputModel.Publisher,
@@ -86,8 +87,6 @@ namespace BookCave.Services
                 Comments = comment.Comment,
                 Rating = comment.Rating
             };
-            var rating = Convert.ToInt32(comment.Rating);
-            UpdateBookRating(id, rating);
             
             _bookRepo.AddComment(newComment);
         }
@@ -97,6 +96,7 @@ namespace BookCave.Services
             var currentRatingSum = book.Rating * book.RatingCount;
             book.RatingCount++;
             book.Rating = (currentRatingSum + rating) / book.RatingCount;
+            _bookRepo.UpdateBook(book);
         }
 
     }

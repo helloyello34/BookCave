@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180508112704_added_bookgenre_changes")]
+    partial class added_bookgenre_changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,22 +71,6 @@ namespace BookCave.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookCave.Models.EntityModels.CartItem", b =>
-                {
-                    b.Property<int>("CartItemId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Amount");
-
-                    b.Property<int?>("BookId");
-
-                    b.Property<int>("CartId");
-
-                    b.HasKey("CartItemId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("CartItems");
             modelBuilder.Entity("BookCave.Models.EntityModels.BookGenres", b =>
                 {
                     b.Property<int>("Id")
@@ -116,11 +101,6 @@ namespace BookCave.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("BookCave.Models.EntityModels.CartItem", b =>
-                {
-                    b.HasOne("BookCave.Models.EntityModels.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
             modelBuilder.Entity("BookCave.Models.EntityModels.Genre", b =>
                 {
                     b.Property<int>("Id")

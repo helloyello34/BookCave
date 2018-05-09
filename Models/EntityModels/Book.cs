@@ -9,7 +9,6 @@ namespace BookCave.Models.EntityModels
         public string Language { get; set; }
         public string Image { get; set; }
         public string Title { get; set; }
-        public string Genre { get; set; }
         public string Info { get; set; }
         public int AuthorId { get; set; }
         public string Publisher { get; set; }
