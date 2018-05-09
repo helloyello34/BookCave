@@ -403,4 +403,9 @@ textarea {
 #submit-profile-div{
     margin-top: 120px;
 }
-
+#country-drop{
+    margin-top: 4px;
+}
+#submit-shipping-div{
+    margin-top: 40px;
+}
