@@ -42,6 +42,4 @@ namespace BookCave.Models.EntityModels
             _db.SaveChanges();
         }
     }
-
-
 }
