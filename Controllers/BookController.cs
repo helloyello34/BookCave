@@ -4,6 +4,7 @@ using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookCave.Controllers
@@ -56,6 +57,7 @@ namespace BookCave.Controllers
             return View(books);
         }
         [HttpGet]
+        [Authorize(Roles="Admin")]
         public IActionResult Create()
         {
             ViewData["Title"] = "Add book to database";
@@ -67,6 +69,7 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public IActionResult Create(BookInputModel bookInputModel)
         {
              ViewData["Title"] = "Add book to database";

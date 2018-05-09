@@ -28,7 +28,7 @@ namespace BookCave.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async  Task<IActionResult> Login(LoginViewModel model)
-        {
+        {           
             if (!ModelState.IsValid) { return View(); }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
