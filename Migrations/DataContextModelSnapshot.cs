@@ -41,6 +41,8 @@ namespace BookCave.Migrations
 
                     b.Property<double>("Discount");
 
+                    b.Property<string>("Genre");
+
                     b.Property<string>("ISBN");
 
                     b.Property<string>("Image");
@@ -86,18 +88,6 @@ namespace BookCave.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("CartItems");
-            modelBuilder.Entity("BookCave.Models.EntityModels.BookGenres", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("GenreId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BookGenres");
                 });
 
             modelBuilder.Entity("BookCave.Models.EntityModels.Comment", b =>
@@ -121,16 +111,6 @@ namespace BookCave.Migrations
                     b.HasOne("BookCave.Models.EntityModels.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId");
-            modelBuilder.Entity("BookCave.Models.EntityModels.Genre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genres");
                 });
 #pragma warning restore 612, 618
         }

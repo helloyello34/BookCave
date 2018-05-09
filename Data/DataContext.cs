@@ -10,7 +10,6 @@ namespace BookCave.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<BookGenres> BookGenres { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
