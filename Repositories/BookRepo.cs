@@ -237,5 +237,17 @@ namespace BookCave.Repositories
             var authors = _db.Authors;
             return authors;
         }
+        public List<string> GetGenresList()
+        {
+            var genres = (
+                from g in _db.Genres
+                select g).ToList();
+                List<string> genreList = new List<string>();
+                foreach(var str in genres)
+                {
+                    genreList.Add(str.Name);
+                }
+            return genreList;
+        }
     }
 }

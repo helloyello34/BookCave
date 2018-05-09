@@ -24,22 +24,21 @@
 <div class="container contact-form">
     <div  class="row">
         <div class="col col-lg-8">
-            <form action="">
+            <form form action="mailto:baldur17@ru.is" method="post" enctype="text/plain">
                 <div class="form-group">
                     <!--Eftir að setja asp-for etc -->
                     <label for="contact-name" class="contact-form">Name</label>
                     <input type="text" id="contact-name" class="form-control" name="Name">
 
                     <label for="contact-email" class="contact-form">Email</label>
-                    <input type="email" id="contact-email" class="form-control">
+                    <input type="email" id="contact-email" class="form-control" name="mail">
                     <small id="email-small-text" class="form-text text-muted">We'll never share your email with anyone.</small><br>
 
-                    <label for="contact-phone-number" class="contact-form">Phone number</label>
-                    <input type="tel" id="contact-phone-number" class="form-control">
 
                     <label for="contact-message" class="contact-form">Message</label>
                     <textarea name="contact-message" id="contact-message" cols="85" rows="10"></textarea>
                     <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="reset" class="btn btn-danger" value="Reset">Reset</button>
                 </div>
             </form>
         </div>
