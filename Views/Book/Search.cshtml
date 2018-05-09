@@ -1,18 +1,20 @@
 @model List<BookCave.Models.ViewModels.BookTableViewModel>
 @{
     Layout = "~/Views/Shared/_CategoryLayout.cshtml";
+    var Query = ViewData["SearchString"];
 }
 <body id="ListBooksBody">
     <div class="container" id="category-container">
+        <h2>Search string: <strong>@Query</strong></h2>
         <div class="row">
             <div class="col col-lg-12 frontpage-booklist"></div>
                 @foreach(var books in Model)
                 {
-                    <div class="col col-lg-2 col-sm-2 book-display-frontpage">
+                    <div class="col col-lg-2 col-md-3 col-sm-4 book-display-frontpage">
                         <div class="row">
                             <div class="col col-lg-12 book-image-div">
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
-                                <img class="book-image-frontpage" src="@books.Image" alt="@books.Title">
+                                    <img class="book-image-frontpage" src="@books.Image" alt="@books.Title">
                                 </a>                    
                             </div>
                         </div>
