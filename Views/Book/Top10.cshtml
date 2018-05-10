@@ -15,7 +15,7 @@
                             <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
                                 <h3 class="topten-title-text">@books.Title</h3>
                             </a>
-                            <p class="topten-author-text">@books.Author</p>
+                            <p class="topten-author-text"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
                             <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                                 <div class="frontpage-rating">
                                     @for(int i = 0; i < @books.Rating; i++)
@@ -33,7 +33,8 @@
                             </a>
                             <p class="topten-price-text">@books.Price$</p>
                             <div class="topten-button-div">
-                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                            <span hidden class="front-page-bookID">@books.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,8 @@
                             </a>
                             <p class="topten-price-text">@booksSecondHalf.Price$</p>
                             <div class="topten-button-div">
-                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                                <span hidden class="front-page-bookID">@booksSecondHalf.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
                             </div>
                         </div>
                     </div>

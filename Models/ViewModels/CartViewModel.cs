@@ -5,8 +5,10 @@ namespace BookCave.Models.ViewModels
 {
     public class CartViewModel
     {
-        public int Id { get; set; }
-        public List<Book> BookList { get; set; }
-        public double Price { get; set; }
+        public string CartId { get; set; }
+        public List<BookCave.Models.EntityModels.Cart> CartItems { get; set; }
+        
+
+
     }
 }

@@ -1,14 +1,34 @@
 @model List<BookCave.Models.ViewModels.BookTableViewModel>
 @{
     Layout = "~/Views/Shared/_CategoryLayout.cshtml";
+    var genres = ViewData["Genres"] as IEnumerable<string>;
+    var currentgenre = ViewData["currentGenre"] as string;
 }
 <body id="ListBooksBody">
-    <div class="container" id="category-container">
+    <div id="category-container">
         <div class="row">
-            <div class="col col-lg-12 frontpage-booklist"></div>
+            <div class="col col-lg-2">
+                <div class="category-menu">
+                    <div class="category-p">
+                        <h3 class="category-h3">Categories</h3>
+                        @foreach(var genre in genres)
+                        {
+                            <p><a class="genre-links" asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
+                        }
+                    </div>
+                    <hr id="linebreak-menu">
+                    <div class="category-p">
+                        <h3 class="category-h3">Order by</h3>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="0">A-Z</a></p>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="1">Rating</a></p>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="2">Price</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-10 frontpage-booklist">
                 @foreach(var books in Model)
                 {
-                    <div class="col col-lg-2 col-sm-2 book-display-frontpage">
+                    <div class="col col-lg-2 book-display-frontpage">
                         <div class="row">
                             <div class="col col-lg-12 book-image-div">
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
@@ -20,7 +40,7 @@
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
                                     <h3 id="frontpage-title">@books.Title</h3>
                                 </a>
-                                <p id="frontpage-author">@books.Author</p>
+                                <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                                     <div class="frontpage-rating">
                                         @for(int i = 0; i < @Convert.ToInt32(books.Rating); i++)
@@ -37,7 +57,8 @@
                                     </div>
                                 </a>
                                 <p id="frontpage-price">@books.Price $</p>
-                                <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                                <span hidden class="front-page-bookID">@books.Id</span>
+                                <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                             </div>
                     </div>
                 }

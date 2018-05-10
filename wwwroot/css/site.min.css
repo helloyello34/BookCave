@@ -10,13 +10,20 @@
     }
     #categories,#top-ten{
         font-size: 14pt;
+        color: white;
+    }
+    #top-ten{
+        color: white;
+    }
+    .navbar-inverse .navbar-nav>li>a{
+        color: white;
     }
     .input-group input[type=text]{
         float:right;
         margin-left: 400px;
     }
-    #search-bar
-    {margin-top: 5px;
+    #search-bar{
+        margin-top: 5px;
     }
     .glyphicon.glyphicon-book{
         font-size: 30px;
@@ -156,14 +163,20 @@ textarea {
     font-size: 12px;
     font-weight: bold;
     margin: 0 auto;
-    height: 30px;
+    height: 27px;
     margin-top: 4px;
     color: black;
+    width: 140px;
+    margin-left: 0px;
+    overflow: hidden;
 }
 #frontpage-author{
     font-size: 12px;
     height: 25px;
     margin: 0 auto;
+}
+#frontpage-author a{
+    color: #333;
 }
 #frontpage-price{
     font-size: 12px;
@@ -239,6 +252,10 @@ textarea {
     height: 15px;
     font-size: 12px;
     margin: 2px auto;
+}
+.topten-author-text a{
+
+    color: #333;
 }
 .topten-price-text{
     width: 180px;
@@ -341,12 +358,6 @@ textarea {
 #register-container-size{
     margin-top: 50px;
 }
-#category-layout{
-
-}
-#category-container{
-    
-}
 #contact-us-logo{
     height: 100px;
     width: 100px;
@@ -401,11 +412,92 @@ textarea {
     margin-top: -20px;
 }
 #submit-profile-div{
-    margin-top: 120px;
+    margin-top: 80px;
 }
 #country-drop{
     margin-top: 4px;
 }
 #submit-shipping-div{
     margin-top: 40px;
+}
+.dropbtn {
+    background-color: #222;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #333;
+}
+.category-menu{
+    border: solid gray;
+    position: fixed;
+    border-width: 1.5px;
+    width: 220px;
+}
+.category-p{
+    padding-left: 10px;
+}
+.category-h3{
+    margin-top: 8px;
+}
+#ListBooksBody{
+    background-color: #f0f0f0;
+}
+.filter-menu{
+    border: solid gray;
+    border-width: 1px;
+    position: fixed;
+    width: 220px; 
+}
+#linebreak-menu{
+    border-width: 1.5px;
+    border-color: rgba(128, 128, 128, 0.938);
+}
+.footer-margin{
+    margin-top: 100px;
+}
+.glyphicon-chevron-down{
+    padding-top: 2px;
+}
+.genre-links{
+    color: #333;
+}
+.genre-selected{
+    color: red;
+}
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-inverse .btn-link{
+    color: white;
 }

@@ -1,11 +1,10 @@
 @model BookCave.Models.InputModels.BookInputModel
 @{
   var authorList = ViewData["aList"] as IEnumerable<BookCave.Models.ViewModels.AuthorsViewModel>;
-
 }
 <div class="container">
   <div class="row">
-    <div class="col col-lg-4">
+    <div class="col col-lg-6">
       <h2>@ViewData["Title"]</h2>
       <form action="" method="POST">
           <div class="">
@@ -39,21 +38,22 @@
                 Genre    <span class="caret"></span>
               </button>
               <ul class="dropdown-menu genre-menu">
-                <li><a >Sci-Fi<span hidden>,</span> </a></li>
-                <li><a >Adult<span hidden>,</span> </a></li>
-                <li><a >Action<span hidden>,</span> </a></li>
-                <li><a >Fantasy<span hidden>,</span> </a></li>
-                <li><a >Comedy<span hidden>,</span> </a></li>
-                <li><a >Horror<span hidden>,</span> </a></li>
-                <li><a >Drama<span hidden>,</span> </a></li>
-                <li><a >Classic Literature<span hidden>,</span> </a></li>
-                <li><a >Self-Help<span hidden>,</span> </a></li>
-                <li><a >Cooking<span hidden>,</span> </a></li>
-                <li><a >Do it yourself (DIY)<span hidden>,</span> </a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Sci-Fi</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Adult</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Action</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Fantasy</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Comedy</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Horror</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Drama</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Classic Literature</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Self-Help</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Cooking</a></li>
+                <li><a class="btn btn-default" ><span hidden>,</span> Do it yourself (DIY)</a></li>
               </ul>
             </div>
+            <span id="selected-genre-view"></span>
             <!-- <span asp-for="Genre" id="genre-list"></span> -->
-            <input type="text" asp-for="Genre" id="genre-list" disabled>
+            <input type="text" asp-for="Genre" id="genre-list" hidden>
             <span asp-validation-for="Genre"></span>
             <!-- <ul id="genre_list">
               Here the list of genres is generated
@@ -106,9 +106,10 @@
           </div>
 
           <div class="">
-            <textarea class="form-control" asp-for="Info" cols="40" rows="5" placeholder="Write a short description of the book"></textarea>
             <label asp-for="Info">Info</label> <br>
+            <textarea class="form-control" asp-for="Info" cols="40" rows="5" placeholder="Write a short description of the book"></textarea>
           </div>
+          <br>
 
         <input type="submit" class="btn btn-primary " value="Submit Book">
 

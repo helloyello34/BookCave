@@ -25,14 +25,14 @@ namespace BookCave.Services
 
             return book;
         }
-        public List<BookTableViewModel> GetBooksByGenre()
+        public List<BookTableViewModel> GetBooksByGenre(int order)
         {
-            var books = _bookRepo.GetBooksByGenre();
+            var books = _bookRepo.GetBooksByGenre(order);
             return books;
         }
-        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre)
+        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre, int order)
         {
-           var books = _bookRepo.GetBooksByGenre(selectedGenre);
+           var books = _bookRepo.GetBooksByGenre(selectedGenre, order);
            return books;
         }
         public BookFrontPageViewModel GetFrontPageBooks()
@@ -54,7 +54,7 @@ namespace BookCave.Services
                 Language = bookInputModel.Language,
                 Image = bookInputModel.Image,
                 Title = bookInputModel.Title,
-                // Genre = bookInputModel.Genre,
+                Genre = bookInputModel.Genre,
                 Info = bookInputModel.Info,
                 AuthorId = (int)bookInputModel.AuthorId,
                 Publisher = bookInputModel.Publisher,
@@ -97,28 +97,44 @@ namespace BookCave.Services
             book.Rating = (currentRatingSum + rating) / book.RatingCount;
             _bookRepo.UpdateBook(book);
         }
-
-        public List<BookTableViewModel> findBooks(string searchString)
+        public List<string> GetGenresList()
         {
-            var books = _bookRepo.GetBooks();
-            var authors = _bookRepo.GetAuthors();
-            var selectedBooks = (
-                from b in books
-                join a in authors on b.AuthorId equals a.Id
-                where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
-                select new BookTableViewModel {
-                    Id = b.Id,
-                    Title = b.Title,
-                    Rating = b.Rating,
-                    Author = a.Name,
-                    Price = b.Price,
-                    Image = b.Image,
-                    Discount = b.Discount
-                }
-            ).ToList();
+            var genresList = _bookRepo.GetGenresList();
+
+            return genresList;
+        }
+
+        public List<BookTableViewModel> findBooks(string searchString, int order)
+        {
+            var selectedBooks = _bookRepo.findBooks(searchString, order);
 
             return selectedBooks;
         }
-
+        public BookEditInputModel GetBookEditInputModelById(int id)
+        {
+            var book = _bookRepo.GetBookEditInputModelById(id);
+            return book;
+        }
+        public void EditBook(BookEditInputModel bookEditInputModel)
+        {
+            var book = _bookRepo.GetBookEntity(bookEditInputModel.Id);
+            
+            book.ISBN = bookEditInputModel.ISBN;
+            book.Language = bookEditInputModel.Language;
+            book.Image = bookEditInputModel.Image;
+            book.Title = bookEditInputModel.Title;
+            book.Genre = bookEditInputModel.Genre;
+            book.Info = bookEditInputModel.Info;
+            book.AuthorId = (int)bookEditInputModel.AuthorId;
+            book.Publisher = bookEditInputModel.Publisher;
+            book.PageCount = bookEditInputModel.PageCount;
+            book.ReleaseYear = (int)bookEditInputModel.ReleaseYear;
+            book.Price = (double)bookEditInputModel.Price;
+            book.Rating = bookEditInputModel.Rating;
+            book.RatingCount = bookEditInputModel.RatingCount;
+            book.Stock = bookEditInputModel.Stock;
+            
+            _bookRepo.UpdateBook(book);            
+        }
     }
 }

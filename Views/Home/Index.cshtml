@@ -3,7 +3,6 @@
     ViewData["Title"] = "BookCave";
 }
 <body id="body-frontpage">
-    
 <h2 class="frontpage-category">PopularBooks</h2>
 <div class="container" id="front-page-primary-wrap">
     <div class="row">
@@ -22,7 +21,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
                             <h3 id="frontpage-title">@books.Title</h3>
                         </a>
-                        <p id="frontpage-author">@books.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 <div class="stars">
@@ -41,7 +40,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@books.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@books.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }
@@ -62,7 +62,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRecentlyAdded.Id">
                             <h3 id="frontpage-title">@booksRecentlyAdded.Title</h3>
                         </a>
-                        <p id="frontpage-author">@booksRecentlyAdded.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@booksRecentlyAdded.Author">@booksRecentlyAdded.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRecentlyAdded.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 @for(int j = 0; j < @booksRecentlyAdded.Rating; j++)
@@ -79,7 +79,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@booksRecentlyAdded.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@booksRecentlyAdded.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }
@@ -100,7 +101,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRandom.Id">
                             <h3 id="frontpage-title">@booksRandom.Title</h3>
                         </a>
-                        <p id="frontpage-author">@booksRandom.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@booksRandom.Author">@booksRandom.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRandom.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 @for(int c = 0; c < @booksRandom.Rating; c++)
@@ -117,7 +118,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@booksRandom.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@booksRandom.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }
