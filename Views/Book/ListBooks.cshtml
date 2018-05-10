@@ -6,7 +6,7 @@
 <body id="ListBooksBody">
     <div id="category-container">
         <div class="row">
-            <div class="col col-lg-2 testerino">
+            <div class="col col-lg-2">
                 <div class="category-menu">
                     <div class="category-p">
                         <h3 class="category-h3">Categories</h3>
@@ -27,7 +27,7 @@
             <div class="col col-lg-10 frontpage-booklist">
                 @foreach(var books in Model)
                 {
-                    <div class="col col-lg-1 book-display-frontpage">
+                    <div class="col col-lg-2 book-display-frontpage">
                         <div class="row">
                             <div class="col col-lg-12 book-image-div">
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
