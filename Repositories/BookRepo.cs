@@ -1,5 +1,6 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -324,6 +325,89 @@ namespace BookCave.Repositories
                     genreList.Add(str.Name);
                 }
             return genreList;
+        }
+        public List<BookTableViewModel> findBooks(string searchString, int order)
+        {
+            var selectedBooks = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                orderby b.Title
+                select new BookTableViewModel {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Rating = b.Rating,
+                    Author = a.Name,
+                    Price = b.Price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }
+            ).ToList();
+
+            if(order == 1)
+            {
+                selectedBooks = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                    orderby b.Rating
+                    select new BookTableViewModel {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Rating = b.Rating,
+                        Author = a.Name,
+                        Price = b.Price,
+                        Image = b.Image,
+                        Discount = b.Discount
+                    }
+                ).ToList();
+            }
+            else if(order == 2)
+            {
+                selectedBooks = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                    orderby b.Price
+                    select new BookTableViewModel {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Rating = b.Rating,
+                        Author = a.Name,
+                        Price = b.Price,
+                        Image = b.Image,
+                        Discount = b.Discount
+                    }
+                ).ToList();
+            }
+
+            return selectedBooks;
+        }
+        public BookEditInputModel GetBookEditInputModelById(int id)
+        {
+            var book = (
+                from b in _db.Books
+                where b.Id == id
+                select new BookEditInputModel
+                {
+                    Id = b.Id,
+                    ISBN = b.ISBN,
+                    Language = b.Language,
+                    Image = b.Image,
+                    Title = b.Title,
+                    Genre = b.Genre,
+                    Info = b.Info,
+                    AuthorId = b.AuthorId,
+                    Publisher = b.Publisher,
+                    PageCount = b.PageCount,
+                    ReleaseYear = b.ReleaseYear,
+                    Price = b.Price,
+                    Rating = b.Rating,
+                    RatingCount = b.RatingCount,
+                    Stock = b.Stock
+                }).SingleOrDefault();
+
+                return book;
         }
     }
 }

@@ -1,0 +1,88 @@
+@model BookCave.Models.InputModels.BookEditInputModel
+@{
+  var authorList = ViewData["aList"] as IEnumerable<BookCave.Models.ViewModels.AuthorsViewModel>;
+}
+<form method="POST">
+    <div class="form-group">
+        <div class="">
+            <label asp-for="Title">Book title</label> <br>
+            <input type="text" asp-for="Title" class="form-control" 
+                    value="@Model.Title">
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div>
+            <label asp-for="AuthorId">Author</label> <br>
+            <select asp-for="AuthorId" id="" class="form-control">
+                <option selected hidden value="1">Select an author</option>
+                @foreach(var a in authorList)
+                {
+                    <option value="@a.Id">@a.Name</option>
+                }
+            </select>
+        </div>
+        <div class="">
+            <label asp-for="ISBN">ISBN</label> <br>
+            <input type="text" asp-for="ISBN" class="form-control" 
+                    value="@Model.ISBN">
+            <span asp-validation-for="ISBN"></span>
+        </div>
+
+        <input type="text" asp-for="Genre" hidden value="@Model.Genre">
+
+        <div class="">
+            <label asp-for="Language">Language</label> <br>
+            <input type="text" asp-for="Language" class="form-control" 
+                    value="@Model.Language">
+            <span asp-validation-for="Language"></span>
+        </div>
+        <div class="">
+            <label asp-for="Image">Image</label> <br>
+            <input type="text" asp-for="Image" class="form-control" 
+                    value="@Model.Image">
+            <span asp-validation-for="Image"></span>
+        </div>
+        <div class="">
+            <label asp-for="Publisher">Publisher</label> <br>
+            <input type="text" asp-for="Publisher" class="form-control" 
+                    value="@Model.Publisher">
+            <span asp-validation-for="Publisher"></span>
+        </div>
+        <div class="">
+            <label asp-for="PageCount">PageCount</label> <br>
+            <input type="text" asp-for="PageCount" class="form-control" 
+                    value="@Model.PageCount">
+            <span asp-validation-for="PageCount"></span>
+        </div>
+        <div class="">
+            <label asp-for="ReleaseYear">ReleaseYear</label> <br>
+            <input type="text" asp-for="ReleaseYear" class="form-control" 
+                    value="@Model.ReleaseYear">
+            <span asp-validation-for="ReleaseYear"></span>
+        </div>
+        <div class="">
+            <label asp-for="Price">Price</label> <br>
+            <input type="text" asp-for="Price" class="form-control" 
+                    value="@Model.Price">
+            <span asp-validation-for="Price"></span>
+        </div>
+          <div class="">
+            <label asp-for="Info">Info</label> <br>
+            <textarea class="form-control" asp-for="Info" cols="40" rows="5" placeholder="@Model.Info"></textarea>
+        </div>
+        <div class="">
+            <label asp-for="Stock">Stock</label> <br>
+            <input type="text" asp-for="Stock" class="form-control" 
+                    value="@Model.Stock">
+            <span asp-validation-for="Stock"></span>
+        </div>
+
+        <input type="text" asp-for="Rating" hidden value="@Model.Rating">
+
+        <input type="text" asp-for="RatingCount" hidden value="@Model.RatingCount">
+
+
+        <input type="submit" class="btn btn-primary" value="Edit Book">
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-danger">Cancel</a>
+    </div>
+
+</form>

@@ -125,19 +125,43 @@ namespace BookCave.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string q)
+        public IActionResult Search(string q, int order)
         {
+            ViewData["currentQuery"] = q;
             ViewData["Genres"] = GetGenres();
             if (q != null)
             {
                 ViewData["SearchString"] = q;
-                var searchedBooks = _bookService.findBooks(q);
+                var searchedBooks = _bookService.findBooks(q, order);
                 if(searchedBooks.Count != 0)
                 {
                     return View(searchedBooks);
                 }
             }
             return RedirectToAction("BookNotFound");
+        }
+        public IActionResult EditBook(int id)
+        {
+            var authorList = _bookService.GetAuthorList();
+            ViewData["aList"] = authorList as List<BookCave.Models.ViewModels.AuthorsViewModel>;
+            ViewData["Genres"] = GetGenres();
+            var book = _bookService.GetBookEditInputModelById(id);
+
+            return View(book);
+
+        }
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public IActionResult EditBook(BookEditInputModel bookEditInputModel)
+        {
+            ViewData["Genres"] = GetGenres();
+
+            if(ModelState.IsValid)
+            {
+                _bookService.EditBook(bookEditInputModel);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
     }
 }
