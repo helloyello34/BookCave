@@ -37,7 +37,8 @@
                             </a>
                             <p class="topten-price-text">@books.Price$</p>
                             <div class="topten-button-div">
-                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                            <span hidden class="front-page-bookID">@books.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -78,7 +79,8 @@
                             </a>
                             <p class="topten-price-text">@booksSecondHalf.Price$</p>
                             <div class="topten-button-div">
-                                <button class="btn btn-primary topten-cartbutton">Add to cart</button>
+                                <span hidden class="front-page-bookID">@booksSecondHalf.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
                             </div>
                         </div>
                     </div>
