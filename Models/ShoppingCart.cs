@@ -1,27 +1,35 @@
 using BookCave.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 namespace BookCave.Models.EntityModels
 {
     public partial class ShoppingCart
     {
-        DataContext _db = new DataContext();
-        string ShoppingCartId { get; set; }
-        public const string CartSessionKey = "CartId";
-        public static ShoppingCart GetCart(HttpContext context)
+        public ShoppingCart(string userId)
         {
-            var cart = new ShoppingCart();
-            cart.ShoppingCartId = cart.GetCartId(context);
-            return cart;
+            ShoppingCartId = userId;
         }
-        public static ShoppingCart GetCart(Controller controller)
+        public ShoppingCart()
         {
-            return GetCart(controller.HttpContext);
+            
+        }
+        
+        DataContext _db = new DataContext();
+
+        string ShoppingCartId { get; set; }
+       
+        public ShoppingCart GetCart(string id)
+        {
+            var cart = new ShoppingCart(ShoppingCartId);
+            return cart;
         }
 
         public void AddToCart(Book book)
@@ -130,24 +138,11 @@ namespace BookCave.Models.EntityModels
             return order.OrderId;
         }
 
-       /* public string GetCartId(HttpContext context)
+       /* public string GetCartId()
         {
-            if (context.Session[CartSessionKey] == null)
-            {
-                if(!string.IsNullOrWhiteSpace(context.User.Identity.Name))
-                {
-                    context.Session[CartSessionKey] =
-                        context.User.Identity.Name;
-                }
-                else
-                {
-                    Guid tempCartId = Guid.NewGuid();
-                    context.Session[CartSessionKey] = tempCartId.ToString();
-                }
-            }
-            return context.Session[CartSessionKey].ToString();
-        }*/
-
+            var userId = _userManager.GetUserId;
+        }
+*/
         public void MigrateCart(string userName)
         {
             var shoppingCart = _db.Carts.Where(
