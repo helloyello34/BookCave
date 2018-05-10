@@ -19,13 +19,6 @@ namespace BookCave.Repositories
         {
         }
 
-        public List<CartItem> GetItems(string id)
-        {
-            var items = ( 
-                from i in _db.CartItems
-                where i.CartId == id
-                select i).ToList();
-            return items;
-        }
+       
     }
 }

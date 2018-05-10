@@ -38,7 +38,7 @@ namespace BookCave
 
                 config.Password.RequiredLength = 8;
             });
-
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.ConfigureApplicationCookie(options => {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromHours(3);
@@ -50,10 +50,9 @@ namespace BookCave
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
          //   services.AddScoped(sp => Cart.GetCart(sp));
-            services.AddMvc();
-
             services.AddMemoryCache();
             services.AddSession();
+            services.AddMvc(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
