@@ -15,14 +15,10 @@ namespace BookCave.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private CartService _cartService;
         private BookService _bookService;
-        private ShoppingCart _shoppingCart;
         
         public CartController(UserManager<ApplicationUser> usermanager)
         {
             _userManager = usermanager;
-            //var user = _userManager.GetUserAsync(User);
-        // var userId = user.Id.ToString();
-            _shoppingCart = new ShoppingCart();
             _cartService = new CartService();
             _bookService = new BookService();
         }
@@ -94,7 +90,7 @@ namespace BookCave.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-            var order = _cartService.MakeNewOrder(userId);
+            var order = _cartService.MakeNewOrder( userId );
             order.Address = user.Street;
             order.City = user.City;
             order.Country = user.Country;
@@ -103,7 +99,7 @@ namespace BookCave.Controllers
             order.LastName = user.LastName;
             order.OrderDate = System.DateTime.Now;
 
-            _cartService.CreateOrder(order,userId);
+            _cartService.CreateOrder( order, userId );
         } 
         public async Task<IActionResult> Order()
         {
