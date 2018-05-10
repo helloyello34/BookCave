@@ -80,7 +80,24 @@ namespace BookCave.Repositories
                 books = (
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
-                    orderby b.Price
+                    orderby b.Price descending
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
+            else if(order == 3)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    orderby b.Price ascending
                     select new BookTableViewModel
                     {
                         Id = b.Id,
@@ -213,7 +230,7 @@ namespace BookCave.Repositories
             var firstHalf = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                orderby b.Rating descending
+                orderby b.Rating ascending
                 select new BookTableViewModel
                 {
                     Id = b.Id,
@@ -368,7 +385,25 @@ namespace BookCave.Repositories
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
                     where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
-                    orderby b.Price
+                    orderby b.Price ascending
+                    select new BookTableViewModel {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Rating = b.Rating,
+                        Author = a.Name,
+                        Price = b.Price,
+                        Image = b.Image,
+                        Discount = b.Discount
+                    }
+                ).ToList();
+            }
+            else if(order == 3)
+            {
+                selectedBooks = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                    orderby b.Price descending
                     select new BookTableViewModel {
                         Id = b.Id,
                         Title = b.Title,
