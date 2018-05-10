@@ -133,5 +133,12 @@ namespace BookCave.Services
             Order newOrder = _cartRepo.MakeNewOrder(userId);
             return newOrder;
         }
+
+        public List<Order> GetOrders(string userId)
+        {
+            var orders = _cartRepo.GetOrders(userId);
+
+            return orders;
+        }
     }
 }

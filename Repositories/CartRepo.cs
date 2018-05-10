@@ -48,10 +48,16 @@ namespace BookCave.Repositories
 
             return newOrder;
         }
-        /*public Order order()
+        
+        public List<Order> GetOrders(string userId)
         {
-
-        }*/
+            var orders = (
+                from o in _db.Orders
+                where o.UserId == userId
+                select o).ToList();
+            
+            return orders;
+        }
 
        
     }

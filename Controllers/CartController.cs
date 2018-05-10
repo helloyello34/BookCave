@@ -116,5 +116,13 @@ namespace BookCave.Controllers
             return View(order);
             
         }
+
+        public async Task GetOrders()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+            var orders = _cartService.GetOrders(userId);
+        }
     }
 }
