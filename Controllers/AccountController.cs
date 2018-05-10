@@ -26,11 +26,13 @@ namespace BookCave.Controllers
         }
         public List<string> GetGenres()
         {
+            //gets a list of all genres from the database
             var genres = _bookService.GetGenresList();
             return genres;            
         }  
         public async Task CreateAdmin()
         {
+            //create admin account
             var user = await _userManager.FindByNameAsync("admin@admin.is");
 
             if(user == null)
@@ -52,7 +54,7 @@ namespace BookCave.Controllers
                 var createAdminUser = await _userManager.CreateAsync(adminUser, adminPassword);
                 if (createAdminUser.Succeeded)
                 {
-                    //Admin gefið role
+                    //Admin given role
                     await _userManager.AddToRoleAsync(adminUser, "Admin");
                 }
             }         
@@ -70,10 +72,12 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async  Task<IActionResult> Login(LoginViewModel model)
         {
+            //Log in user
+            //if login fails refresh page
             if (!ModelState.IsValid) { return View(); }
-
+            //search database for info
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
+            //if account is found and info is valid log the user in and redirect to homepage
             if ( result.Succeeded )
             {
                 return RedirectToAction("Index", "Home");
@@ -84,6 +88,7 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            //Default register page
             ViewData["Genres"] = GetGenres();
             return View();
         }
@@ -92,8 +97,9 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            //If user input is invalid refresh the page
             if ( !ModelState.IsValid ) { return View(); }
-
+            //create user with initial required info
             var user = new ApplicationUser 
             {
                 UserName = model.Email,
@@ -107,9 +113,9 @@ namespace BookCave.Controllers
                 Gender = "",
                 Phone = ""
             };
-
+            //check if info is valid
             var result = await _userManager.CreateAsync(user, model.Password);
-
+            //If info is vaild register user, else refresh page
             if ( result.Succeeded )
             {
                 // The user is successfullly registered
@@ -130,6 +136,7 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()
         {
+            //log out current user and redirect to login screen
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
@@ -137,6 +144,7 @@ namespace BookCave.Controllers
 
         public IActionResult AccessDenied()
         {
+            //show page if user is unauthorized to view page
             ViewData["Genres"] = GetGenres();
             return View();
         }
