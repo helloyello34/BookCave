@@ -16,7 +16,7 @@ namespace BookCave.Models.EntityModels
         public static ShoppingCart GetCart(HttpContext context)
         {
             var cart = new ShoppingCart();
-            cart.ShoppingCartId = cart.GetCartId(context);
+            // cart.ShoppingCartId = cart.GetCartId(context);
             return cart;
         }
         public static ShoppingCart GetCart(Controller controller)

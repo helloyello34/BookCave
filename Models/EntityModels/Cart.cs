@@ -12,8 +12,8 @@ namespace BookCave.Models.EntityModels
 {
     public class Cart
     {
-        private readonly DataContext _db;
-        private readonly UserManager<ApplicationUser> _userManager;
+        // private readonly DataContext _db;
+        // private readonly UserManager<ApplicationUser> _userManager;
         
         public int Id { get; set; }
         public string CartId { get; set; }
