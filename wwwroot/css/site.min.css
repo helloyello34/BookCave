@@ -203,6 +203,7 @@ textarea {
     border: solid lightgray;
     border-width: 0.5px;
     background-color: white;
+    margin-top: 15px;
 }
 .topten-inner-container{
     height: 360px;
@@ -468,4 +469,8 @@ textarea {
 }
 .footer-margin{
     margin-top: 100px;
+}
+.img-bookdetail {
+    width: 160px;
+    height: 240px;
 }
