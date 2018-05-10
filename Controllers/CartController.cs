@@ -104,6 +104,7 @@ namespace BookCave.Controllers
             order.OrderDate = System.DateTime.Now;
 
             _cartService.CreateOrder(order,userId);
+        } 
         public async Task<IActionResult> Order()
         {
             var user = await _userManager.GetUserAsync(User);
