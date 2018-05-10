@@ -1,0 +1,15 @@
+@model BookCave.Models.InputModels.GenreInputModel
+@{
+  ViewData["Title"] = "Create new author";
+}
+
+<form method="POST">
+  <div class="">
+      <label asp-for="Genre">Genre</label> <br>
+      <input type="text" asp-for="Genre" class="form-control" 
+              placeholder="Enter genre name here">
+      <span asp-validation-for="Genre"></span>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Create">
+  <a asp-controller="Book" asp-action="Create" class="btn btn-warning">Cancel</a>
+</form>

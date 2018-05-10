@@ -81,8 +81,9 @@
         <input type="text" asp-for="RatingCount" hidden value="@Model.RatingCount">
 
 
-        <input type="submit" class="btn btn-primary" value="Edit Book">
-        <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-danger">Cancel</a>
+        <input type="submit" class="btn btn-primary" value="Confirm Edit">
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-warning">Cancel</a>
+        <a asp-controller="Book" asp-action="DeleteBook" asp-route-id="@Model.Id" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete Book</a>
     </div>
 
 </form>
