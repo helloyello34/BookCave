@@ -31,11 +31,13 @@ namespace BookCave.Controllers
 
         public List<string> GetGenres()
         {
+            //fetches genres from database
             var genres = _bookService.GetGenresList();
             return genres;            
         } 
         public async Task<IActionResult> Home()
         {
+            //finds profile info and sends it to view
             var user = await GetCurrentUserAsync();
 
             var profile = new ProfileHomeViewModel {
@@ -55,6 +57,7 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> EditPersonal()
         {
+            //finds user info and sends it to view
             var user = await GetCurrentUserAsync();
             var person = new UserPersonalInputModel {
                 FirstName = user.FirstName,
@@ -74,6 +77,7 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPersonal(UserPersonalInputModel model)
         {
+            //if model is valid overwrite with new info and redirect to profile page
             if( ModelState.IsValid )
             {
                 var user = await GetCurrentUserAsync();
@@ -88,11 +92,13 @@ namespace BookCave.Controllers
 
                 return RedirectToAction("Home", "Profile");
             }
+            //if model is invalid refresh page
             return View();
         }
 
         public async Task<IActionResult> EditShipping()
         {
+            //fetches shipping info for user
             var user = await GetCurrentUserAsync();
             var person = new UserShippingInputModel {
                 StreetAddress = user.Street,
@@ -110,7 +116,7 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> EditShipping( UserShippingInputModel model )
         {
-
+            //if model is valid overwrite with new info and redirect to profile page
             if( ModelState.IsValid )
             {
                 var user = await GetCurrentUserAsync();
@@ -123,7 +129,7 @@ namespace BookCave.Controllers
 
                 return RedirectToAction("Home", "Profile");
             }
-
+            //if model is invalid refresh page
             return View();
         }
     }
