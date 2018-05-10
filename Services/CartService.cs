@@ -76,5 +76,30 @@ namespace BookCave.Services
 
             return cVM;
         }
+
+        public void EmptyCart(string userId)
+        {
+            var cartItems = (
+                from i in _db.Carts
+                where i.CartId == userId
+                select i).ToList();
+ 
+            foreach (var item in cartItems)
+            {
+                _db.Carts.Remove(item);
+            }
+            // Save changes
+            _db.SaveChanges();
+        }
+
+        public double GetTotal(string userId)
+        {
+            double? total = (from cartItems in _db.Carts
+                              where cartItems.CartId == userId
+                              select (int?)cartItems.Count *
+                              cartItems.Book.Price).Sum();
+
+            return total ?? 0;
+        }
     }
 }
