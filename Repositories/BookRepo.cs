@@ -15,11 +15,13 @@ namespace BookCave.Repositories
         private DataContext _db;
         public BookRepo()
         {
+            //creates connection with database
             _db = new DataContext();
         }
         
         public BookDetailsViewModel GetBookById(int id)
         {
+            //finds book from database that matches id and returns it
             var book = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -43,6 +45,8 @@ namespace BookCave.Repositories
         }
         public List<BookTableViewModel> GetBooksByGenre(int order)
         {
+            //finds books of all genres and returns them as a list
+            //if order is 0 returns books ordered by name
             var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -58,6 +62,7 @@ namespace BookCave.Repositories
                 }
             ).ToList();
 
+            //if oreder is 1 order books by rating
             if(order == 1)
             {
                 books = (
@@ -75,6 +80,7 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }
+            //if order is 2 order books by price
             else if(order == 2)
             {
                 books = (
@@ -97,6 +103,8 @@ namespace BookCave.Repositories
         }
         public List<BookTableViewModel> GetBooksByGenre(string selectedGenre, int order)
         {
+            //finds books that include all the genres in selected genres
+            //if order is 0 returns books ordered by name
             var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -112,7 +120,7 @@ namespace BookCave.Repositories
                     Image = b.Image
                 }
             ).ToList();
-
+            //if oreder is 1 order books by rating
             if(order == 1)
             {
                 books = (
@@ -131,6 +139,7 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }
+            //if order is 2 order books by price
             else if(order == 2)
             {
                 books = (
@@ -154,6 +163,8 @@ namespace BookCave.Repositories
         }
         public BookFrontPageViewModel GetFrontPageBooks()
         {
+            //fetches books for the front page
+            //Gets top 6 books by rating
             var popularBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -167,8 +178,9 @@ namespace BookCave.Repositories
                     Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(6).ToList();
-
+                }
+            ).Take(6).ToList();
+            //gets the 6 most recently added books
             var recentlyAddedbooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -182,9 +194,10 @@ namespace BookCave.Repositories
                     Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(6).ToList();
+                }
+            ).Take(6).ToList();
         
-
+            //gets 6 random books
             var randomBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -198,8 +211,9 @@ namespace BookCave.Repositories
                     Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(6).ToList();
-
+                }
+            ).Take(6).ToList();
+            //combines queries into one model and returns it
             var books = new BookFrontPageViewModel
             {
                 PopularBooks = popularBooks,
@@ -210,6 +224,8 @@ namespace BookCave.Repositories
         }
         public BookTopTenViewModel GetTopTenBooks()
         {
+            //gets top 10 books by rating
+            //gets the first 5 books 
             var firstHalf = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -223,7 +239,9 @@ namespace BookCave.Repositories
                     Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Take(5).ToList();
+                }
+            ).Take(5).ToList();
+            //gets the last 5 books
             var secondHalf = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -237,59 +255,71 @@ namespace BookCave.Repositories
                     Price = b.Price,
                     Image = b.Image,
                     Discount = b.Discount
-                }).Skip(5).Take(5).ToList();
+                }
+            ).Skip(5).Take(5).ToList();
+            //combines queries into one model
             var books = new BookTopTenViewModel
             {
                 FirstHalf = firstHalf,
                 SecondHalf = secondHalf
             };
-                return books;
+
+            return books;
         }
 
         public void AddBook(Book book)
         {
+            //add book to database
             _db.Add(book);
             _db.SaveChanges();
         }
 
         public void AddAuthor(Author author)
         {
+            //add auuthor to database
             _db.Add(author);
             _db.SaveChanges();
         }
 
         public void AddComment(Comment comment)
         {
+            //adds comment to database
             _db.Add(comment);
             _db.SaveChanges();
         }
         public Book GetBookEntity(int id)
         {
+            //gets book by id
             var book = (
                 from b in _db.Books
                 where b.Id == id
-                select b).SingleOrDefault();
+                select b
+            ).SingleOrDefault();
 
                 return book;            
         }
         public void UpdateBook(Book book)
         {
+            //updates a book from database
             _db.Update(book);
             _db.SaveChanges();
         }
         public List<AuthorsViewModel> GetAuthorList()
         {
+            //get list of authors from database
             var authorList = (
                 from a in _db.Authors
                 select new AuthorsViewModel {
                     Id = a.Id,
                     Name = a.Name
-                    }).ToList();
+                    }
+                ).ToList();
                 return authorList;
         }
 
         public List<CommentViewModel> GetComments(int id)
         {
+            //gets comments from database
             var commentList = (
                 from c in _db.Comments
                 where c.BookId == id
@@ -305,20 +335,24 @@ namespace BookCave.Repositories
         public Book GetBookOnId(int id) => _db.Books.FirstOrDefault(p => p.Id == id);
         public DbSet<Book> GetBooks()
         {
+            //gets books from database
             var books = _db.Books;
             return books;
         }
 
         public DbSet<Author> GetAuthors()
         {
+            //gets authors from database
             var authors = _db.Authors;
             return authors;
         }
         public List<string> GetGenresList()
         {
+            //gets genres from database 
             var genres = (
                 from g in _db.Genres
-                select g).ToList();
+                select g
+            ).ToList();
                 List<string> genreList = new List<string>();
                 foreach(var str in genres)
                 {
@@ -328,6 +362,8 @@ namespace BookCave.Repositories
         }
         public List<BookTableViewModel> findBooks(string searchString, int order)
         {
+            //find books that have the same title or author as the search string
+            //if order is 0 order them by title
             var selectedBooks = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
@@ -343,7 +379,7 @@ namespace BookCave.Repositories
                     Discount = b.Discount
                 }
             ).ToList();
-
+            //if order is 1 order books by rating
             if(order == 1)
             {
                 selectedBooks = (
@@ -362,6 +398,7 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }
+            //if order is 2 order books by price
             else if(order == 2)
             {
                 selectedBooks = (
@@ -405,7 +442,8 @@ namespace BookCave.Repositories
                     Rating = b.Rating,
                     RatingCount = b.RatingCount,
                     Stock = b.Stock
-                }).SingleOrDefault();
+                }
+            ).SingleOrDefault();
 
                 return book;
         }

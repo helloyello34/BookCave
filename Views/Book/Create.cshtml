@@ -2,18 +2,21 @@
 @{
   var authorList = ViewData["aList"] as IEnumerable<BookCave.Models.ViewModels.AuthorsViewModel>;
 }
+<!-- Create a book -->
 <div class="container">
   <div class="row">
     <div class="col col-lg-6">
       <h2>@ViewData["Title"]</h2>
+      <!-- FORM -->
       <form action="" method="POST">
+        <!-- TITLE -->
           <div class="">
             <label asp-for="Title">Book title</label> <br>
             <input type="text" asp-for="Title" class="form-control" 
                   placeholder="Input the book title">
             <span asp-validation-for="Title"></span>
           </div>
-
+          <!-- AUTHOR -->
           <div class="">
             <label asp-for="AuthorId">Author</label> <br>
               <select asp-for="AuthorId" id="" class="form-control">
@@ -26,11 +29,8 @@
               <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-default">Create new author</a>
 
             <span asp-validation-for="AuthorId"></span>
-          </div>
-
-          <!-- Example single danger button -->
-          
-
+          </div>          
+          <!-- GENRE -->
           <div class="">
             <label asp-for="Genre">Genre</label> <br>
             <div class="btn-group openclass">
@@ -52,73 +52,66 @@
               </ul>
             </div>
             <span id="selected-genre-view"></span>
-            <!-- <span asp-for="Genre" id="genre-list"></span> -->
             <input type="text" asp-for="Genre" id="genre-list" hidden>
-            <span asp-validation-for="Genre"></span>
-            <!-- <ul id="genre_list">
-              Here the list of genres is generated
-            </ul> -->
-           
+            <span asp-validation-for="Genre"></span>           
           </div>
-
+          <!-- PUBLISHER -->
           <div class="">
             <label asp-for="Publisher">Publisher</label> <br>
             <input type="text" asp-for="Publisher" class="form-control"
                   placeholder="Input the book Publisher">
           </div>
-
+          <!-- LANGUAGE -->
           <div class="">
             <label asp-for="Language">Language</label> <br>
             <input type="text" asp-for="Language" class="form-control"
                   placeholder="Input the book language">
           </div>
-
+          <!-- RELEASE YEAR -->
           <div class="">
             <label asp-for="ReleaseYear">Release Year</label> <br>
             <input type="text" asp-for="ReleaseYear" class="form-control"
                   placeholder="Input the book release year">
           </div>
-
+          <!-- PAGE COUNT -->
           <div class="">
             <label asp-for="PageCount">Page Count</label> <br>
             <input type="text" asp-for="PageCount" class="form-control"
                   placeholder="Input the book page count">
           </div>
-
+          <!-- ISBN -->
           <div class="">
             <label asp-for="ISBN">ISBN</label> <br>
             <input type="text" asp-for="ISBN" class="form-control"
                   placeholder="Input the book ISBN number">
             <span asp-validation-for="ISBN"></span>
           </div>
-
+          <!-- IMAGE -->
           <div class="">
             <label asp-for="Image">Image</label> <br>
             <input type="text" asp-for="Image" class="form-control"
                   placeholder="Input the bookcover URL">
           </div>
-
+          <!-- PRICE -->
           <div class="">
             <label asp-for="Price">Price</label> <br>
             <input type="text" asp-for="Price" class="form-control"
                   placeholder="Input the book price">
             <span asp-validation-for="Price"></span>
           </div>
-
+          <!-- INFO -->
           <div class="">
             <label asp-for="Info">Info</label> <br>
             <textarea class="form-control" asp-for="Info" cols="40" rows="5" placeholder="Write a short description of the book"></textarea>
           </div>
           <br>
-
+        <!-- SUBMIT -->
         <input type="submit" class="btn btn-primary " value="Submit Book">
-
       </form>
     </div>
     <div class="col col-lg-3">
     </div>
-    <div class="col col-lg-5">
-      
+    <div class="col col-lg-5">  
     </div>
   </div>
 </div>
