@@ -54,7 +54,7 @@
         <ul class="nav navbar-nav">
             <li>
             <div class="dropdown">
-                <button class="dropbtn">Categories <span id="dropbtn-span" class="glyphicon glyphicon-menu-down"></span></button>
+                <a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre=""><button class="dropbtn">Categories <span id="dropbtn-span" class="glyphicon glyphicon-menu-down"></span></button></a>
                 <div class="dropdown-content">
                     @foreach(var genre in genres)
                     {
