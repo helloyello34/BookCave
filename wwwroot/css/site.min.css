@@ -344,8 +344,9 @@ textarea {
 #category-layout{
 
 }
-#category-container{
-    
+div.container#category-container{
+    /* margin-left: 0;
+    margin-right: 0; */
 }
 #contact-us-logo{
     height: 100px;
