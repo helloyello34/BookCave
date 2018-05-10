@@ -1,7 +1,9 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
 using BookCave.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,7 +32,7 @@ namespace BookCave.Repositories
                     Info = b.Info,
                     Price = b.Price,
                     Image = b.Image,
-                    //Genre = b.Genre,
+                    Genre = b.Genre,
                     Language = b.Language,
                     Publisher = b.Publisher,
                     ISBN = b.ISBN
@@ -38,82 +40,114 @@ namespace BookCave.Repositories
 
             return book;
         }
-        public BookListViewModel GetBooksByGenre()
+        public List<BookTableViewModel> GetBooksByGenre(int order)
         {
-            var temp = (
+            var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                select new BookDetailsViewModel
+                orderby b.Title
+                select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
-                    ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
-                    Info = b.Info,
                     Price = b.Price,
-                    Image = b.Image,
-                    //Genre = b.GenreId,
-                    Language = b.Language,
-                    Publisher = b.Publisher,
-                    ISBN = b.ISBN
+                    Image = b.Image
                 }
             ).ToList();
 
-            var books = new BookListViewModel
+            if(order == 2)
             {
-           //     Books = temp
-            };
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    orderby b.Rating
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
+            else if(order == 3)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    orderby b.Price
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
 
             return books;
         }
-        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
-        {     
-            var temp = (
+        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre, int order)
+        {
+            var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                //where !selectedGenre.Except(b.Genre).Any()
-                select new BookDetailsViewModel
+                where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                orderby b.Title
+                select new BookTableViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = a.Name,
-                    ReleaseYear = b.ReleaseYear,
                     Rating = b.Rating,
-                    Info = b.Info,
                     Price = b.Price,
-                    Image = b.Image,
-                    //Genre = b.Genre,
-                    Language = b.Language,
-                    Publisher = b.Publisher,
-                    ISBN = b.ISBN
+                    Image = b.Image
                 }
             ).ToList();
 
-            if(selectedGenre == null)
+            if(order == 2)
             {
-                temp = (
+                books = (
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
-                    select new BookDetailsViewModel
+                    where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                    orderby b.Rating descending
+                    select new BookTableViewModel
                     {
+                        Id = b.Id,
                         Title = b.Title,
                         Author = a.Name,
-                        ReleaseYear = b.ReleaseYear,
                         Rating = b.Rating,
-                        Info = b.Info,
                         Price = b.Price,
-                        Image = b.Image,
-                        //Genre = b.GenreId,
-                        Language = b.Language,
-                        Publisher = b.Publisher,
-                        ISBN = b.ISBN
+                        Image = b.Image
                     }
                 ).ToList();
-            }            
-
-            var books = new BookListViewModel
+            }
+            else if(order == 3)
             {
-               // Books = temp
-            };
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                    orderby b.Price
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
 
             return books;
         }
@@ -268,5 +302,28 @@ namespace BookCave.Repositories
 
         public IEnumerable<Book> Books => _db.Books.ToList();
         public Book GetBookOnId(int id) => _db.Books.FirstOrDefault(p => p.Id == id);
+        public DbSet<Book> GetBooks()
+        {
+            var books = _db.Books;
+            return books;
+        }
+
+        public DbSet<Author> GetAuthors()
+        {
+            var authors = _db.Authors;
+            return authors;
+        }
+        public List<string> GetGenresList()
+        {
+            var genres = (
+                from g in _db.Genres
+                select g).ToList();
+                List<string> genreList = new List<string>();
+                foreach(var str in genres)
+                {
+                    genreList.Add(str.Name);
+                }
+            return genreList;
+        }
     }
 }

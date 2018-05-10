@@ -19,33 +19,47 @@
     </environment>
 </head>
 <body>
+@{
+    var genres = ViewData["Genres"] as IEnumerable<string>;
+}
     <nav class="nav navbar-inverse navbar-fixed-top">
         <div class="container">
         <div class="container-fluid navbar-inverse">
             <div class="navbar-header">
                 <a class="navbar-brand" <a asp-area="" asp-controller="Home" asp-action="Index"><img style="width:47px;" src="http://localhost:5000/images/bookcave_logo.png" alt="The "></a>
             </div>
-            <form class="navbar-form navbar-left" action="/action_page.php">
-                <div id="search-bar" class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for a book">
-                    <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                    </div>
-                </div>
-            </form>
+
+
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <form asp-controller="Book" asp-action="Search" class="navbar-form" role="search" method="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..." name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
             <div class="container-fluid">
-                        @await Html.PartialAsync("_LoginPartial")
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a asp-controller="Cart" asp-action="Index"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
         </div>
     <div class="container-fluid ">
         <ul class="nav navbar-nav">
-            <li id="categories"><a asp-controller="Book" asp-action="ListBooks">Categories</a>
-                
+            <li>
+            <div class="dropdown">
+                <button class="dropbtn">Categories</button>
+                <div class="dropdown-content">
+                    @foreach(var genre in genres)
+                    {
+                        <a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre">@genre</a>
+                    }
+                </div>
+            </div>
             </li>
             <li id="top-ten"><a asp-controller="Book" asp-action="Top10">Top 10</a></li>
             <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
@@ -55,11 +69,11 @@
     </nav>
     
     
-    <div class="container body-content" id="category-layout">
+    <div class="body-content" id="category-layout">
         @RenderBody()
-        <hr id="footer-hr">
+        <hr id="footer-hr" class="footer-margin">
         <footer>
-            <div class="flex-container ">
+            <div class="flex-container">
                 <div class="row footer-container">
                     <div class="col col-lg-2">
                         <a asp-controller="Home" asp-action="About">About us</a>

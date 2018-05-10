@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Data;
 using BookCave.Models;
@@ -18,13 +19,14 @@ namespace BookCave
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup( IConfiguration configuration )
         {
             Configuration = configuration;
+            //ServiceProvider = serviceProvider; 
         }
 
         public IConfiguration Configuration { get; }
-
+        //public IServiceProvider ServiceProvider {get ;}
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,7 +37,6 @@ namespace BookCave
 
             services.Configure<IdentityOptions>(config => {
                 config.User.RequireUniqueEmail = true;
-
                 config.Password.RequiredLength = 8;
             });
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
@@ -56,7 +57,7 @@ namespace BookCave
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {

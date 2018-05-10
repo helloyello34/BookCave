@@ -1,6 +1,10 @@
 @model BookCave.Models.ViewModels.BookTopTenViewModel
+@{
+    var text = @ViewData["AvailableEverywhere"];
+}
 <body id="topten-body">
     <h1 id="topten-h3">Our top ten highest rated books</h1>
+    <h2>@text</h2>
     <div class="container">
         <div class="row topten-row">
             <div class="col col-lg-12 topten-container">

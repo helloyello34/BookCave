@@ -4,6 +4,7 @@ using BookCave.Models.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookCave.Controllers
@@ -16,22 +17,28 @@ namespace BookCave.Controllers
         {
             _bookService = new BookService();
         }
-    
+        public List<string> GetGenres()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        }   
         public IActionResult Index()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
-        public IActionResult ListBooks(int[] selectedGenre)
+        public IActionResult ListBooks(string selectedGenre, int order)
         {
-            var books = _bookService.GetBooksByGenre();
+            var books = _bookService.GetBooksByGenre(order);
             if(selectedGenre != null)
             {
-      //          books = _bookService.GetBooksByGenre(selectedGenre);
+               books = _bookService.GetBooksByGenre(selectedGenre, order);
             }
             return View(books);
         }
         public IActionResult Details(int id)
         {
+            ViewData["Genres"] = GetGenres();
             var book = _bookService.GetBookById(id);
 
             if( book != null ) { return View(book); }
@@ -52,12 +59,16 @@ namespace BookCave.Controllers
 
         public IActionResult Top10()
         {
+            ViewData["Genres"] = GetGenres();
+
             var books = _bookService.GetTopTenBooks();
             return View(books);
         }
         [HttpGet]
+        [Authorize(Roles="Admin")]
         public IActionResult Create()
         {
+            ViewData["Genres"] = GetGenres();
             ViewData["Title"] = "Add book to database";
 
             var authorList = _bookService.GetAuthorList();
@@ -67,6 +78,7 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public IActionResult Create(BookInputModel bookInputModel)
         {
              ViewData["Title"] = "Add book to database";
@@ -85,6 +97,7 @@ namespace BookCave.Controllers
 
         public IActionResult CreateAuthor()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
@@ -101,6 +114,28 @@ namespace BookCave.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public IActionResult BookNotFound()
+        {
+            ViewData["Genres"] = GetGenres();
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Search(string q)
+        {
+            ViewData["Genres"] = GetGenres();
+            if (q != null)
+            {
+                ViewData["SearchString"] = q;
+                var searchedBooks = _bookService.findBooks(q);
+                if(searchedBooks.Count != 0)
+                {
+                    return View(searchedBooks);
+                }
+            }
+            return RedirectToAction("BookNotFound");
         }
     }
 }

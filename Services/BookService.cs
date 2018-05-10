@@ -25,16 +25,15 @@ namespace BookCave.Services
 
             return book;
         }
-        public BookListViewModel GetBooksByGenre()
+        public List<BookTableViewModel> GetBooksByGenre(int order)
         {
-            var books = _bookRepo.GetBooksByGenre();
+            var books = _bookRepo.GetBooksByGenre(order);
             return books;
         }
-        public BookListViewModel GetBooksByGenre(int[] selectedGenre)
+        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre, int order)
         {
-   //         var books = _bookRepo.GetBooksByGenre(selectedGenre);
-      //      return books;
-        return new BookListViewModel();
+           var books = _bookRepo.GetBooksByGenre(selectedGenre, order);
+           return books;
         }
         public BookFrontPageViewModel GetFrontPageBooks()
         {
@@ -55,7 +54,7 @@ namespace BookCave.Services
                 Language = bookInputModel.Language,
                 Image = bookInputModel.Image,
                 Title = bookInputModel.Title,
-                // Genre = bookInputModel.Genre,
+                Genre = bookInputModel.Genre,
                 Info = bookInputModel.Info,
                 AuthorId = (int)bookInputModel.AuthorId,
                 Publisher = bookInputModel.Publisher,
@@ -98,6 +97,33 @@ namespace BookCave.Services
             book.Rating = (currentRatingSum + rating) / book.RatingCount;
             _bookRepo.UpdateBook(book);
         }
+        public List<string> GetGenresList()
+        {
+            var genresList = _bookRepo.GetGenresList();
 
+            return genresList;
+        }
+
+        public List<BookTableViewModel> findBooks(string searchString)
+        {
+            var books = _bookRepo.GetBooks();
+            var authors = _bookRepo.GetAuthors();
+            var selectedBooks = (
+                from b in books
+                join a in authors on b.AuthorId equals a.Id
+                where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                select new BookTableViewModel {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Rating = b.Rating,
+                    Author = a.Name,
+                    Price = b.Price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }
+            ).ToList();
+
+            return selectedBooks;
+        }
     }
 }

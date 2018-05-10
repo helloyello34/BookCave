@@ -5,6 +5,9 @@ using BookCave.Models.ViewModels;
 using BookCave.Models.EntityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using BookCave.Services;
 
 namespace BookCave.Controllers
 {
@@ -13,15 +16,53 @@ namespace BookCave.Controllers
 
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private BookService _bookService;
 
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _bookService = new BookService();
         }
-
-        public IActionResult Login()
+        public List<string> GetGenres()
         {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        }  
+        public async Task CreateAdmin()
+        {
+            var user = await _userManager.FindByNameAsync("admin@admin.is");
+
+            if(user == null)
+            {
+                var adminUser = new ApplicationUser
+                {
+                    UserName = "admin@admin.is",
+                    Email = "admin@admin.is",
+                    FirstName = "admin",
+                    LastName = "admin",
+                    Street = "",
+                    ZipCode = "",
+                    City = "",
+                    Country = "",
+                    Gender = "",
+                    Phone = ""
+                };
+                string adminPassword = "Admin123!";
+                var createAdminUser = await _userManager.CreateAsync(adminUser, adminPassword);
+                if (createAdminUser.Succeeded)
+                {
+                    //Admin gefið role
+                    await _userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+            }         
+        } 
+       public async Task<IActionResult> Login()
+        {
+            ViewData["Genres"] = GetGenres();
+            //Þetta fall er kallað í til að bua til admin user
+            //utaf það virkaði ekki inn í startup.cs
+            await CreateAdmin();
             return View();
         }
 
@@ -43,6 +84,7 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
@@ -52,7 +94,8 @@ namespace BookCave.Controllers
         {
             if ( !ModelState.IsValid ) { return View(); }
 
-            var user = new ApplicationUser {
+            var user = new ApplicationUser 
+            {
                 UserName = model.Email,
                 Email = model.Email,
                 FirstName = model.FirstName,
@@ -62,7 +105,7 @@ namespace BookCave.Controllers
                 City = "",
                 Country = "",
                 Gender = "",
-                Phone = "",
+                Phone = ""
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -94,6 +137,7 @@ namespace BookCave.Controllers
 
         public IActionResult AccessDenied()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
     }
