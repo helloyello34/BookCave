@@ -2,13 +2,15 @@
 @{
   ViewData["Title"] = "Create new author";
 }
-
+<!-- CREATE AN AUTHOR -->
 <div>
     <h1>@ViewData["Title"]</h1>
 </div>
 <div class="container">
   <div class="row">
+    <!-- FORM -->
     <form action="" method="POST">
+      <!-- NAME -->
       <div class="col col-lg-3">
         <input type="text" asp-for="Name" class="form-control"
               placeholder="Enter the authors name">
@@ -19,11 +21,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col col-lg-2">
-      
-    </div>
-    <div class="col col-lg-2">
-      <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Create new book</a>
+    <div class="col col-lg-2"> 
     </div>
   </div>
 </div>
