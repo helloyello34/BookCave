@@ -36,6 +36,18 @@ namespace BookCave.Repositories
 
                 return cartItems;
         }
+
+        public Order MakeNewOrder(string userId)
+        {
+            var newOrder = new Order
+            {
+                UserId = userId
+            };
+            _db.Orders.Add(newOrder);
+            _db.SaveChanges();
+
+            return newOrder;
+        }
         /*public Order order()
         {
 

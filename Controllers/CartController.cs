@@ -92,10 +92,16 @@ namespace BookCave.Controllers
 
         public async Task CreateOrder()
         {
-            var order = new Order();
-            
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
+            var order = _cartService.MakeNewOrder(userId);
+            order.Address = user.Street;
+            order.City = user.City;
+            order.Country = user.Country;
+            order.Email = user.Email;
+            order.FirstName = user.FirstName;
+            order.LastName = user.LastName;
+            order.OrderDate = System.DateTime.Now;
 
             _cartService.CreateOrder(order,userId);
         }

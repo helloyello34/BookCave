@@ -115,28 +115,7 @@ namespace BookCave.Models.EntityModels
             return total ?? 0;
         }
 
-        public int CreateOrder(Order order)
-        {
-            double orderTotal = 0;
-            var cartItems = GetCartItems();
-            foreach(var item in cartItems)
-            {
-                var orderDetail = new OrderDetail
-                {
-                    BookId = item.BookId,
-                    OrderId = order.OrderId,
-                    UnitPrice = (decimal)item.Book.Price,
-                    Quantity = item.Count
-                };
-                orderTotal += (item.Count * item.Book.Price);
-                _db.OrderDetails.Add(orderDetail);
-            }
-            order.Total = (decimal)orderTotal;
-            _db.SaveChanges();
-
-            EmptyCart();
-            return order.OrderId;
-        }
+        
 
        /* public string GetCartId()
         {

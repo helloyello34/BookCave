@@ -114,17 +114,24 @@ namespace BookCave.Services
                 {
                     UserId = userId,
                     BookId = item.BookId,
-                  //  OrderId = order.OrderId,
+                    IdOfOrder = order.OrderId,
                     UnitPrice = (decimal)item.Book.Price,
                     Quantity = item.Count
                 };
                 orderTotal += (item.Count * (decimal)item.Book.Price);
                 _db.OrderDetails.Add(orderDetail);
+                _db.Orders.Update(order);
             }
             order.Total = orderTotal;
             _db.SaveChanges();
             EmptyCart(userId);
-            return 1; ///order.OrderId;
+            return order.OrderId; ///order.OrderId;
+        }
+        
+        public Order MakeNewOrder(string userId)
+        {
+            Order newOrder = _cartRepo.MakeNewOrder(userId);
+            return newOrder;
         }
     }
 }

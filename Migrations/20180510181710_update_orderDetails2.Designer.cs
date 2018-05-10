@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180510181710_update_orderDetails2")]
+    partial class update_orderDetails2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,9 +162,7 @@ namespace BookCave.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("IdOfOrder");
-
-                    b.Property<int?>("OrderId");
+                    b.Property<int>("OrderId");
 
                     b.Property<int>("Quantity");
 
@@ -197,7 +196,8 @@ namespace BookCave.Migrations
 
                     b.HasOne("BookCave.Models.EntityModels.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
