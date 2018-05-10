@@ -41,7 +41,7 @@
               <ul class="dropdown-menu genre-menu">
                 @foreach(var genre in genres)
                 {
-                  <li><a class="btn btn-info" ><span hidden>,</span>@genre</a></li>
+                  <li><a class="btn btn-default" ><span hidden>, </span>@genre</a></li>
                 }
               </ul>
             </div>
@@ -55,7 +55,7 @@
            
           </div>
           <div id="add-genre-btn-wrap">
-            <a asp-controller="Book" asp-action="CreateGenre" class="btn btn-info">Create new genre</a>
+            <a id="Create-Genre-Button" asp-controller="Book" asp-action="CreateGenre" class="btn btn-info">Create new genre</a>
           </div>
           <div class="">
             <label asp-for="Publisher">Publisher</label> <br>
