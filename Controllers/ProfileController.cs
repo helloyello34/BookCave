@@ -9,22 +9,31 @@ using System.Security.Principal;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using BookCave.Services;
 
 namespace BookCave.Controllers
 {
     [Authorize]
     public class ProfileController : Controller
     {
+        private BookService _bookService;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         public ProfileController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _bookService = new BookService();
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
+        public List<string> GetGenres()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        } 
         public async Task<IActionResult> Home()
         {
             var user = await GetCurrentUserAsync();
@@ -39,7 +48,7 @@ namespace BookCave.Controllers
                 Country = user.Country,
                 ImageUrl = user.ImageUrl
             };
-
+            ViewData["Genres"] = GetGenres();
             return View(profile);
         }
 
@@ -55,6 +64,7 @@ namespace BookCave.Controllers
 
             var image = user.ImageUrl;
             ViewData["Image"] = image;
+            ViewData["Genres"] = GetGenres();
 
             return View(person);
         }
@@ -89,6 +99,7 @@ namespace BookCave.Controllers
             };
             var image = user.ImageUrl;
             ViewData["Image"] = image; 
+            ViewData["Genres"] = GetGenres();
 
             return View(person);
         }

@@ -6,6 +6,8 @@ using BookCave.Models.EntityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using BookCave.Services;
 
 namespace BookCave.Controllers
 {
@@ -14,12 +16,19 @@ namespace BookCave.Controllers
 
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private BookService _bookService;
 
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _bookService = new BookService();
         }
+        public List<string> GetGenres()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        }  
         public async Task CreateAdmin()
         {
             var user = await _userManager.FindByNameAsync("admin@admin.is");
@@ -50,6 +59,7 @@ namespace BookCave.Controllers
         } 
        public async Task<IActionResult> Login()
         {
+            ViewData["Genres"] = GetGenres();
             //Þetta fall er kallað í til að bua til admin user
             //utaf það virkaði ekki inn í startup.cs
             await CreateAdmin();
@@ -74,6 +84,7 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
@@ -126,6 +137,7 @@ namespace BookCave.Controllers
 
         public IActionResult AccessDenied()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
     }

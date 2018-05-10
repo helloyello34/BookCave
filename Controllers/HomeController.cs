@@ -18,16 +18,14 @@ namespace BookCave.Controllers
         {
             _bookService = new BookService();
         }
-        public List<string> CategoryDropDown()
+        public List<string> GetGenres()
         {
             var genres = _bookService.GetGenresList();
-            return genres;
+            return genres;            
         }
         public IActionResult Index()
-        {
-            var genres = _bookService.GetGenresList();
-            
-            ViewData["Genres"] = genres;
+        { 
+            ViewData["Genres"] = GetGenres();
 
             var books = _bookService.GetFrontPageBooks();
             return View(books);
@@ -36,13 +34,14 @@ namespace BookCave.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+            ViewData["Genres"] = GetGenres();
 
 
             return View();
