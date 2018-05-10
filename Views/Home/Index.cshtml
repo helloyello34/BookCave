@@ -40,7 +40,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@books.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@books.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }
@@ -78,7 +79,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@booksRecentlyAdded.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@booksRecentlyAdded.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }
@@ -116,7 +118,8 @@
                             </div>
                         </a>
                         <p id="frontpage-price">@booksRandom.Price $</p>
-                        <button class="btn btn-primary frontpage-cartbutton">Add to cart</button>
+                        <span hidden class="front-page-bookID">@booksRandom.Id</span>
+                        <button class="btn btn-primary frontpage-cartbutton cartbutton">Add to cart</button>
                     </div>
             </div>
             }

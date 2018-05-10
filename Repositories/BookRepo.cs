@@ -300,6 +300,8 @@ namespace BookCave.Repositories
             return commentList;
         }
 
+        public IEnumerable<Book> Books => _db.Books.ToList();
+        public Book GetBookOnId(int id) => _db.Books.FirstOrDefault(p => p.Id == id);
         public DbSet<Book> GetBooks()
         {
             var books = _db.Books;

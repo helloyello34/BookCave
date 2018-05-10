@@ -5,8 +5,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Data;
 using BookCave.Models;
+using BookCave.Models.EntityModels;
+using BookCave.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +39,7 @@ namespace BookCave
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
             });
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.ConfigureApplicationCookie(options => {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromHours(3);
@@ -44,7 +48,12 @@ namespace BookCave
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-            services.AddMvc();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+         //   services.AddScoped(sp => Cart.GetCart(sp));
+            services.AddMemoryCache();
+            services.AddSession();
+            services.AddMvc(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +70,7 @@ namespace BookCave
 
             app.UseStaticFiles();
             app.UseAuthentication();
-
+            app.UseSession(); //Use session for cart
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
