@@ -57,7 +57,7 @@ namespace BookCave.Repositories
                 }
             ).ToList();
 
-            if(order == 2)
+            if(order == 1)
             {
                 books = (
                     from b in _db.Books
@@ -74,7 +74,7 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }
-            else if(order == 3)
+            else if(order == 2)
             {
                 books = (
                     from b in _db.Books
@@ -112,7 +112,7 @@ namespace BookCave.Repositories
                 }
             ).ToList();
 
-            if(order == 2)
+            if(order == 1)
             {
                 books = (
                     from b in _db.Books
@@ -130,7 +130,7 @@ namespace BookCave.Repositories
                     }
                 ).ToList();
             }
-            else if(order == 3)
+            else if(order == 2)
             {
                 books = (
                     from b in _db.Books

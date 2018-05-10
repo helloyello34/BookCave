@@ -29,6 +29,7 @@ namespace BookCave.Controllers
         }
         public IActionResult ListBooks(string selectedGenre, int order)
         {
+            ViewData["Genres"] = GetGenres();
             var books = _bookService.GetBooksByGenre(order);
             if(selectedGenre != null)
             {
