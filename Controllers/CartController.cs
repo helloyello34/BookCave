@@ -89,5 +89,15 @@ namespace BookCave.Controllers
             _cartService.GetTotal(userId);
             
         }
+
+        public async Task CreateOrder()
+        {
+            var order = new Order();
+            
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+            _cartService.CreateOrder(order,userId);
+        }
     }
 }
