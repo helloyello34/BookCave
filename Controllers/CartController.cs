@@ -29,10 +29,14 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ViewData["Title"] = "Your Orders";
+            ViewData["Title"] = "Your cart:";
             ViewData["Genres"] = GetGenres();
             var userId = await GetCartId();
             var cart = GetCart(userId);
+            if(cart.CartItems.Count == 0)
+            {
+                ViewData["Title"] = "You have no items in your cart";
+            }
             return View(cart);
         }
 
@@ -68,6 +72,22 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.RemoveFromCart(id, userId);
+        }
+
+        public async Task EmptyCart()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.EmptyCart(userId);
+            
+        }
+
+        public async Task GetTotal()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.GetTotal(userId);
+            
         }
     }
 }
