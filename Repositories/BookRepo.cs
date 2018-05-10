@@ -1,5 +1,6 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -418,6 +419,33 @@ namespace BookCave.Repositories
             }
 
             return selectedBooks;
+        }
+        public BookEditInputModel GetBookEditInputModelById(int id)
+        {
+            var book = (
+                from b in _db.Books
+                where b.Id == id
+                select new BookEditInputModel
+                {
+                    Id = b.Id,
+                    ISBN = b.ISBN,
+                    Language = b.Language,
+                    Image = b.Image,
+                    Title = b.Title,
+                    Genre = b.Genre,
+                    Info = b.Info,
+                    AuthorId = b.AuthorId,
+                    Publisher = b.Publisher,
+                    PageCount = b.PageCount,
+                    ReleaseYear = b.ReleaseYear,
+                    Price = b.Price,
+                    Rating = b.Rating,
+                    RatingCount = b.RatingCount,
+                    Stock = b.Stock
+                }
+            ).SingleOrDefault();
+
+                return book;
         }
     }
 }

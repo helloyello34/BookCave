@@ -158,5 +158,28 @@ namespace BookCave.Controllers
             }
             return RedirectToAction("BookNotFound");
         }
+        public IActionResult EditBook(int id)
+        {
+            var authorList = _bookService.GetAuthorList();
+            ViewData["aList"] = authorList as List<BookCave.Models.ViewModels.AuthorsViewModel>;
+            ViewData["Genres"] = GetGenres();
+            var book = _bookService.GetBookEditInputModelById(id);
+
+            return View(book);
+
+        }
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public IActionResult EditBook(BookEditInputModel bookEditInputModel)
+        {
+            ViewData["Genres"] = GetGenres();
+
+            if(ModelState.IsValid)
+            {
+                _bookService.EditBook(bookEditInputModel);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
     }
 }

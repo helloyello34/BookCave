@@ -14,15 +14,15 @@
                         <h3 class="category-h3">Categories</h3>
                         @foreach(var genre in genres)
                         {
-                            <p><a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
+                            <p><a class="genre-links" asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
                         }
                     </div>
                     <hr id="linebreak-menu">
                     <div class="category-p">
                         <h3 class="category-h3">Order by</h3>
-                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="0">A-Z</a></p>
-                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="1">Rating</a></p>
-                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="2">Price</a></p>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="0">A-Z</a></p>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="1">Rating</a></p>
+                        <p><a class="genre-links" asp-route-selectedGenre="@currentgenre" asp-route-order="2">Price</a></p>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
                                     <h3 id="frontpage-title">@books.Title</h3>
                                 </a>
-                                <p id="frontpage-author">@books.Author</p>
+                                <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
                                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                                     <div class="frontpage-rating">
                                         @for(int i = 0; i < @Convert.ToInt32(books.Rating); i++)

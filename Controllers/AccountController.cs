@@ -74,6 +74,8 @@ namespace BookCave.Controllers
         {
             //Log in user
             //if login fails refresh page
+            ViewData["Genres"] = GetGenres();
+
             if (!ModelState.IsValid) { return View(); }
             //search database for info
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);

@@ -10,6 +10,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -53,7 +54,7 @@
         <ul class="nav navbar-nav">
             <li>
             <div class="dropdown">
-                <button class="dropbtn">Categories</button>
+                <button class="dropbtn">Categories <span id="dropbtn-span" class="glyphicon glyphicon-menu-down"></span></button>
                 <div class="dropdown-content">
                     @foreach(var genre in genres)
                     {

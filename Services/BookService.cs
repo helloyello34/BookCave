@@ -120,10 +120,36 @@ namespace BookCave.Services
 
         public List<BookTableViewModel> findBooks(string searchString, int order)
         {
-            //gets a list of books that fit the search string
+            //gets a list of books that fit the search strin
             var selectedBooks = _bookRepo.findBooks(searchString, order);
 
             return selectedBooks;
+        }
+        public BookEditInputModel GetBookEditInputModelById(int id)
+        {
+            var book = _bookRepo.GetBookEditInputModelById(id);
+            return book;
+        }
+        public void EditBook(BookEditInputModel bookEditInputModel)
+        {
+            var book = _bookRepo.GetBookEntity(bookEditInputModel.Id);
+            
+            book.ISBN = bookEditInputModel.ISBN;
+            book.Language = bookEditInputModel.Language;
+            book.Image = bookEditInputModel.Image;
+            book.Title = bookEditInputModel.Title;
+            book.Genre = bookEditInputModel.Genre;
+            book.Info = bookEditInputModel.Info;
+            book.AuthorId = (int)bookEditInputModel.AuthorId;
+            book.Publisher = bookEditInputModel.Publisher;
+            book.PageCount = bookEditInputModel.PageCount;
+            book.ReleaseYear = (int)bookEditInputModel.ReleaseYear;
+            book.Price = (double)bookEditInputModel.Price;
+            book.Rating = bookEditInputModel.Rating;
+            book.RatingCount = bookEditInputModel.RatingCount;
+            book.Stock = bookEditInputModel.Stock;
+            
+            _bookRepo.UpdateBook(book);            
         }
     }
 }
