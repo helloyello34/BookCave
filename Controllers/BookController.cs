@@ -159,7 +159,6 @@ namespace BookCave.Controllers
             if(ModelState.IsValid)
             {
                 _bookService.EditBook(bookEditInputModel);
-                var id = bookEditInputModel.Id;
                 return RedirectToAction("Index", "Home");
             }
             return View();
