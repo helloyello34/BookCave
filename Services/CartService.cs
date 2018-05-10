@@ -1,5 +1,6 @@
 using BookCave.Data;
 using BookCave.Models.EntityModels;
+using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace BookCave.Services
 
                 if(cartItem == null)
                 {
-                    cartItem = new Cart
+                    cartItem = new BookCave.Models.EntityModels.Cart
                     {
                         BookId = id,
                         CartId = userId,
@@ -63,6 +64,17 @@ namespace BookCave.Services
                 _db.SaveChanges();
             }
             return itemCount;
+        }
+
+        public CartViewModel GetCart(string userId)
+        {
+           var cartItems =  _cartRepo.GetCartItems(userId);
+           var cVM = new CartViewModel{
+               CartId = userId,
+               CartItems = cartItems
+           };
+
+            return cVM;
         }
     }
 }

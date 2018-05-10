@@ -28,7 +28,7 @@ namespace BookCave.Models.EntityModels
        
         public ShoppingCart GetCart(string id)
         {
-            var cart = new ShoppingCart(ShoppingCartId);
+            var cart = new ShoppingCart();
             return cart;
         }
 

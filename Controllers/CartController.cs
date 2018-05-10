@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookCave.Models;
 using BookCave.Models.EntityModels;
+using BookCave.Models.ViewModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,22 +14,46 @@ namespace BookCave.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private CartService _cartService;
+        private BookService _bookService;
         private ShoppingCart _shoppingCart;
         
-    public CartController(UserManager<ApplicationUser> usermanager)
-    {
-        _userManager = usermanager;
-        //var user = _userManager.GetUserAsync(User);
-       // var userId = user.Id.ToString();
-        _shoppingCart = new ShoppingCart();
-        _cartService = new CartService();
-    }
+        public CartController(UserManager<ApplicationUser> usermanager)
+        {
+            _userManager = usermanager;
+            //var user = _userManager.GetUserAsync(User);
+        // var userId = user.Id.ToString();
+            _shoppingCart = new ShoppingCart();
+            _cartService = new CartService();
+            _bookService = new BookService();
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            ViewData["Title"] = "Your Orders";
+            ViewData["Genres"] = GetGenres();
+            var userId = await GetCartId();
+            var cart = GetCart(userId);
+            return View(cart);
+        }
+
+        public List<string> GetGenres()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        }   
         public async Task<string> GetCartId()
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
 
             return userId;
+        }
+
+        public CartViewModel GetCart(string id)
+        {
+            var cVM = _cartService.GetCart(id);
+            return cVM;
+
         }
 
         public async Task AddBook(int id)
