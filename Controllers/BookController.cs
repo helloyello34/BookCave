@@ -17,9 +17,14 @@ namespace BookCave.Controllers
         {
             _bookService = new BookService();
         }
-    
+        public List<string> GetGenres()
+        {
+            var genres = _bookService.GetGenresList();
+            return genres;            
+        }   
         public IActionResult Index()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
         public IActionResult ListBooks(string selectedGenre, int order)
@@ -33,6 +38,7 @@ namespace BookCave.Controllers
         }
         public IActionResult Details(int id)
         {
+            ViewData["Genres"] = GetGenres();
             var book = _bookService.GetBookById(id);
 
             if( book != null ) { return View(book); }
@@ -53,9 +59,8 @@ namespace BookCave.Controllers
 
         public IActionResult Top10()
         {
-            var genres = _bookService.GetGenresList();
-            
-            ViewData["Genres"] = genres;
+            ViewData["Genres"] = GetGenres();
+
             var books = _bookService.GetTopTenBooks();
             return View(books);
         }
@@ -63,6 +68,7 @@ namespace BookCave.Controllers
         [Authorize(Roles="Admin")]
         public IActionResult Create()
         {
+            ViewData["Genres"] = GetGenres();
             ViewData["Title"] = "Add book to database";
 
             var authorList = _bookService.GetAuthorList();
@@ -91,6 +97,7 @@ namespace BookCave.Controllers
 
         public IActionResult CreateAuthor()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
@@ -111,12 +118,14 @@ namespace BookCave.Controllers
 
         public IActionResult BookNotFound()
         {
+            ViewData["Genres"] = GetGenres();
             return View();
         }
 
         [HttpGet]
         public IActionResult Search(string q)
         {
+            ViewData["Genres"] = GetGenres();
             if (q != null)
             {
                 ViewData["SearchString"] = q;
