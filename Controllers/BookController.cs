@@ -127,6 +127,7 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Search(string q)
         {
+            ViewData["currentQuery"] = q;
             ViewData["Genres"] = GetGenres();
             if (q != null)
             {
