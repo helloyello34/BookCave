@@ -40,11 +40,12 @@ namespace BookCave.Repositories
 
             return book;
         }
-        public List<BookTableViewModel> GetBooksByGenre()
+        public List<BookTableViewModel> GetBooksByGenre(int order)
         {
             var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
+                orderby b.Title
                 select new BookTableViewModel
                 {
                     Id = b.Id,
@@ -56,14 +57,50 @@ namespace BookCave.Repositories
                 }
             ).ToList();
 
+            if(order == 2)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    orderby b.Rating
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
+            else if(order == 3)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    orderby b.Price
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
+
             return books;
         }
-        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre)
+        public List<BookTableViewModel> GetBooksByGenre(string selectedGenre, int order)
         {
             var books = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
                 where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                orderby b.Title
                 select new BookTableViewModel
                 {
                     Id = b.Id,
@@ -74,6 +111,43 @@ namespace BookCave.Repositories
                     Image = b.Image
                 }
             ).ToList();
+
+            if(order == 2)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                    orderby b.Rating descending
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
+            else if(order == 3)
+            {
+                books = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where !selectedGenre.ToLower().Except(b.Genre.ToLower()).Any()
+                    orderby b.Price
+                    select new BookTableViewModel
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = a.Name,
+                        Rating = b.Rating,
+                        Price = b.Price,
+                        Image = b.Image
+                    }
+                ).ToList();
+            }
 
             return books;
         }
