@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_CategoryLayout.cshtml";
     var genres = ViewData["Genres"] as IEnumerable<string>;
+    var currentgenre = ViewData["currentGenre"] as string;
 }
 <body id="ListBooksBody">
     <div id="category-container">
@@ -12,15 +13,15 @@
                         <h3 class="category-h3">Categories</h3>
                         @foreach(var genre in genres)
                         {
-                            <p><a>@genre</a></p>
+                            <p><a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
                         }
                     </div>
                     <hr id="linebreak-menu">
                     <div class="category-p">
                         <h3 class="category-h3">Order by</h3>
-                        <p><a asp-route-selectedGenre="Horror" asp-route-order="0">A-Z</a></p>
-                        <p><a asp-route-selectedGenre="Horror" asp-route-order="1">Rating</a></p>
-                        <p><a asp-route-selectedGenre="Horror" asp-route-order="2">Price</a></p>
+                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="0">A-Z</a></p>
+                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="1">Rating</a></p>
+                        <p><a asp-route-selectedGenre="@currentgenre" asp-route-order="2">Price</a></p>
                     </div>
                 </div>
             </div>
