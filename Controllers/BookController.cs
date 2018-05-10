@@ -125,13 +125,13 @@ namespace BookCave.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string q)
+        public IActionResult Search(string q, int order)
         {
             ViewData["Genres"] = GetGenres();
             if (q != null)
             {
                 ViewData["SearchString"] = q;
-                var searchedBooks = _bookService.findBooks(q);
+                var searchedBooks = _bookService.findBooks(q, order);
                 if(searchedBooks.Count != 0)
                 {
                     return View(searchedBooks);

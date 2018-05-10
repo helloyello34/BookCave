@@ -104,24 +104,9 @@ namespace BookCave.Services
             return genresList;
         }
 
-        public List<BookTableViewModel> findBooks(string searchString)
+        public List<BookTableViewModel> findBooks(string searchString, int order)
         {
-            var books = _bookRepo.GetBooks();
-            var authors = _bookRepo.GetAuthors();
-            var selectedBooks = (
-                from b in books
-                join a in authors on b.AuthorId equals a.Id
-                where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
-                select new BookTableViewModel {
-                    Id = b.Id,
-                    Title = b.Title,
-                    Rating = b.Rating,
-                    Author = a.Name,
-                    Price = b.Price,
-                    Image = b.Image,
-                    Discount = b.Discount
-                }
-            ).ToList();
+            var selectedBooks = _bookRepo.findBooks(searchString, order);
 
             return selectedBooks;
         }

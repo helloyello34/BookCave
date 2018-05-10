@@ -323,5 +323,62 @@ namespace BookCave.Repositories
                 }
             return genreList;
         }
+        public List<BookTableViewModel> findBooks(string searchString, int order)
+        {
+            var selectedBooks = (
+                from b in _db.Books
+                join a in _db.Authors on b.AuthorId equals a.Id
+                where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                orderby b.Title
+                select new BookTableViewModel {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Rating = b.Rating,
+                    Author = a.Name,
+                    Price = b.Price,
+                    Image = b.Image,
+                    Discount = b.Discount
+                }
+            ).ToList();
+
+            if(order == 1)
+            {
+                selectedBooks = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                    orderby b.Rating
+                    select new BookTableViewModel {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Rating = b.Rating,
+                        Author = a.Name,
+                        Price = b.Price,
+                        Image = b.Image,
+                        Discount = b.Discount
+                    }
+                ).ToList();
+            }
+            else if(order == 2)
+            {
+                selectedBooks = (
+                    from b in _db.Books
+                    join a in _db.Authors on b.AuthorId equals a.Id
+                    where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
+                    orderby b.Price
+                    select new BookTableViewModel {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Rating = b.Rating,
+                        Author = a.Name,
+                        Price = b.Price,
+                        Image = b.Image,
+                        Discount = b.Discount
+                    }
+                ).ToList();
+            }
+
+            return selectedBooks;
+        }
     }
 }
