@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations.AuthenticationDb
 {
     [DbContext(typeof(AuthenticationDbContext))]
-    partial class AuthenticationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180510110042_FavoriteBook")]
+    partial class FavoriteBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,8 +41,6 @@ namespace BookCave.Migrations.AuthenticationDb
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FavoriteBook");
 
                     b.Property<string>("FirstName");
 
