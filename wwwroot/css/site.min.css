@@ -447,3 +447,31 @@ textarea {
 .dropdown:hover .dropbtn {
     background-color: #3379b7f1;
 }
+.category-menu{
+    border: solid gray;
+    position: fixed;
+    border-width: 1.5px;
+    width: 220px;
+}
+.category-p{
+    padding-left: 10px;
+}
+.category-h3{
+    margin-top: 8px;
+}
+#ListBooksBody{
+    background-color: #f0f0f0;
+}
+.filter-menu{
+    border: solid gray;
+    border-width: 1px;
+    position: fixed;
+    width: 220px; 
+}
+#linebreak-menu{
+    border-width: 1.5px;
+    border-color: rgba(128, 128, 128, 0.938);
+}
+.footer-margin{
+    margin-top: 100px;
+}
