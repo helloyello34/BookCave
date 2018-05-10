@@ -503,3 +503,6 @@ textarea {
 .navbar-inverse .btn-link{
     color: white;
 }
+#add-genre-btn-wrap{
+    margin-top: 8px;
+}

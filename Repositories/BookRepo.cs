@@ -386,7 +386,7 @@ namespace BookCave.Repositories
                     from b in _db.Books
                     join a in _db.Authors on b.AuthorId equals a.Id
                     where b.Title.ToLower().Contains(searchString.ToLower()) ||  a.Name.ToLower().Contains(searchString.ToLower())
-                    orderby b.Rating
+                    orderby b.Rating descending
                     select new BookTableViewModel {
                         Id = b.Id,
                         Title = b.Title,
@@ -446,6 +446,21 @@ namespace BookCave.Repositories
             ).SingleOrDefault();
 
                 return book;
+        }
+        public void DeleteBook(int id)
+        {
+            var book = (
+                from b in _db.Books
+                where b.Id == id
+                select b).SingleOrDefault();
+
+            _db.Remove(book);
+            _db.SaveChanges();
+        }
+        public void AddGenre(Genre genre)
+        {
+            _db.Add(genre);
+            _db.SaveChanges();
         }
     }
 }

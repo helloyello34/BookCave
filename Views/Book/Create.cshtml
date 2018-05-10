@@ -1,6 +1,7 @@
 @model BookCave.Models.InputModels.BookInputModel
 @{
   var authorList = ViewData["aList"] as IEnumerable<BookCave.Models.ViewModels.AuthorsViewModel>;
+  var genres = ViewData["Genres"] as IEnumerable<string>;
 }
 <!-- Create a book -->
 <div class="container">
@@ -26,7 +27,7 @@
                     <option value="@a.Id">@a.Name</option>
                   }
               </select>
-              <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-default">Create new author</a>
+              <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-info">Create new author</a>
 
             <span asp-validation-for="AuthorId"></span>
           </div>          
@@ -34,28 +35,23 @@
           <div class="">
             <label asp-for="Genre">Genre</label> <br>
             <div class="btn-group openclass">
-              <button type="button" class="btn btn-primary dropdown-toggle " aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-info dropdown-toggle " aria-haspopup="true" aria-expanded="false">
                 Genre    <span class="caret"></span>
               </button>
               <ul class="dropdown-menu genre-menu">
-                <li><a class="btn btn-default" ><span hidden>,</span> Sci-Fi</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Adult</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Action</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Fantasy</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Comedy</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Horror</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Drama</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Classic Literature</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Self-Help</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Cooking</a></li>
-                <li><a class="btn btn-default" ><span hidden>,</span> Do it yourself (DIY)</a></li>
+                @foreach(var genre in genres)
+                {
+                  <li><a class="btn btn-info" ><span hidden>,</span>@genre</a></li>
+                }
               </ul>
             </div>
             <span id="selected-genre-view"></span>
             <input type="text" asp-for="Genre" id="genre-list" hidden>
             <span asp-validation-for="Genre"></span>           
           </div>
-          <!-- PUBLISHER -->
+          <div id="add-genre-btn-wrap">
+            <a asp-controller="Book" asp-action="CreateGenre" class="btn btn-info">Create new genre</a>
+          </div>
           <div class="">
             <label asp-for="Publisher">Publisher</label> <br>
             <input type="text" asp-for="Publisher" class="form-control"

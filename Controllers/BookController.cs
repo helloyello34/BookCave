@@ -106,7 +106,7 @@ namespace BookCave.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles="Admin")]
         public IActionResult CreateAuthor()
         {
             //default page for creating an author
@@ -115,6 +115,7 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public IActionResult CreateAuthor(AuthorInputModel AuthorInputModel)
         {
             //creates new author
@@ -129,6 +130,29 @@ namespace BookCave.Controllers
                 return RedirectToAction("Create");
             }
             //if model is invalid refresh page
+            return View();
+        }
+        [HttpGet]
+        [Authorize(Roles="Admin")]
+        public IActionResult CreateGenre()
+        {
+            ViewData["Genres"] = GetGenres();
+            return View();
+        }
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public IActionResult CreateGenre(GenreInputModel genreInputModel)
+        {
+            ViewData["Genres"] = GetGenres();
+            var genre = new Genre
+            {
+                Name = genreInputModel.Genre
+            };
+            if(ModelState.IsValid)
+            {
+                _bookService.AddGenre(genre);
+                return RedirectToAction("Home/Index");
+            }
             return View();
         }
 
@@ -158,6 +182,7 @@ namespace BookCave.Controllers
             }
             return RedirectToAction("BookNotFound");
         }
+        [Authorize(Roles="Admin")]
         public IActionResult EditBook(int id)
         {
             var authorList = _bookService.GetAuthorList();
@@ -177,9 +202,17 @@ namespace BookCave.Controllers
             if(ModelState.IsValid)
             {
                 _bookService.EditBook(bookEditInputModel);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home/Index");
             }
             return View();
+        }
+        [Authorize(Roles="Admin")]
+        public IActionResult DeleteBook(int id)
+        {
+            ViewData["Genres"] = GetGenres();
+            _bookService.DeleteBook(id);
+
+            return RedirectToAction("Home/Index");
         }
     }
 }

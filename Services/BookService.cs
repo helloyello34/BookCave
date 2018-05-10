@@ -151,5 +151,13 @@ namespace BookCave.Services
             
             _bookRepo.UpdateBook(book);            
         }
+        public void DeleteBook(int id)
+        {
+            _bookRepo.DeleteBook(id);
+        }
+        public void AddGenre(Genre genre)
+        {
+            _bookRepo.AddGenre(genre);
+        }
     }
 }
