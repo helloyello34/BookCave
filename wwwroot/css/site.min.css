@@ -10,13 +10,20 @@
     }
     #categories,#top-ten{
         font-size: 14pt;
+        color: white;
+    }
+    #top-ten{
+        color: white;
+    }
+    .navbar-inverse .navbar-nav>li>a{
+        color: white;
     }
     .input-group input[type=text]{
         float:right;
         margin-left: 400px;
     }
-    #search-bar
-    {margin-top: 5px;
+    #search-bar{
+        margin-top: 5px;
     }
     .glyphicon.glyphicon-book{
         font-size: 30px;
@@ -156,14 +163,20 @@ textarea {
     font-size: 12px;
     font-weight: bold;
     margin: 0 auto;
-    height: 30px;
+    height: 27px;
     margin-top: 4px;
     color: black;
+    width: 140px;
+    margin-left: 0px;
+    overflow: hidden;
 }
 #frontpage-author{
     font-size: 12px;
     height: 25px;
     margin: 0 auto;
+}
+#frontpage-author a{
+    color: #333;
 }
 #frontpage-price{
     font-size: 12px;
@@ -239,6 +252,10 @@ textarea {
     height: 15px;
     font-size: 12px;
     margin: 2px auto;
+}
+.topten-author-text a{
+
+    color: #333;
 }
 .topten-price-text{
     width: 180px;
@@ -404,7 +421,7 @@ textarea {
     margin-top: 40px;
 }
 .dropbtn {
-    background-color: #337ab7;
+    background-color: #222;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -439,7 +456,7 @@ textarea {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3379b7f1;
+    background-color: #333;
 }
 .category-menu{
     border: solid gray;
@@ -468,4 +485,19 @@ textarea {
 }
 .footer-margin{
     margin-top: 100px;
+}
+.glyphicon-chevron-down{
+    padding-top: 2px;
+}
+.genre-links{
+    color: #333;
+}
+.genre-selected{
+    color: red;
+}
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-inverse .btn-link{
+    color: white;
 }

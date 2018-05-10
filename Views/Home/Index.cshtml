@@ -21,7 +21,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
                             <h3 id="frontpage-title">@books.Title</h3>
                         </a>
-                        <p id="frontpage-author">@books.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 <div class="stars">
@@ -61,7 +61,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRecentlyAdded.Id">
                             <h3 id="frontpage-title">@booksRecentlyAdded.Title</h3>
                         </a>
-                        <p id="frontpage-author">@booksRecentlyAdded.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@booksRecentlyAdded.Author">@booksRecentlyAdded.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRecentlyAdded.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 @for(int j = 0; j < @booksRecentlyAdded.Rating; j++)
@@ -99,7 +99,7 @@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRandom.Id">
                             <h3 id="frontpage-title">@booksRandom.Title</h3>
                         </a>
-                        <p id="frontpage-author">@booksRandom.Author</p>
+                        <p id="frontpage-author"><a asp-controller="Book" asp-action="Search" asp-route-q="@booksRandom.Author">@booksRandom.Author</a></p>
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@booksRandom.Id" class="frontpage-star-link">
                             <div class="frontpage-rating">
                                 @for(int c = 0; c < @booksRandom.Rating; c++)

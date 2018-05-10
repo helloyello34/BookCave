@@ -14,15 +14,15 @@
                         <h3 class="category-h3">Categories</h3>
                         @foreach(var genre in genres)
                         {
-                            <p><a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
+                            <p><a class="genre-links" asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre" asp-route-order="0">@genre</a></p>
                         }
                     </div>
                     <hr id="linebreak-menu">
                     <div class="category-p">
                         <h3 class="category-h3">Order by</h3>
-                        <p><a asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="0">A-Z</a></p>
-                        <p><a asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="1">Rating</a></p>
-                        <p><a asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="2">Price</a></p>
+                        <p><a class="genre-links" asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="0">A-Z</a></p>
+                        <p><a class="genre-links" asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="1">Rating</a></p>
+                        <p><a class="genre-links" asp-controller="Book" asp-action="Search" asp-route-q="@currentquery" asp-route-order="2">Price</a></p>
                     </div>
                 </div>
             </div>
