@@ -28,7 +28,9 @@
               <label id="last-name-label">Last Name</label><br>
               <input type="text" asp-for="LastName" placeholder="@Model.LastName" class="form-control">
               <label id="last-name-label">Profile Image Url</label><br>
-              <input type="text" asp-for="ImageUrl" placeholder="@imageurl" class="form-control" value="@imageurl">              
+              <input type="text" asp-for="ImageUrl" placeholder="@imageurl" class="form-control" value="@imageurl">  
+              <label>Favorite Book</label><br>
+              <input type="text" asp-for="FavoriteBook" placeholder="@Model.FavoriteBook" class="form-control">            
               <div class="input-group gender-div">
                 <span>Gender</span><br>
                 @if(Model.Gender == "Male")
@@ -57,6 +59,7 @@
                   <span>Birthday</span><br>
                   <input type="date" asp-for="Birthday" name="birthday" value="@Model.Birthday.Year-@Model.Birthday.Month-@Model.Birthday.Day">
                 </div>
+              </div>
                 <div id="submit-profile-div">
                   <input type="submit"class="btn btn-primary" value="Accept changes">
                   <a asp-controller="Profile" asp-action="Home" class="btn btn-danger">Cancel</a>

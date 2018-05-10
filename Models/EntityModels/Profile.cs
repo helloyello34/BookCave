@@ -16,5 +16,6 @@ namespace BookCave.Models.EntityModels
         public DateTime Birthday { get; set; }
         public string Gender { get; set; }
         public string ImageUrl { get; set; }
+        public string FavoriteBook { get; set; }
     }
 }

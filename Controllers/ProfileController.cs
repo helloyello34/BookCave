@@ -46,7 +46,8 @@ namespace BookCave.Controllers
                 ZipCode = user.ZipCode,
                 City = user.City,
                 Country = user.Country,
-                ImageUrl = user.ImageUrl
+                ImageUrl = user.ImageUrl,
+                FavoriteBook = user.FavoriteBook
             };
             ViewData["Genres"] = GetGenres();
             return View(profile);
@@ -59,7 +60,8 @@ namespace BookCave.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                Birthday = user.Birthday
+                Birthday = user.Birthday,
+                FavoriteBook = user.FavoriteBook
             };
 
             var image = user.ImageUrl;
@@ -80,6 +82,7 @@ namespace BookCave.Controllers
                 user.Gender = model.Gender;
                 user.ImageUrl = model.ImageUrl;
                 user.Birthday = model.Birthday;
+                user.FavoriteBook = model.FavoriteBook;
 
                 await _userManager.UpdateAsync(user);
 
