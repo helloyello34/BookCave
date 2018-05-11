@@ -198,11 +198,10 @@ textarea {
 }
 .frontpage-category{
     margin-left: 14px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     margin-top: 10px;
 }
 .frontpage-booklist{
-    margin-top: 10px;
     margin-bottom: 20px;
 }
 #topten-screen-wrap{
@@ -460,10 +459,9 @@ textarea {
     background-color: #333;
 }
 .category-menu{
-    border: solid gray;
     position: fixed;
-    border-width: 1.5px;
     width: 220px;
+    background-color: white;
 }
 .category-p{
     padding-left: 10px;
@@ -479,10 +477,6 @@ textarea {
     border-width: 1px;
     position: fixed;
     width: 220px; 
-}
-#linebreak-menu{
-    border-width: 1.5px;
-    border-color: rgba(128, 128, 128, 0.938);
 }
 .footer-margin{
     margin-top: 400px;
