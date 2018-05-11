@@ -27,7 +27,7 @@
                     <option value="@a.Id">@a.Name</option>
                   }
               </select>
-              <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-info">Create new author</a>
+              <a  asp-controller="Book" asp-action="CreateAuthor" class="btn btn-info" id="create-author-btn">Create new author</a>
 
             <span asp-validation-for="AuthorId"></span>
           </div>          
@@ -107,7 +107,7 @@
     </div>
     <div class="col col-lg-3">
     </div>
-    <div class="col col-lg-5">  
+    <div class="col col-lg-5">
     </div>
   </div>
 </div>

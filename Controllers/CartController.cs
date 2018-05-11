@@ -70,14 +70,14 @@ namespace BookCave.Controllers
             _cartService.RemoveFromCart(id, userId);
         }
 
-        public async Task EmptyCart()
+        public async Task<IActionResult> EmptyCart()
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.EmptyCart(userId);
-            
-        }
 
+            return RedirectToAction("Index");
+        }
         public async Task GetTotal()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -119,7 +119,7 @@ namespace BookCave.Controllers
             var userId = await GetCartId();
             var cart = GetCart(userId);
 
-            var viewInPayment = new PaymentViewModel { Items = new List<BookCave.Models.EntityModels.Cart>() };
+            var viewInPayment = new PaymentViewModel { Items = new List<CartItemsViewModel>() };
             viewInPayment.Total = 0;
             foreach (var item in cart.CartItems)
             {

@@ -99,6 +99,7 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            ViewData["Genres"] = GetGenres();
             //If user input is invalid refresh the page
             if ( !ModelState.IsValid ) { return View(); }
             //create user with initial required info

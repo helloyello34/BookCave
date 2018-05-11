@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BookCave.Data;
 using BookCave.Models.EntityModels;
 using System.Linq;
-
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
@@ -19,18 +19,20 @@ namespace BookCave.Repositories
         {
         }
 
-        public List<Cart> GetCartItems(string userId)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
             var cartItems = (
                 from i in _db.Carts
                 join b in _db.Books on i.BookId equals b.Id
+                join a in _db.Authors on i.Book.AuthorId equals a.Id
                 where i.CartId == userId
-                select new Cart {
+                select new CartItemsViewModel {
                     Book = b,
                     CartId = i.CartId,
                     Count = i.Count,
                     BookId = i.BookId,
-                    DateCreated = i.DateCreated
+                    DateCreated = i.DateCreated,
+                    AuthorName = a.Name 
                 }
                 ).ToList();
 

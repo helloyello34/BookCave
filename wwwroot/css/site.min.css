@@ -437,7 +437,7 @@ textarea {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #f0f0f0;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -485,7 +485,7 @@ textarea {
     border-color: rgba(128, 128, 128, 0.938);
 }
 .footer-margin{
-    margin-top: 100px;
+    margin-top: 400px;
 }
 .img-bookdetail {
     width: 160px;
@@ -505,4 +505,18 @@ textarea {
 }
 #add-genre-btn-wrap{
     margin-top: 8px;
+}#create-author-btn{
+    margin-top: 10px;
+}
+.cart-btn{
+    margin-bottom: 10px;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+}
+.edit-btn{
+    margin-top: 10px;
+}
+.stock-div-wrap{
+    margin-bottom: 10px;
 }

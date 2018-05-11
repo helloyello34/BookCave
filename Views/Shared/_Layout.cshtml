@@ -60,7 +60,7 @@
                 <div class="dropdown-content">
                     @foreach(var genre in genres)
                     {
-                        <a asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre">@genre</a>
+                        <a class="dropdown-item" asp-controller="Book" asp-action="ListBooks" asp-route-selectedGenre="@genre">@genre</a>
                     }
                 </div>
             </div>
@@ -69,8 +69,7 @@
             @if (this.User.IsInRole("Admin"))
             {
                 <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
-            }
-            
+            }        
         </ul>
     </div>
     </div>
