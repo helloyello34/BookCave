@@ -118,6 +118,7 @@ namespace BookCave.Controllers
         [Authorize(Roles="Admin")]
         public IActionResult CreateAuthor(AuthorInputModel AuthorInputModel)
         {
+            ViewData["Genres"] = GetGenres();
             //creates new author
             var author = new Author
             {
