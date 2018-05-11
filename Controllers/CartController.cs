@@ -187,6 +187,11 @@ namespace BookCave.Controllers
             var userId = user.Id;
             var orders = await GetOrders();
             
+            if(orders.Count == 0)
+            {
+                return View("NoOrderHistory");
+            }
+
             return View(orders);
         }
 
