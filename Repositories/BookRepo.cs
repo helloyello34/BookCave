@@ -246,7 +246,7 @@ namespace BookCave.Repositories
             var firstHalf = (
                 from b in _db.Books
                 join a in _db.Authors on b.AuthorId equals a.Id
-                orderby b.Rating ascending
+                orderby b.Rating descending
                 select new BookTableViewModel
                 {
                     Id = b.Id,
