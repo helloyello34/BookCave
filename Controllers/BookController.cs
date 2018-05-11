@@ -203,7 +203,7 @@ namespace BookCave.Controllers
             if(ModelState.IsValid)
             {
                 _bookService.EditBook(bookEditInputModel);
-                return RedirectToAction("Home/Index");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
