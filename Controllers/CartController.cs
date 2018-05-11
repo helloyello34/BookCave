@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookCave.Models;
 using BookCave.Models.EntityModels;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -112,9 +113,24 @@ namespace BookCave.Controllers
             ViewData["OrderId"] = id;
             return View();
         }
-
+        
         public async Task<IActionResult> Checkout()
         {
+            var user = await _userManager.GetUserAsync(User);
+
+            var userView = new UserViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Country  = user.Country,
+                City = user.City,
+                Street = user.Street,
+                ZipCode = user.ZipCode,
+                Email = user.Email
+            };
+
+            ViewData["User"] = userView;
+
             ViewData["Genres"] = GetGenres();
             var userId = await GetCartId();
             var cart = GetCart(userId);
@@ -130,6 +146,22 @@ namespace BookCave.Controllers
             return View(viewInPayment);
             
         }
+        [HttpPost]
+        public IActionResult Checkout(ConfirmationInputModel confirmationInputModel)
+        {
+            ViewData["Genres"] = GetGenres();
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("Confirmation", confirmationInputModel);
+            }
+
+            return RedirectToAction("Checkout");
+        }
+        public IActionResult Confirmation(ConfirmationInputModel confirmationInputModel)
+        {
+            ViewData["Genres"] = GetGenres();
+            return View(confirmationInputModel);
+        }
 
         public async Task<List<OrderViewModel>> GetOrders()
         {
@@ -137,8 +169,6 @@ namespace BookCave.Controllers
             var userId = user.Id;
             var orders = _cartService.GetOrders(userId);
            
-            
-
             return orders;
         }
 
@@ -159,5 +189,6 @@ namespace BookCave.Controllers
             
             return View(orders);
         }
+
     }
 }

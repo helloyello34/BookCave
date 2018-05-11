@@ -1,0 +1,19 @@
+@model BookCave.Models.InputModels.ConfirmationInputModel;
+
+<ul class="list-group">
+  <li class="list-group-item"><p class="confirmation-text">First Name: </p>@Model.FirstName</li>
+  <li class="list-group-item"><p class="confirmation-text">Last Name: </p>@Model.LastName</li>
+  <li class="list-group-item"><p class="confirmation-text">County: </p>@Model.Country</li>
+  <li class="list-group-item"><p class="confirmation-text">City: </p>@Model.City</li>
+  <li class="list-group-item"><p class="confirmation-text">Street: </p>@Model.Street</li>
+  <li class="list-group-item"><p class="confirmation-text">Post Code: </p>@Model.ZipCode</li>
+  <li class="list-group-item"><p class="confirmation-text">Email: </p>@Model.Email</li>
+</ul>
+
+<ul class="list-group">
+  <li class="list-group-item"><p class="confirmation-text">Credit card number: </p>@Model.CreditCard</li>
+  <li class="list-group-item"><p class="confirmation-text">CVC: </p>@Model.CVC</li>
+  <li class="list-group-item"><p class="confirmation-text">Expiration Date: </p>@Model.Year / @Model.Month</li> 
+</ul>
+
+<a asp-controller="Cart" asp-action="Success" class="btn btn-success">Confirm</a>
