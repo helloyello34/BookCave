@@ -87,7 +87,6 @@
 @media screen and (max-width: 1200px) {
     
     .body-content{
-        background-color: darkorange;
         padding-left:15px;
         padding-right:15px;
         padding-top: 100px;
@@ -103,7 +102,6 @@
     }
     
     .body-content{
-        background-color: aqua;
         padding-left:15px;
         padding-right:15px;
         padding-top: 400px;
