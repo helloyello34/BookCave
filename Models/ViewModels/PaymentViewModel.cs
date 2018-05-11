@@ -5,7 +5,7 @@ namespace BookCave.Models.ViewModels
 {
     public class PaymentViewModel
     {
-        public List<BookCave.Models.EntityModels.Cart> Items { get; set; }
+        public List<CartItemsViewModel> Items { get; set; }
         public decimal Total { get; set; }   
     }
 }

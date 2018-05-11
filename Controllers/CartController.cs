@@ -119,7 +119,7 @@ namespace BookCave.Controllers
             var userId = await GetCartId();
             var cart = GetCart(userId);
 
-            var viewInPayment = new PaymentViewModel { Items = new List<BookCave.Models.EntityModels.Cart>() };
+            var viewInPayment = new PaymentViewModel { Items = new List<CartItemsViewModel>() };
             viewInPayment.Total = 0;
             foreach (var item in cart.CartItems)
             {
