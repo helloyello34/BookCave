@@ -38,6 +38,7 @@ namespace BookCave
             services.Configure<IdentityOptions>(config => {
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
+                config.Password.RequireNonAlphanumeric = false;
             });
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.ConfigureApplicationCookie(options => {
