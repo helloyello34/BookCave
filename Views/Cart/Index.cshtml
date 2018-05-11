@@ -1,0 +1,61 @@
+@model BookCave.Models.ViewModels.CartViewModel
+
+
+<div class="container-fluid cart-title-container">
+    <div class="row">
+        <div class="col col-lg-12">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid cart-view-order-continer" style=" justify-content:space-between;">
+    <div class="col col-lg-10 col-lg-10" style="">
+        <div class="container-fluid" style="">
+            @foreach(var book in Model.CartItems)
+            {
+                <div class="row item-container cart-item-js" align="left">
+                    <div class="col-sm-12 ">
+                        <div class="col col-sm-8 book-description " align="left" style="">
+                            <div class="col col-lg-4 cart-book-cover" style=" float: left;">
+                                <img class="topten-image" src="@book.Book.Image" alt="">
+                            </div>
+                            <div class="col col-sm-8 cart-book-info" style="">
+                                <p>@book.Book.Title</p>
+                                <p>@book.AuthorName</p>
+                                <p>@book.Book.Price</p>
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 book-quantity" style="">
+                            <p>
+                                <span class="id" hidden>@book.BookId</span>
+                                <button class="btn btn-sm btn-default subtract">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                                <button class="btn btn-sm btn-default addition">
+                                    <pan class="glyphicon glyphicon-plus"></pan>
+                                </button>
+                                <span class="quantity">@book.Count</span> x <span class="price">@book.Book.Price</span> $
+                            </p>
+                            <p> Sum: <span class="sum"></span> </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            }
+           
+            <br>
+        </div>
+
+    </div>
+    <div class="col col-lg-2 col-sm-2">
+        <p>Order total Price</p>
+        <p id="sum-of-all"></p>
+        <div class="">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-group text-center cart-btn">Continue shopping</a>
+            <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success btn-group text-center cart-btn cart-btn-js" style="visibility : hidden">Checkout</a>
+            <a asp-controller="Cart" asp-action="EmptyCart" class="btn btn-danger btn-group text-center cart-btn cart-btn-js" style="visibility : hidden" onclick="return confirm('Are you sure you want to empty your cart?')">Empty Cart</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,88 @@
+@model BookCave.Models.ViewModels.BookTopTenViewModel
+<body id="topten-body">
+    <h1 id="topten-h3">Our 10 highest rated books</h1>
+    <div class="container">
+        <div class="row topten-row">
+            <div class="col col-lg-12 topten-container">
+                <div class="topten-inner-container flex-container">
+                    @foreach(var books in Model.FirstHalf)
+                    {
+                    <div class="topten-book-wrap">
+                        <div class="topten-image-wrap">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                                <img class="topten-image" src="@books.Image" alt="Book">
+                            </a>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">
+                                <h3 class="topten-title-text">@books.Title</h3>
+                            </a>
+                            <p class="topten-author-text"><a asp-controller="Book" asp-action="Search" asp-route-q="@books.Author">@books.Author</a></p>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id" class="frontpage-star-link">
+                                <div class="frontpage-rating">
+                                    @for(int i = 0; i < @books.Rating; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                    @{
+                                        var count = Convert.ToInt32(books.Rating);
+                                    }
+                                    @for(int a = count; a < 5; a++)
+                                    {
+                                        <span class=" star unchecked-star">&#9733;</span>
+                                    }  
+                                </div>
+                            </a>
+                            <p class="topten-price-text">@books.Price$</p>
+                            <div class="topten-button-div">
+                            <span hidden class="front-page-bookID">@books.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row topten-row">
+            <div class="col col-lg-12 topten-container">
+                <div class="topten-inner-container">
+                    @foreach(var booksSecondHalf in Model.SecondHalf)
+                    {
+                    <div class="topten-book-wrap">
+                        <div class="topten-image-wrap">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id">
+                                <img class="topten-image" src="@booksSecondHalf.Image" alt="Book">
+                            </a>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id">
+                                <h3 class="topten-title-text">@booksSecondHalf.Title</h3>
+                            </a>
+                            <p class="topten-author-text">@booksSecondHalf.Author</p>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@booksSecondHalf.Id" class="frontpage-star-link">
+                                <div class="frontpage-rating">
+                                    @for(int i = 0; i < @booksSecondHalf.Rating; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                    @{
+                                        var countSecondHalf = Convert.ToInt32(booksSecondHalf.Rating);
+                                    }
+                                    @for(int a = countSecondHalf; a < 5; a++)
+                                    {
+                                        <span class=" star unchecked-star">&#9733;</span>
+                                    }   
+                                </div>
+                            </a>
+                            <p class="topten-price-text">@booksSecondHalf.Price$</p>
+                            <div class="topten-button-div">
+                                <span hidden class="front-page-bookID">@booksSecondHalf.Id</span>
+                                <button class="btn btn-primary topten-cartbutton cartbutton">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
