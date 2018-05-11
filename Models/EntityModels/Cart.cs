@@ -12,9 +12,6 @@ namespace BookCave.Models.EntityModels
 {
     public class Cart
     {
-      //  private readonly DataContext _db;
-      //  private readonly UserManager<ApplicationUser> _userManager;
-        
         public int Id { get; set; }
         public string CartId { get; set; }
         public int BookId { get; set; }
@@ -23,25 +20,3 @@ namespace BookCave.Models.EntityModels
         public virtual Book Book { get; set; }
         }
 }
-
-/* public void AddToCart(Book book, int amount)
-        {
-            var cartItem = 
-                _db.CartItems.SingleOrDefault(
-                    s => s.Book.Id == book.Id && s.CartId == CartId);
-            if(cartItem == null)
-            {
-                cartItem = new CartItem
-                {
-                    CartId = CartId,
-                    Book = book,
-                    Amount = 1
-                };
-                _db.CartItems.Add(cartItem);
-            }
-            else
-            {
-                cartItem.Amount++;
-            }
-            _db.SaveChanges();
-        }*/
