@@ -14,7 +14,7 @@
         <div class="container-fluid" style="">
             @foreach(var book in Model.CartItems)
             {
-                <div class="row item-container" align="left">
+                <div class="row item-container cart-item-js" align="left">
                     <div class="col-sm-12 ">
                         <div class="col col-sm-8 book-description " align="left" style="">
                             <div class="col col-lg-4 cart-book-cover" style=" float: left;">
@@ -52,9 +52,9 @@
         <p>Order total Price</p>
         <p id="sum-of-all"></p>
         <div class="">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-group text-center cart-btn">Continue shopping</a>
-            <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success btn-group text-center cart-btn">Checkout</a>
-            <a asp-controller="Cart" asp-action="EmptyCart" class="btn btn-danger btn-group text-center cart-btn">Empty Cart</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-group text-center cart-btn" >Continue shopping</a>
+            <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success btn-group text-center cart-btn cart-btn-js" style="visibility : hidden" >Checkout</a>
+            <a asp-controller="Cart" asp-action="EmptyCart" class="btn btn-danger btn-group text-center cart-btn cart-btn-js" style="visibility : hidden" >Empty Cart</a>
         </div>
     </div>
   
