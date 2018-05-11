@@ -124,12 +124,12 @@ namespace BookCave.Controllers
             return orders;
         }
 
-        public async Task GetOrderDetails(int orderId)
+        public async Task<List<OrderDetail>> GetOrderDetails(int orderId)
         {
              var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             var orderDetails = _cartService.GetOrderDetails(orderId);
-
+            return orderDetails;
         }
 
         public async Task<IActionResult> OrderOverView()
@@ -137,6 +137,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             var orders = GetOrders();
+            
 
             return View(orders);
         }
