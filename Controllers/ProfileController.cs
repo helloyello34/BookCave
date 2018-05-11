@@ -57,6 +57,7 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> EditPersonal()
         {
+            ViewData["Genres"] = GetGenres();
             //finds user info and sends it to view
             var user = await GetCurrentUserAsync();
             var person = new UserPersonalInputModel {
@@ -77,6 +78,7 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPersonal(UserPersonalInputModel model)
         {
+            ViewData["Genres"] = GetGenres();
             //if model is valid overwrite with new info and redirect to profile page
             if( ModelState.IsValid )
             {
@@ -93,11 +95,12 @@ namespace BookCave.Controllers
                 return RedirectToAction("Home", "Profile");
             }
             //if model is invalid refresh page
-            return View();
+            return RedirectToAction("EditPersonal");
         }
 
         public async Task<IActionResult> EditShipping()
         {
+
             //fetches shipping info for user
             var user = await GetCurrentUserAsync();
             var person = new UserShippingInputModel {
@@ -130,7 +133,7 @@ namespace BookCave.Controllers
                 return RedirectToAction("Home", "Profile");
             }
             //if model is invalid refresh page
-            return View();
+            return RedirectToAction("EditShipping");
         }
     }
 }
