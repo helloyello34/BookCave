@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +65,10 @@
             </div>
             </li>
             <li id="top-ten"><a asp-controller="Book" asp-action="Top10">Top 10</a></li>
-            <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
+            @if (this.User.IsInRole("Admin"))
+            {
+                <li><a asp-controller="Book" asp-action="Create" class="">Create new book</a></li>
+            }   
         </ul>
     </div>
     </div>
