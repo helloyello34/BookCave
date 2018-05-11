@@ -86,8 +86,9 @@ namespace BookCave.Controllers
             
         }
 
-        public async Task CreateOrder()
+        public async Task<int> CreateOrder()
         {
+            ViewData["Genres"] = GetGenres();
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             var order = _cartService.MakeNewOrder( userId );
@@ -100,17 +101,33 @@ namespace BookCave.Controllers
             order.OrderDate = System.DateTime.Now;
 
             _cartService.CreateOrder( order, userId );
+
+            return order.OrderId;
         } 
-        public async Task<IActionResult> Order()
+
+        public async Task<IActionResult> Success()
         {
             ViewData["Genres"] = GetGenres();
-            var user = await _userManager.GetUserAsync(User);
-            
-            var order = new OrderViewModel {
-                Id = user.Id
-            };
+            var id = await CreateOrder();
+            ViewData["OrderId"] = id;
+            return View();
+        }
 
-            return View(order);
+        public async Task<IActionResult> Checkout()
+        {
+            ViewData["Genres"] = GetGenres();
+            var userId = await GetCartId();
+            var cart = GetCart(userId);
+
+            var viewInPayment = new PaymentViewModel { Items = new List<BookCave.Models.EntityModels.Cart>() };
+            viewInPayment.Total = 0;
+            foreach (var item in cart.CartItems)
+            {
+                viewInPayment.Items.Add(item);
+                viewInPayment.Total += ((decimal)item.Count * (decimal)item.Book.Price);
+            }
+
+            return View(viewInPayment);
             
         }
 
@@ -118,8 +135,9 @@ namespace BookCave.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-
             var orders = _cartService.GetOrders(userId);
+           
+            
 
             return orders;
         }
