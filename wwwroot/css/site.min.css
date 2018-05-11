@@ -514,3 +514,9 @@ textarea {
     width: 150px;
     text-align: center;
 }
+.edit-btn{
+    margin-top: 10px;
+}
+.stock-div-wrap{
+    margin-bottom: 10px;
+}
