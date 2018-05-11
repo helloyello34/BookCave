@@ -140,5 +140,12 @@ namespace BookCave.Services
 
             return orders;
         }
+
+        public List<OrderDetail> GetOrderDetails(int orderId)
+        {
+            var orderDetails = _cartRepo.GetOrderDetails(orderId);
+
+            return orderDetails;
+        }
     }
 }
