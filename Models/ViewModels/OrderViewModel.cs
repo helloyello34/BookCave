@@ -15,6 +15,7 @@ namespace BookCave.Models.ViewModels
         public string Country    { get; set; }
         public string Email      { get; set; }
         public decimal Total     { get; set; }
+        public System.DateTime OrderDate { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
     }
 }

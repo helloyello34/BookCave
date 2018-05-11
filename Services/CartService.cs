@@ -153,6 +153,7 @@ namespace BookCave.Services
                         Country = o.Country,
                         Email = o.Email,
                         Total = o.Total,
+                        OrderDate = o.OrderDate,
                         OrderDetails = o.OrderDetails
                     };
                 oVM.Add(tmp);
