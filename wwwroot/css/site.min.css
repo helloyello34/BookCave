@@ -508,3 +508,9 @@ textarea {
 }#create-author-btn{
     margin-top: 10px;
 }
+.cart-btn{
+    margin-bottom: 10px;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+}

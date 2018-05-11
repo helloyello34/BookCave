@@ -70,14 +70,14 @@ namespace BookCave.Controllers
             _cartService.RemoveFromCart(id, userId);
         }
 
-        public async Task EmptyCart()
+        public async Task<IActionResult> EmptyCart()
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.EmptyCart(userId);
-            
-        }
 
+            return RedirectToAction("Index");
+        }
         public async Task GetTotal()
         {
             var user = await _userManager.GetUserAsync(User);
