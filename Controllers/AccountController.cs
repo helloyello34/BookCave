@@ -84,7 +84,7 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
