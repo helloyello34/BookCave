@@ -101,7 +101,7 @@ namespace BookCave.Controllers
 
             _cartService.CreateOrder( order, userId );
         } 
-        public async Task<IActionResult> Checkout()
+       /* public async Task<IActionResult> Checkout()
         {
             ViewData["Genres"] = GetGenres();
             var user = await _userManager.GetUserAsync(User);
@@ -110,9 +110,9 @@ namespace BookCave.Controllers
 
             return View(order);
             
-        }
+        }*/
 
-        public async Task<List<Order>> GetOrders()
+        public async Task<List<OrderViewModel>> GetOrders()
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
@@ -138,11 +138,11 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> OrderOverView()
         {
+            ViewData["Genres"] = GetGenres();
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-            var orders = GetOrders();
+            var orders = await GetOrders();
             
-
             return View(orders);
         }
     }

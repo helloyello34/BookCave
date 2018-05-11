@@ -55,6 +55,16 @@ namespace BookCave.Repositories
                 from o in _db.Orders
                 where o.UserId == userId
                 select o).ToList();
+                
+                foreach (var o in orders)
+                {
+                    var orderDetails = (
+                        from od in _db.OrderDetails
+                        where od.IdOfOrder == o.OrderId
+                        select od).ToList();
+
+                    o.OrderDetails = orderDetails;
+                }
             return orders;
         }
 
