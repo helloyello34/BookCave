@@ -37,6 +37,42 @@ namespace BookCave.Repositories
                 return cartItems;
         }
 
-       
+        public Order MakeNewOrder(string userId)
+        {
+            var newOrder = new Order
+            {
+                UserId = userId
+            };
+            _db.Orders.Add(newOrder);
+            _db.SaveChanges();
+
+            return newOrder;
+        }
+        
+        public List<Order> GetOrders(string userId)
+        {
+            var orders = (
+                from o in _db.Orders
+                where o.UserId == userId
+                select o).ToList();
+            return orders;
+        }
+
+       public List<OrderDetail> GetOrderDetails(int orderId)
+       {
+           var orderDetails = (
+               from o in _db.OrderDetails
+               where o.IdOfOrder == orderId
+               join b in _db.Books on o.BookId equals b.Id
+               select new OrderDetail
+               {
+                   Book = b,
+                   BookId = o.BookId,
+                   Quantity = o.Quantity,
+                   UnitPrice = o.UnitPrice,
+                   UserId = o.UserId}).ToList();
+
+            return orderDetails;
+       }
     }
 }

@@ -151,7 +151,7 @@ namespace BookCave.Controllers
             if(ModelState.IsValid)
             {
                 _bookService.AddGenre(genre);
-                return RedirectToAction("Home/Index");
+                return RedirectToAction("Create");
             }
             return View();
         }

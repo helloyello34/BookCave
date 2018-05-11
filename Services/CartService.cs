@@ -101,5 +101,51 @@ namespace BookCave.Services
 
             return total ?? 0;
         }
+
+        public int CreateOrder(Order order, string userId)
+        {
+            decimal orderTotal = 0;
+ 
+            var cartItems = _cartRepo.GetCartItems(userId);
+            
+            foreach (var item in cartItems)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    UserId = userId,
+                    BookId = item.BookId,
+                    IdOfOrder = order.OrderId,
+                    UnitPrice = (decimal)item.Book.Price,
+                    Quantity = item.Count
+                };
+                orderTotal += (item.Count * (decimal)item.Book.Price);
+                _db.OrderDetails.Add(orderDetail);
+                _db.Orders.Update(order);
+            }
+            order.Total = orderTotal;
+            _db.SaveChanges();
+            EmptyCart(userId);
+            return order.OrderId; ///order.OrderId;
+        }
+        
+        public Order MakeNewOrder(string userId)
+        {
+            Order newOrder = _cartRepo.MakeNewOrder(userId);
+            return newOrder;
+        }
+
+        public List<Order> GetOrders(string userId)
+        {
+            var orders = _cartRepo.GetOrders(userId);
+
+            return orders;
+        }
+
+        public List<OrderDetail> GetOrderDetails(int orderId)
+        {
+            var orderDetails = _cartRepo.GetOrderDetails(orderId);
+
+            return orderDetails;
+        }
     }
 }

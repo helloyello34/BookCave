@@ -15,14 +15,10 @@ namespace BookCave.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private CartService _cartService;
         private BookService _bookService;
-        private ShoppingCart _shoppingCart;
         
         public CartController(UserManager<ApplicationUser> usermanager)
         {
             _userManager = usermanager;
-            //var user = _userManager.GetUserAsync(User);
-        // var userId = user.Id.ToString();
-            _shoppingCart = new ShoppingCart();
             _cartService = new CartService();
             _bookService = new BookService();
         }
@@ -88,6 +84,61 @@ namespace BookCave.Controllers
             var userId = user.Id;
             _cartService.GetTotal(userId);
             
+        }
+
+        public async Task CreateOrder()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            var order = _cartService.MakeNewOrder( userId );
+            order.Address = user.Street;
+            order.City = user.City;
+            order.Country = user.Country;
+            order.Email = user.Email;
+            order.FirstName = user.FirstName;
+            order.LastName = user.LastName;
+            order.OrderDate = System.DateTime.Now;
+
+            _cartService.CreateOrder( order, userId );
+        } 
+        public async Task<IActionResult> Order()
+        {
+            ViewData["Genres"] = GetGenres();
+            var user = await _userManager.GetUserAsync(User);
+            
+            var order = new OrderViewModel {
+                Id = user.Id
+            };
+
+            return View(order);
+            
+        }
+
+        public async Task<List<Order>> GetOrders()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+            var orders = _cartService.GetOrders(userId);
+
+            return orders;
+        }
+
+        public async Task GetOrderDetails(int orderId)
+        {
+             var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            var orderDetails = _cartService.GetOrderDetails(orderId);
+
+        }
+
+        public async Task<IActionResult> OrderOverView()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            var orders = GetOrders();
+
+            return View(orders);
         }
     }
 }
