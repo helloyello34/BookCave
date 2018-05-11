@@ -1,3 +1,26 @@
-@model BookCave.Models.ViewModels.OrderViewModel
+@model BookCave.Models.ViewModels.PaymentViewModel
 
-<h1>Order No. @Model.Id</h1>
+
+
+
+<div class="container">
+  <div class="row">
+  <div class="col-sm-4">
+  @foreach(var item in Model.Items)
+  {
+    <div class="row">
+    <div class="col-sm-12">
+      @item.Book.Title
+      <p>Count: @item.Count</p>
+      <p>Price per unit: @item.Book.Price $</p>
+    </div>
+    </div>
+    <hr>
+  }
+  </div>
+    <div class="col-sm-8">
+      <p><strong>Total: @Model.Total $</strong></p>
+      <a asp-controller="Cart" asp-action="Success" class="btn btn-primary">Pay!</a>
+    </div>
+  </div>
+</div>
