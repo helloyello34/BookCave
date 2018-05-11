@@ -134,11 +134,32 @@ namespace BookCave.Services
             return newOrder;
         }
 
-        public List<Order> GetOrders(string userId)
+        public List<OrderViewModel> GetOrders(string userId)
         {
             var orders = _cartRepo.GetOrders(userId);
+            var oVM = new List<OrderViewModel> {};
 
-            return orders;
+                foreach (var o in orders)
+                {
+                    var tmp = new OrderViewModel
+                    {
+                        Id = o.OrderId,
+                        FirstName = o.FirstName,
+                        LastName = o.LastName,
+                        Address = o.Address,
+                        City = o.City,
+                        PostalCode = o.PostalCode,
+                        State = o.State,
+                        Country = o.Country,
+                        Email = o.Email,
+                        Total = o.Total,
+                        OrderDate = o.OrderDate,
+                        OrderDetails = o.OrderDetails
+                    };
+                oVM.Add(tmp);
+                };
+            
+            return oVM;
         }
 
         public List<OrderDetail> GetOrderDetails(int orderId)
